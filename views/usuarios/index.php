@@ -6,7 +6,7 @@ include('../../app/controllers/usuarios/controller_usuarios.php');
 include('../../app/controllers/categorias/controller_categorias.php');
 include('../../app/controllers/productos/controller_productos.php');
 include('../../app/controllers/servicios/controller_servicios.php');
-//include('../../app/controllers/empleados/controller_empleados.php');
+include('../../app/controllers/empleados/controller_empleados.php');
 
 ?>
 <div class="container-fluid">
@@ -38,7 +38,7 @@ include('../../app/controllers/servicios/controller_servicios.php');
                 <a href="usuarios.php" class="small-box-footer">Más info    <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <!--Empledos
+        
         <div class="col-3">
             <div class="small-box bg-danger">
                 <div class="inner">
@@ -51,7 +51,7 @@ include('../../app/controllers/servicios/controller_servicios.php');
                 <a href="../empleados" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        -->
+        
         <div class="col-3">
             <div class="small-box bg-primary">
                 <div class="inner">
