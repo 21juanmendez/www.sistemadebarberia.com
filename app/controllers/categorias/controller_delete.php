@@ -12,7 +12,7 @@ try{
     header('Location:'.$URL . '/views/categorias');
     exit();
 }catch(PDOException $e){
-    if($e->getCode())=='23000' && $e->errorInfo[1] == 1451){
+    if($e->getCode() == '23000' && $e->errorInfo[1] == 1451){
         session_start();
         $_SESSION['mensaje'] = 'Error al eliminar la categoria. Existen puntos asociados a esta categoria.';
         $_SESSION['icono']= 'error';
