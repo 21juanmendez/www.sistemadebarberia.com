@@ -2,10 +2,10 @@
 include('../../config.php');
 
 
-$id_categoria = $POST['id_categoria'];
-$nombre = $POST['nombre'];
+$id_categoria = $_POST['id_categoria'];
+$nombre = $_POST['nombre'];
 
-$sql = "UPDATE tb_categorias SET nombre = '$nombre', fyh_creacion='$fyh_actualizacion' WHERE id_categoria=$id_categoria";
+$sql = "UPDATE tb_categorias SET nombre = '$nombre', fyh_actualizacion='$fyh_actualizacion' WHERE id_categoria=$id_categoria";
 $query=$pdo->prepare($sql);
 
 if($query->execute()){

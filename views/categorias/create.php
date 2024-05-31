@@ -5,10 +5,10 @@ include('../usuarios/layout/parte1.php');
 <div class="container-fluid">
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-tittle"><b>CREAR NUEVA CATEGORIA</b></h3>
+            <h3 class="card-title"><b>CREAR NUEVA CATEGORIA</b></h3>
         </div>
         <div class="card-body">
-            <form class="row g-3" action="<?php echo $URL ?>>/app/controllers/categorias/controller_create.php" method="post">
+            <form class="row g-3" action="<?php echo $URL ?>/app/controllers/categorias/controller_create.php" method="post">
                 <div class="col-md-6">
                     <label>Nombre de categoria</label>
                     <input name=nombre type="text" class="form-control" placeholder="Name" required>

@@ -6,7 +6,7 @@ if (isset($_SESSION['mensaje'])) { ?>
             icon: "<?php echo $_SESSION['icono'] ?>",
             title: "<?php echo $_SESSION['mensaje'] ?>",
             showConfirmButton: false,
-            timer: 2000
+            timer: 2500
         });
     </script>
 <?php

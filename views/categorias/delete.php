@@ -19,7 +19,7 @@ include('mensaje.php');
                 <center>
                     <div class="col-md-12">
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            ELIMINAR
+                            Eliminar
                         </button>
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
@@ -29,7 +29,7 @@ include('mensaje.php');
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Esta seguro de que desea ELIMINAR esta categoria?</p>
+                                        <p><strong>¿Esta seguro de que desea eliminar esta categoria?</strong></p>
                                     </div>
                                     <div class="modal-footer">
                                         <center>

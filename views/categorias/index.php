@@ -58,7 +58,7 @@ include('mensaje.php');
                                             </td>
                                             <td>
                                                 <center>
-                                                    <a href="<?php echo $VIEWS; ?>/categorias/read.php?id_categoria=<?php echo $categoria['id_categoria']; ?>" class="btn btn-info btn-sm"<i class="bi bi-eye-fill"></i></a>
+                                                    <a href="<?php echo $VIEWS; ?>/categorias/read.php?id_categoria=<?php echo $categoria['id_categoria']; ?>" class="btn btn-info btn-sm"><i class="bi bi-eye-fill"></i></a>
                                                     <a href="<?php echo $VIEWS; ?>/categorias/update.php?id_categoria=<?php echo $categoria['id_categoria']; ?>" class="btn btn-success btn-sm"><i class="bi bi-pencil-square"></i></a>
                                                     <a href="<?php echo $VIEWS; ?>/categorias/delete.php?id_categoria=<?php echo $categoria['id_categoria']; ?>" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></a>
                                                 </center>
