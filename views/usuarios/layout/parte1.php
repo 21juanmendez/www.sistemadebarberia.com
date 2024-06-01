@@ -291,7 +291,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                             </ul>
                         </li>
-                        EMPLEADOS 
+
                         <li class="nav-item menu-closed">
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-user-tie"></i>
@@ -309,7 +309,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                             </ul>
                         </li>
-                        FIN EMPLEADOS 
+                        
 
                         <li class="nav-item">
                             <a href="<?php echo $URL ?>/app/controllers/login/controller_cerrar.php?type=admin" class="nav-link active" style="background-color: crimson;">
