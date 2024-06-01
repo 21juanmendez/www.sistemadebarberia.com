@@ -21,7 +21,7 @@ include('../usuarios/layout/parte1.php');
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Precio</label>
-                                    <input type="number" name="precio" class="form-control" required>
+                                    <input type="number" id="precio" name="precio" class="form-control" step="0.01" required>
                                 </div>
                             </div>
                         </div>
@@ -37,7 +37,7 @@ include('../usuarios/layout/parte1.php');
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Seleccione la imagen del servicio</label>
-                            <input name="file" class="form-control" type="file" id="file" multiple>
+                            <input name="file" class="form-control" type="file" id="file" multiple required>
                             <center>
                                 <output id="list">
 
