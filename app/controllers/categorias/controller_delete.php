@@ -14,7 +14,7 @@ try{
 }catch(PDOException $e){
     if($e->getCode() == '23000' && $e->errorInfo[1] == 1451){
         session_start();
-        $_SESSION['mensaje'] = 'Error al eliminar la categoria. Existen puntos asociados.';
+        $_SESSION['mensaje'] = 'Error al eliminar la categoria. Existen productos asociados';
         $_SESSION['icono']= 'error';
         header('Location:' . $URL . '/views/categorias');
         exit();
