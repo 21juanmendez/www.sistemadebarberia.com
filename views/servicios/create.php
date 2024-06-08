@@ -28,7 +28,7 @@ include('../usuarios/layout/parte1.php');
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Descripcion</label>
+                                    <label>Descripción</label>
                                     <textarea name="descripcion" class="form-control" rows="2" required></textarea>
                                 </div>
                             </div>
