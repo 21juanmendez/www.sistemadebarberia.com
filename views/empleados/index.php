@@ -62,7 +62,7 @@ include('../../app/controllers/empleados_servicios/controller_empleados_servicio
                                             <td>
                                                 <center>
                                                     <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#serviciosModal<?php echo $empleado['id_empleado']; ?>">
-                                                        <i class="bi bi-eye-fill"></i> Ver Servicios
+                                                        <i class="bi bi-eye-fill"></i> Servicios
                                                     </button>
                                                 </center>
                                             </td>
