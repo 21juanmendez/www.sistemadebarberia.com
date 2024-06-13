@@ -47,7 +47,7 @@ include('../../app/controllers/categorias/controller_categorias.php');
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Categoria</label>
-                                    <select name="id_categoria" id="" class="form-control">
+                                    <select name="id_categoria" id="" class="form-select">
                                         <option value="<?php echo $id_categoria ?>"><?php echo $categoria_nombre ?></option>
                                         <?php
                                         foreach ($lista_categorias as $categoria) { ?>

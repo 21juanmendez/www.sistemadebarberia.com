@@ -79,7 +79,7 @@ if (isset($_SESSION['admin'])) {
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Categoria</label>
-                                    <select name="id_categoria" id="" class="form-control" required>
+                                    <select name="id_categoria" id="" class="form-select" required>
                                         <?php
                                         foreach ($lista_categorias as $categoria) {
                                         ?>
