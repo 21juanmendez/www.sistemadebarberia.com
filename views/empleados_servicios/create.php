@@ -14,10 +14,17 @@ include('mensaje.php');
         <div class="card-body">
             <form action="<?php echo $URL ?>/app/controllers/empleados_servicios/controller_create.php" method="post" class="row align-items-center">
                 <input type="hidden" name="id_empleado" value="<?php echo $id_empleado ?>">
-                <?php foreach ($servicios as $servicio) { ?>
+                <?php 
+                // Crear un array con los IDs de los servicios del empleado
+                $servicios_empleado_ids = array_column($empleados_servicios, 'id_servicio');
+                
+                foreach ($servicios as $servicio) { 
+                    $checked = in_array($servicio['id_servicio'], $servicios_empleado_ids) ? 'checked' : '';
+                    $disabled = in_array($servicio['id_servicio'], $servicios_empleado_ids) ? 'disabled' : '';
+                ?>
                     <div class="col-md-2">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="id_servicios[]" value="<?php echo $servicio['id_servicio'] ?>" id="servicio<?php echo $servicio['id_servicio'] ?>">
+                            <input class="form-check-input" type="checkbox" name="id_servicios[]" value="<?php echo $servicio['id_servicio'] ?>" id="servicio<?php echo $servicio['id_servicio'] ?>" <?php echo $checked; ?> <?php echo $disabled; ?>>
                             <label class="form-check-label" for="servicio<?php echo $servicio['id_servicio'] ?>">
                                 <?php echo $servicio['nombre_servicio'] ?>
                             </label>
@@ -35,7 +42,7 @@ include('mensaje.php');
     </div>
 
     <div class="card card-info">
-        <div class="card-body" >
+        <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
                     <table id="example" class="table table-striped table-hover table-borderless table-sm">
@@ -68,23 +75,23 @@ include('mensaje.php');
                                     <td>
                                         <form action="<?php echo $URL ?>/app/controllers/empleados_servicios/controller_delete.php" method="post">
                                             <center>
-                                                <input type="text" name="id_empleado" value="<?php echo $id_empleado ?>" hidden>
-                                                <input type="text" name="id_empleado_servicio" value="<?php echo $empleado_servicio['id_empleado_servicio'] ?>" hidden>
+                                                <input type="hidden" name="id_empleado" value="<?php echo $id_empleado ?>">
+                                                <input type="hidden" name="id_empleado_servicio" value="<?php echo $empleado_servicio['id_empleado_servicio'] ?>">
                                                 <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal<?php echo $empleado_servicio['id_empleado_servicio']; ?>">
                                                     <i class="bi bi-trash"></i>
                                                     Eliminar
                                                 </button>
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal fade" id="modal<?php echo $empleado_servicio['id_empleado_servicio']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalLabel<?php echo $empleado_servicio['id_empleado_servicio']; ?>" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content modal-centered">
                                                             <div class="modal-header" style="background-color: red;">
-                                                                <h1 class="modal-title fs-5" id="staticBackdropLabel"><b>Eliminar Servicio<b></h1>
+                                                                <h1 class="modal-title fs-5" id="modalLabel<?php echo $empleado_servicio['id_empleado_servicio']; ?>"><b>Eliminar Servicio<b></h1>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <p>¿Esta seguro de que desea eliminar este servicio</p>
+                                                                <p>¿Esta seguro de que desea eliminar este servicio?</p>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <center>
@@ -111,5 +118,4 @@ include('mensaje.php');
 </div>
 <?php
 include('../usuarios/layout/parte2.php');
-
 ?>

@@ -20,7 +20,7 @@ include('mensaje.php');
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Correo electronico</label>
-                            <input name="email""" type="email" class="form-control" required>
+                            <input name="email" type="email" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -39,40 +39,33 @@ include('mensaje.php');
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>Telefono</label>
-                            <input name="telefono" class="form-control" type="number" id="telefonoInput" maxlength="8" placeholder="69794062">
+                            <input name="telefono" class="form-control" type="text" id="telefonoInput" pattern="\d{8}" maxlength="8" placeholder="69794062" title="El numero de telefono debe tener 8 digitos" required>
                         </div>
                     </div>
-
+                    <script>
+                        document.getElementById('telefonoInput').addEventListener('keydown', function(e) {
+                            // Permite solo números y la tecla de borrar
+                            if (!/[0-9]/.test(e.key) && e.key !== 'Backspace') {
+                                e.preventDefault();
+                            }
+                        });
+                    </script>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>Dui</label>
-                            <input name="dui" class="form-control" type="text" id="duiInput" maxlength="10" placeholder="05931271-3">
+                            <input name="dui" class="form-control" type="text" id="duiInput" maxlength="10" placeholder="05931271-3" pattern="\d{8}-\d" title="Ingrese un DUI válido (ejemplo: 05931271-3)" required>
                         </div>
                     </div>
-                    <!-- Script para dar formato al DUI (05931271-3) -->
                     <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            const duiInput = document.getElementById("duiInput");
-
-                            duiInput.addEventListener("input", function() {
-                                let value = duiInput.value.trim(); // Eliminar espacios en blanco al principio y al final
-
-                                // Verificar si el valor tiene el formato correcto de 9 dígitos seguidos de un guion y un dígito
-                                if (/^\d{9}-\d$/.test(value)) {
-                                    // El valor tiene el formato correcto, no hacer nada
-                                } else {
-                                    // Verificar si el valor tiene 9 dígitos seguidos sin guion
-                                    if (/^\d{9}$/.test(value)) {
-                                        // Formatear el valor agregando un guion antes del último dígito
-                                        value = value.slice(0, -1) + "-" + value.slice(-1);
-                                    } else if (value.length > 10) {
-                                        // Limitar la longitud del valor a 10 caracteres (incluyendo el guion)
-                                        value = value.slice(0, 10);
-                                    }
-                                }
-                                // Asignar el valor formateado de vuelta al input
-                                duiInput.value = value;
-                            });
+                        document.getElementById('duiInput').addEventListener('input', function(e) {
+                            var value = this.value.replace(/[^0-9-]/g, ''); // Elimina caracteres no deseados
+                            if (value.length <= 8) {
+                                // Si hay 8 o menos dígitos, solo permite números
+                                this.value = value.replace(/\D/g, '');
+                            } else {
+                                // Si hay más de 8 dígitos, inserta un guión después del octavo dígito y permite números después
+                                this.value = value.slice(0, 8) + '-' + value.slice(8).replace(/\D/g, '');
+                            }
                         });
                     </script>
 
@@ -80,46 +73,27 @@ include('mensaje.php');
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>Nit</label>
-                            <input name="nit" class="form-control" type="text" id="nitInput" maxlength="17" placeholder="0614-280899-112-9">
+                            <input name="nit" class="form-control" type="text" id="nitInput" maxlength="17" placeholder="0614-280899-112-9" pattern="\d{4}-\d{6}-\d{3}-\d" title="Ingrese un NIT válido (ejemplo: 0614-280899-112-9)" required>
                         </div>
                     </div>
 
 
                     <!-- Script para dar formato al NIT (0614-280899-112-9) -->
                     <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            const nitInput = document.getElementById("nitInput");
+                        document.getElementById('nitInput').addEventListener('input', function(e) {
+                            var value = this.value.replace(/[^0-9-]/g, ''); // Elimina caracteres no deseados
+                            value = value.replace(/\D/g, ''); // Elimina todo lo que no sea dígitos
 
-                            nitInput.addEventListener("input", function() {
-                                let value = nitInput.value.trim(); // Eliminar espacios en blanco al principio y al final
-
-                                // Verificar y aplicar formato al NIT (0614-280899-112-9)
-                                if (/^\d{4}-\d{6}-\d{3}-\d$/.test(value)) {
-                                    // El valor tiene el formato correcto, no hacer nada
-                                } else {
-                                    // Formatear el valor del NIT agregando guiones en las posiciones correctas
-                                    if (value.length === 4 || value.length === 11 || value.length === 15) {
-                                        value += "-";
-                                    }
+                            // Formatea el valor ingresado para que coincida con el patrón
+                            var formattedValue = '';
+                            for (var i = 0; i < value.length; i++) {
+                                if (i === 4 || i === 10 || i === 13) {
+                                    formattedValue += '-'; // Agrega un guión en las posiciones correctas
                                 }
-                                // Asignar el valor formateado de vuelta al input
-                                nitInput.value = value;
-                            });
+                                formattedValue += value[i];
+                            }
 
-                            // Permitir borrar caracteres si el usuario se equivoca
-                            nitInput.addEventListener("keydown", function(event) {
-                                if (event.key === "Backspace" || event.key === "Delete") {
-                                    // Si el usuario presiona Backspace o Delete, permitir borrar caracteres
-                                    let value = nitInput.value.trim(); // Obtener el valor actual del input
-
-                                    // Verificar si el valor tiene guiones para no borrarlos
-                                    if (value.length === 5 || value.length === 12 || value.length === 16) {
-                                        value = value.slice(0, -1); // Eliminar el último guion
-                                    }
-                                    // Asignar el valor modificado de vuelta al input
-                                    nitInput.value = value;
-                                }
-                            });
+                            this.value = formattedValue.slice(0, 17); // Limita la longitud máxima a 17 caracteres (incluyendo guiones)
                         });
                     </script>
 
