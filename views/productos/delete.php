@@ -123,7 +123,7 @@ include('../../app/controllers/productos/controller_read.php');
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header" style="background-color: red;">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel"><b>Eliminar Usuario<b></h1>
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel"><b>Eliminar Producto<b></h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">

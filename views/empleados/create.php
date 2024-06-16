@@ -39,7 +39,7 @@ include('mensaje.php');
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>Telefono</label>
-                            <input name="telefono" class="form-control" type="text" id="telefonoInput" maxlength="8" placeholder="69794062">
+                            <input name="telefono" class="form-control" type="number" id="telefonoInput" maxlength="8" placeholder="69794062">
                         </div>
                     </div>
 
