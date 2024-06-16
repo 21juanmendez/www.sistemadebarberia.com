@@ -42,7 +42,7 @@ if (isset($_SESSION['admin'])) {
             <h3 class="card-title"><b>CREAR NUEVO PRODUCTO</b></h3>
         </div>
         <div class="card-body">
-            <form action="<?php echo $URL ?>/app/controllers/productos/controller_create.php" method="post" enctype="multipart/form-data">
+            <form action="<?php echo $URL ?>/app/controllers/productos/controller_create.php" method="post" enctype="multipart/form-data" id="formulario">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="row">
@@ -101,25 +101,25 @@ if (isset($_SESSION['admin'])) {
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Stock minimo</label>
-                                    <input type="number" name="stock_minimo" class="form-control" required>
+                                    <input type="number" name="stock_minimo" id="stock_minimo" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Stock maximo</label>
-                                    <input type="number" name="stock_maximo" class="form-control" required>
+                                    <input type="number" name="stock_maximo" id="stock_maximo" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Precio de compra</label>
-                                    <input type="number" name="precio_compra" class="form-control" required>
+                                    <input type="number" name="precio_compra" id="precio_compra" class="form-control" step="0.01" required>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Precio de venta</label>
-                                    <input type="number" name="precio_venta" class="form-control" required>
+                                    <input type="number" name="precio_venta" id="precio_venta" class="form-control" step="0.01" required>
                                 </div>
                             </div>
 
@@ -145,6 +145,52 @@ if (isset($_SESSION['admin'])) {
                 </center>
 
             </form>
+            <script>
+                document.addEventListener('DOMContentLoaded', (event) => {
+                    const form = document.getElementById('formulario');
+                    form.addEventListener('submit', function(e) {
+                        const stock_minimo = document.getElementById('stock_minimo').value;
+                        const stock_maximo = document.getElementById('stock_maximo').value;
+                        const precio_compra = document.getElementById('precio_compra').value;
+                        const precio_venta = document.getElementById('precio_venta').value;
+
+                        let showAlert = false;
+                        let alertMessage = '';
+
+                        // Validación de stock mínimo y máximo
+                        if (parseInt(stock_minimo) > parseInt(stock_maximo)) {
+                            showAlert = true;
+                            alertMessage = ' El stock mínimo no puede ser mayor que el stock máximo.';
+                            const stock_minimo_input = document.getElementById('stock_minimo');
+                            stock_minimo_input.setAttribute('data-toggle', 'tooltip');
+                            stock_minimo_input.setAttribute('data-placement', 'top');
+                            stock_minimo_input.setAttribute('title', '<i class="bi bi-exclamation-triangle-fill"></i> '+alertMessage);
+                            $(stock_minimo_input).tooltip({ html: true }).tooltip('show');
+                            setTimeout(() => {
+                                $(stock_minimo_input).tooltip('dispose');
+                            }, 3000);
+                        }
+
+                        // Validación de precio de compra y precio de venta
+                        if (parseFloat(precio_compra) > parseFloat(precio_venta)) {
+                            showAlert = true;
+                            alertMessage = ' El precio de compra no puede ser mayor que el precio de venta.';
+                            const precio_compra_input = document.getElementById('precio_compra');
+                            precio_compra_input.setAttribute('data-toggle', 'tooltip');
+                            precio_compra_input.setAttribute('data-placement', 'top');
+                            precio_compra_input.setAttribute('title', '<i class="bi bi-exclamation-triangle-fill"></i> '+ alertMessage);
+                            $(precio_compra_input).tooltip({ html: true }).tooltip('show');
+                            setTimeout(() => {
+                                $(precio_compra_input).tooltip('dispose');
+                            }, 3000);
+                        }
+
+                        if (showAlert) {
+                            e.preventDefault(); // Evita que el formulario se envíe
+                        }
+                    });
+                });
+            </script>
         </div>
     </div>
 </div>

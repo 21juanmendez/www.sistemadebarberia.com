@@ -12,7 +12,7 @@ include('../../app/controllers/categorias/controller_categorias.php');
             <h3 class="card-title"><b>EDITAR PRODUCTO</b></h3>
         </div>
         <div class="card-body">
-            <form action="<?php echo $URL ?>/app/controllers/productos/controller_update.php" method="post" enctype="multipart/form-data">
+            <form action="<?php echo $URL ?>/app/controllers/productos/controller_update.php" id="formulario" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="row">
@@ -69,25 +69,25 @@ include('../../app/controllers/categorias/controller_categorias.php');
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Stock minimo</label>
-                                    <input value="<?php echo $stock_minimo ?>" type="number" name="stock_minimo" class="form-control">
+                                    <input value="<?php echo $stock_minimo ?>" type="number" id="stock_minimo" name="stock_minimo" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Stock maximo</label>
-                                    <input value="<?php echo $stock_maximo ?>" type="number" name="stock_maximo" class="form-control">
+                                    <input value="<?php echo $stock_maximo ?>" type="number" id="stock_maximo" name="stock_maximo" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Precio de compra</label>
-                                    <input value="<?php echo $precio_compra ?>" type="number" name="precio_compra" class="form-control">
+                                    <input value="<?php echo $precio_compra ?>" type="number" id="precio_compra" name="precio_compra" step="0.01" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Precio de venta</label>
-                                    <input value="<?php echo $precio_venta ?>" type="number" name="precio_venta" class="form-control">
+                                    <input value="<?php echo $precio_venta ?>" type="number" id="precio_venta" name="precio_venta" step="0.01" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -112,6 +112,52 @@ include('../../app/controllers/categorias/controller_categorias.php');
 
                 </center>
             </form>
+            <script>
+                document.addEventListener('DOMContentLoaded', (event) => {
+                    const form = document.getElementById('formulario');
+                    form.addEventListener('submit', function(e) {
+                        const stock_minimo = document.getElementById('stock_minimo').value;
+                        const stock_maximo = document.getElementById('stock_maximo').value;
+                        const precio_compra = document.getElementById('precio_compra').value;
+                        const precio_venta = document.getElementById('precio_venta').value;
+
+                        let showAlert = false;
+                        let alertMessage = '';
+
+                        // Validación de stock mínimo y máximo
+                        if (parseInt(stock_minimo) > parseInt(stock_maximo)) {
+                            showAlert = true;
+                            alertMessage = ' El stock mínimo no puede ser mayor que el stock máximo.';
+                            const stock_minimo_input = document.getElementById('stock_minimo');
+                            stock_minimo_input.setAttribute('data-toggle', 'tooltip');
+                            stock_minimo_input.setAttribute('data-placement', 'top');
+                            stock_minimo_input.setAttribute('title', '<i class="bi bi-exclamation-triangle-fill"></i> '+alertMessage);
+                            $(stock_minimo_input).tooltip({ html: true }).tooltip('show');
+                            setTimeout(() => {
+                                $(stock_minimo_input).tooltip('dispose');
+                            }, 3000);
+                        }
+
+                        // Validación de precio de compra y precio de venta
+                        if (parseFloat(precio_compra) > parseFloat(precio_venta)) {
+                            showAlert = true;
+                            alertMessage = ' El precio de compra no puede ser mayor que el precio de venta.';
+                            const precio_compra_input = document.getElementById('precio_compra');
+                            precio_compra_input.setAttribute('data-toggle', 'tooltip');
+                            precio_compra_input.setAttribute('data-placement', 'top');
+                            precio_compra_input.setAttribute('title', '<i class="bi bi-exclamation-triangle-fill"></i> '+ alertMessage);
+                            $(precio_compra_input).tooltip({ html: true }).tooltip('show');
+                            setTimeout(() => {
+                                $(precio_compra_input).tooltip('dispose');
+                            }, 3000);
+                        }
+
+                        if (showAlert) {
+                            e.preventDefault(); // Evita que el formulario se envíe
+                        }
+                    });
+                });
+            </script>
         </div>
     </div>
 </div>
