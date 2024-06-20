@@ -39,7 +39,7 @@ include('../../app/controllers/servicios/controller_read.php');
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Seleccione la imagen del servicio</label>
-                            <input name="file" class="form-control" type="file" id="file" multiple>
+                            <input name="file" class="form-control" type="file" id="file" >
                             <input name="imagen" type="text" value="<?php echo $imagen ?>" hidden>
                             <center>
                                 <output id="list">

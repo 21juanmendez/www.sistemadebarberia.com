@@ -37,7 +37,7 @@ include('../usuarios/layout/parte1.php');
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Seleccione la imagen del servicio</label>
-                            <input name="file" class="form-control" type="file" id="file" multiple required>
+                            <input name="file" class="form-control" type="file" id="file" required>
                             <center>
                                 <output id="list">
 

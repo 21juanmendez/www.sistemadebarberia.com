@@ -20,7 +20,7 @@ include('mensaje.php');
                                     <tr>
                                         <th style="text-align: center;">#</th>
                                         <th style="text-align: center;">Nombre</th>
-                                        <th style="text-align: center;">Descripcion</th>
+                                        <th style="text-align: center;">Descripción</th>
                                         <th style="text-align: center;">Precio</th>
                                         <th style="text-align: center;">Imagen</th>
                                         <th style="text-align: center;">Acciones</th>

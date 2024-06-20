@@ -30,7 +30,7 @@ include('../../app/controllers/servicios/controller_read.php');
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Descripcion</label>
+                                    <label>Descripción</label>
                                     <p><?php echo $descripcion ?></p>
                                 </div>
                             </div>
@@ -38,13 +38,13 @@ include('../../app/controllers/servicios/controller_read.php');
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Fecha de creacion</label>
+                                    <label>Fecha de creación</label>
                                     <p><?php echo $fyh_creacion ?></p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Fecha de actualizacion</label>
+                                    <label>Fecha de actualización</label>
                                     <p><?php echo $fyh_actualizacion ?></p>
                                 </div>
                             </div>
