@@ -26,12 +26,6 @@ include('../../app/controllers/empleados_servicios/controller_empleados_servicio
                                             <center>Nombre</center>
                                         </th>
                                         <th scope="col">
-                                            <center>Dui</center>
-                                        </th>
-                                        <th scope="col">
-                                            <center>Nit</center>
-                                        </th>
-                                        <th scope="col">
                                             <center>Servicios</center>
                                         </th>
                                         <th scope="col">
@@ -52,13 +46,6 @@ include('../../app/controllers/empleados_servicios/controller_empleados_servicio
                                             <td>
                                                 <center><?php echo $empleado['nombre_empleado'] ?></center>
                                             </td>
-                                            <td>
-                                                <center><?php echo $empleado['dui'] ?></center>
-                                            </td>
-                                            <td>
-                                                <center><?php echo $empleado['nit'] ?></center>
-                                            </td>
-
                                             <td>
                                                 <center>
                                                     <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#serviciosModal<?php echo $empleado['id_empleado']; ?>">
@@ -95,6 +82,9 @@ include('../../app/controllers/empleados_servicios/controller_empleados_servicio
                                                 <center>
                                                     <a href="<?php echo $VIEWS; ?>/empleados_servicios/create.php?id_empleado=<?php echo $empleado['id_empleado']; ?>" class="btn btn-primary btn-sm">
                                                         <i class="bi bi-plus-lg"></i> Agregar Servicios
+                                                    </a>
+                                                    <a href="<?php echo $VIEWS; ?>/empleados/read.php?id_empleado=<?php echo $empleado['id_empleado']; ?>" class="btn btn-info btn-sm">
+                                                        <i class="bi bi-eye-fill"></i> Ver Empleado
                                                     </a>
                                                     <a href="<?php echo $VIEWS; ?>/empleados/update.php?id_empleado=<?php echo $empleado['id_empleado']; ?>" class="btn btn-success btn-sm">
                                                         <i class="bi bi-pencil-square"></i> Editar Empleado
