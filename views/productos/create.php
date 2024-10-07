@@ -65,7 +65,7 @@ if (isset($_SESSION['admin'])) {
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Fecha de ingreso</label>
-                                    <input type="date" name="fecha_de_ingreso" class="form-control" required>
+                                    <input type="date" name="fecha_de_ingreso" class="form-control" value="<?php echo date('Y-m-d'); ?>" required>
                                 </div>
                             </div>
                         </div>
@@ -80,6 +80,7 @@ if (isset($_SESSION['admin'])) {
                                 <div class="form-group">
                                     <label>Categoria</label>
                                     <select name="id_categoria" id="" class="form-select" required>
+                                    <option value="" disabled selected>Seleccione una categoría</option>
                                         <?php
                                         foreach ($lista_categorias as $categoria) {
                                         ?>
