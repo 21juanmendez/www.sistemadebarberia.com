@@ -24,9 +24,10 @@ if (empty($usuarios)) {
 
     session_start();
     if (password_verify($password, $usuario['password']) && ($usuario['nombre'] == "ADMINISTRADOR" || $usuario['nombre'] == "Administrador")) {
+        $_SESSION['id_usuario'] = $usuario['id_usuario'];
         $_SESSION['admin'] = $usuario['nombre_completo'];
         $_SESSION['email'] = $usuario['email'];
-        $_SESSION['mensaje'] = $usuario['nombre_completo'];
+        $_SESSION['mensaje'] = '<h1>Bienvenido \n</h1>'. $usuario['nombre_completo'];
         $_SESSION['icono'] = 'success';
         header('Location: ' . $VIEWS . "/usuarios");
     } elseif (password_verify($password, $usuario['password']) && ($usuario['nombre'] == "CLIENTE" || $usuario['nombre'] == "Cliente")) {
