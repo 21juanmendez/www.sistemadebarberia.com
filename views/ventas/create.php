@@ -2,7 +2,9 @@
 include('../usuarios/layout/parte1.php');
 include('../../app/controllers/ventas_producto/controller_ventas_p.php');
 include('../../app/controllers/ventas_servicio/controller_ventas_s.php');
+include('../../app/controllers/ventas/validar.php');
 include('mensaje.php');
+
 if (isset($_GET['id_venta']) && !empty($_GET['id_venta'])) {
     $id_venta = $_GET['id_venta'];
 } else {

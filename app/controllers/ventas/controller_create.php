@@ -8,13 +8,15 @@ $subtotal_servicio = $_POST['subtotal_servicios'];
 $total_venta = $_POST['total_a_pagar'];
 $total_pagado = $_POST['total_pagado'];
 $cambio = $_POST['cambio'];
-$sql = "UPDATE tb_ventas SET subtotal_productos = :subtotal_producto, subtotal_servicios = :subtotal_servicio, total_venta = :total_venta, total_pagado = :total_pagado, cambio = :cambio WHERE id_venta = :id_venta";
+$completa = 1;
+$sql = "UPDATE tb_ventas SET subtotal_productos = :subtotal_producto, subtotal_servicios = :subtotal_servicio, total_venta = :total_venta, total_pagado = :total_pagado, cambio = :cambio, completa = :completa WHERE id_venta = :id_venta";
 $params = array(
     ':subtotal_producto' => $subtotal_producto,
     ':subtotal_servicio' => $subtotal_servicio,
     ':total_venta' => $total_venta,
     ':total_pagado' => $total_pagado,
     ':cambio' => $cambio,
+    ':completa' => $completa,
     ':id_venta' => $id_venta
 );
 // Preparar la consulta
