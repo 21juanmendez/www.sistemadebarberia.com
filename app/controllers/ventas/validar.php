@@ -1,4 +1,6 @@
 <?php
+
+// Código del controlador
 $id_venta = $_GET['id_venta'];
 $estado = 0;
 
@@ -7,12 +9,12 @@ $query = $pdo->prepare($sql);
 $query->execute(array(':id_venta' => $id_venta));
 $venta = $query->fetch(PDO::FETCH_ASSOC);
 $estado = $venta['completa'];
-ob_start(); // Iniciar el buffer de salida
-// Tu código aquí
 
 if ($estado == 1) {
-    header("Location:" . $VIEWS . "/ventas");
-    exit(); // Asegúrate de incluir exit después de header
+    $_SESSION["mensaje"] = "Venta ya registrada";
+    $_SESSION["icono"] = "error";
+    echo '<script type="text/javascript">';
+    echo 'window.location.href="' . $VIEWS . '/ventas";';
+    echo '</script>';
+    exit();
 }
-
-ob_end_flush();
