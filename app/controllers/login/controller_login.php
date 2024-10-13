@@ -23,6 +23,7 @@ if (empty($usuarios)) {
     $usuario = $query->fetch(PDO::FETCH_ASSOC);
 
     session_start();
+    $_SESSION['id'] = $usuario['id_usuario'];//con esto se guarda el id del usuario en la variable de sesion
     if (password_verify($password, $usuario['password']) && ($usuario['nombre'] == "ADMINISTRADOR" || $usuario['nombre'] == "Administrador")) {
         $_SESSION['admin'] = $usuario['nombre_completo'];
         $_SESSION['email'] = $usuario['email'];

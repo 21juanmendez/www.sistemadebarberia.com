@@ -51,13 +51,11 @@ session_start();
                             Productos
                         </a>
                     </li>
-                    <!--
                     <li class="nav-item">
                         <a href="registrar_cita.php" class="nav-link">
                             Reservar cita
                         </a>
                     </li>
-                    -->
                 </ul>
 
                 <ul class="navbar-nav">

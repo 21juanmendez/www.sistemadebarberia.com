@@ -15,19 +15,19 @@ include('layout/mensaje_permiso.php'); //para ver si tiene permisos de administr
             <div class="carousel-item active text-center">
                 <img src="public/imagenes/barberia-carrusel-4.png" class="d-block mx-auto img-fluid" alt="Descripción de la imagen">
                 <div class="carousel-caption d-md-block">
-                    <a href="#"" class="btn btn-primary">Reservar cita</a><br></br>
+                    <a href="<?php echo $URL?>/registrar_cita.php" class="btn btn-primary">Reservar cita</a><br></br>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="public/imagenes/barberia-carrusel-1.png" class="d-block mx-auto img-fluid" alt="Descripción de la imagen">
                 <div class="carousel-caption d-md-block">
-                    <a href="#" class="btn btn-primary">Reservar cita</a> <br></br>
+                    <a href="<?php echo $URL?>/registrar_cita.php" class="btn btn-primary">Reservar cita</a> <br></br>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="public/imagenes/barberia-carrusel-2.jpg" class="d-block mx-auto img-fluid" alt="Descripción de la imagen">
                 <div class="carousel-caption d-md-block">
-                    <a href="#" class="btn btn-primary">Reservar cita</a> <br></br>
+                    <a href="<?php echo $URL?>/registrar_cita.php" class="btn btn-primary">Reservar cita</a> <br></br>
                 </div>
             </div>
         </div>
