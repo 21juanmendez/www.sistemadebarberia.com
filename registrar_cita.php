@@ -15,10 +15,10 @@ if (isset($_SESSION['cliente'])) {
 
 <style>
     #calendar-container {
-        background-color: skyblue;
-        border-radius: 20px;
+        background-color: #f5f5f5;
+        border-radius: 10px;
         box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
-        padding: 20px;
+        padding: 40px;
     }
 
     #calendar {
@@ -48,6 +48,25 @@ if (isset($_SESSION['cliente'])) {
     <br><br>
 </section>
 <!--FIN CALENDARIO-->
+
+<!-- Modal para mostrar detalles del evento -->
+<div class="modal fade" id="modal-evento" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div style="background-color:#0dcaf0 ;" class="modal-header">
+                <h1 style="color: white;" class="modal-title fs-5" id="staticBackdropLabel"><b>Detalles de la Cita</b></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p id="detalle-cita"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Vertically centered modal HORARIOS-->
 <div class="modal fade" id="modal-reservas" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -156,13 +175,47 @@ if (isset($_SESSION['cliente'])) {
 
 <!--SCRIPT PARA CALENDARIO-->
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+
+<!-- Importamos la librería FullCalendar -->
 <script>
     var a; // Variable para almacenar la fecha seleccionada
     var usuario = '<?php echo $usuario ?>'; // Usuario logueado
+
     document.addEventListener('DOMContentLoaded', function() {
-        var today = new Date(); // Fecha y hora actual
-        var todayDate = today.toISOString().split('T')[0]; // Obtener la fecha actual en formato YYYY-MM-DD
-        var currentHour = today.getHours(); // Obtener la hora actual en formato 24 horas
+        // Obtener la fecha y hora en la zona horaria de El Salvador
+        var options = {
+            timeZone: 'America/El_Salvador',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+        };
+        var today = new Date();
+
+        //today.setDate(today.getDate() + 1); // Esto hace que sea "mañana para pruebas"
+        var todayInElSalvador = new Intl.DateTimeFormat('es-SV', options).format(today);
+
+        // Mostrar la fecha y hora en la consola (zona horaria correcta)
+        console.log("Fecha y hora ajustada (El Salvador): " + todayInElSalvador);
+
+        // Obtener solo la fecha actual (YYYY-MM-DD) usando la zona horaria correcta de El Salvador
+        var dateElSalvador = new Intl.DateTimeFormat('en-CA', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            timeZone: 'America/El_Salvador'
+        }).format(today);
+        console.log("Fecha actual (YYYY-MM-DD): " + dateElSalvador);
+
+        // Obtener la hora actual en formato 24 horas de El Salvador
+        var currentHourElSalvador = parseInt(new Intl.DateTimeFormat('es-SV', {
+            hour: '2-digit',
+            timeZone: 'America/El_Salvador',
+            hour12: false
+        }).format(today));
+        console.log("Hora actual (hora en formato 24h): " + currentHourElSalvador);
 
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -174,7 +227,7 @@ if (isset($_SESSION['cliente'])) {
 
             // Restricción para que no se pueda seleccionar fechas anteriores al día actual
             validRange: {
-                start: todayDate // No permite seleccionar fechas anteriores a la fecha actual
+                start: dateElSalvador // Usamos la fecha correcta de El Salvador
             },
 
             // Cargamos las citas agendadas para mostrarlas en el calendario
@@ -183,7 +236,9 @@ if (isset($_SESSION['cliente'])) {
             // Acción al hacer clic en una fecha
             dateClick: function(info) {
                 a = info.dateStr; // Guardamos la fecha seleccionada
-                var selectedDate = new Date(a); // Convertir la fecha seleccionada a objeto Date
+                var selectedDate = new Date(a);
+                var selectedDateFormatted = selectedDate.toISOString().split('T')[0]; // Formato YYYY-MM-DD
+                var dayOfWeek = selectedDate.getUTCDay(); // Día de la semana (0-6)
 
                 // Verificamos si el usuario está logueado
                 if (usuario == '') {
@@ -194,6 +249,15 @@ if (isset($_SESSION['cliente'])) {
                         footer: '<a href="<?php echo $VIEWS ?>/login">¿Ya tienes una cuenta?</a>'
                     });
                 } else {
+                    if (dayOfWeek == 0) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'No se pueden agendar citas los domingos'
+                        });
+                        return;
+                    }
+
                     // Hacemos una petición AJAX para obtener las horas ocupadas de la fecha seleccionada
                     $.ajax({
                         url: 'app/controllers/citas/cargar_reservas.php',
@@ -207,19 +271,22 @@ if (isset($_SESSION['cliente'])) {
                             // Limpiamos el estilo de los botones de las horas (por si se seleccionó una fecha anterior)
                             $('button[id^="btn_h"]').removeClass('btn-danger').addClass('btn-success').prop('disabled', false);
 
-                            // Verificar si la fecha seleccionada es hoy
-                            if (selectedDate.toISOString().split('T')[0] === todayDate) {
-                                // Si es hoy, deshabilitamos las horas pasadas
+                            // Si la fecha seleccionada es hoy (El Salvador)
+                            if (selectedDateFormatted === dateElSalvador) {
+                                // Deshabilitamos solo las horas pasadas del día actual
                                 $('button[id^="btn_h"]').each(function() {
-                                    // Obtener la hora del botón
                                     var horaBoton = $(this).text().trim();
                                     var horaNumero = parseInt(horaBoton.split(':')[0]);
 
-                                    // Deshabilitar los botones correspondientes a horas pasadas
-                                    if (horaNumero < currentHour) {
+                                    if (horaNumero < currentHourElSalvador) {
                                         $(this).removeClass('btn-success').addClass('btn-secondary').prop('disabled', true);
+                                    } else {
+                                        $(this).removeClass('btn-secondary').addClass('btn-success').prop('disabled', false);
                                     }
                                 });
+                            } else {
+                                // Si es un día futuro, todas las horas deben estar habilitadas
+                                $('button[id^="btn_h"]').removeClass('btn-secondary').addClass('btn-success').prop('disabled', false);
                             }
 
                             // Iteramos sobre las horas ocupadas y deshabilitamos los botones correspondientes
@@ -258,6 +325,49 @@ if (isset($_SESSION['cliente'])) {
                         }
                     });
                 }
+            },
+            //Cuando le damos click a un evento en este caso a una cita
+
+            eventClick: function(info) {
+                var eventObj = info.event; // Obtenemos el objeto del evento
+
+                // Hacer una solicitud AJAX para obtener los detalles de la cita
+                $.ajax({
+                    url: 'app/controllers/citas/cargar_detalle_citas.php', // Controlador para cargar detalles de la cita
+                    type: 'GET',
+                    data: {
+                        id: eventObj.id // Pasamos el ID del evento
+                    },
+                    success: function(response) {
+                        console.log('Respuesta del servidor:', response); // Para ver qué se está recibiendo
+
+                        // Determinamos si la respuesta es un error o si tiene los detalles
+                        if (response.error) {
+
+                            // Mostrar un mensaje de error en caso de que no se encuentre la cita
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Oops...',
+                                text: response.error
+                            });
+
+                        } else {
+                            // Mostrar los detalles de la cita en un mensaje de alerta
+                            Swal.fire({
+                                title: 'Detalles de la Cita',
+                                html: '<b>Servicio:</b> ' + response.servicio + '<br>' +
+                                    '<b>Fecha:</b> ' + response.fecha + '<br>' +
+                                    '<b>Hora:</b> ' + response.hora + '<br>' +
+                                    '<b>Usuario:</b> ' + response.usuario,
+                                confirmButtonText: 'Entendido'
+                            });
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
+                        alert('Error al cargar los detalles de la cita.'); // Mensaje de error para el usuario
+                    }
+                });
             }
         });
 
@@ -265,6 +375,8 @@ if (isset($_SESSION['cliente'])) {
         calendar.render();
     });
 </script>
+
+
 <!--FIN SCRIPT PARA CALENDARIO-->
 
 <script>

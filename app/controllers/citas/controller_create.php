@@ -8,7 +8,7 @@ $fecha_cita = $_POST['fecha_cita'];
 $hora_cita = $_POST['hora_cita'];
 $start = $fecha_cita;
 $end = $fecha_cita;
-$color = "#FF0000";
+$color = "#dc3545";
 $fyh_creacion = date("Y-m-d H:i:s");
 
 // Validación para no permitir fechas anteriores a hoy
