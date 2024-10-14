@@ -183,6 +183,7 @@ include('../../app/controllers/reportes/reportes_filter.php');
                     </div>
                 </div>
             </div>
+        </div>
     </section>
     <script>
         var ctx = document.getElementById('line-chart').getContext('2d');
