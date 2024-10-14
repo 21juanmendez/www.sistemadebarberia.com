@@ -352,15 +352,127 @@ if (isset($_SESSION['cliente'])) {
                             });
 
                         } else {
-                            // Mostrar los detalles de la cita en un mensaje de alerta
+
+
+
+
+
+
+
+                            // Mostrar los detalles de la cita en SweetAlert (Swal)
                             Swal.fire({
                                 title: 'Detalles de la Cita',
-                                html: '<b>Servicio:</b> ' + response.servicio + '<br>' +
-                                    '<b>Fecha:</b> ' + response.fecha + '<br>' +
-                                    '<b>Hora:</b> ' + response.hora + '<br>' +
-                                    '<b>Usuario:</b> ' + response.usuario,
-                                confirmButtonText: 'Entendido'
+                                html: `
+                                        <div style="text-align: left;">
+                                            <b>Servicio:</b> ${response.servicio}<br>
+                                            <b>Fecha:</b> ${response.fecha}<br>
+                                            <b>Hora:</b> ${response.hora}<br>
+                                            <b>Usuario:</b> ${response.usuario}<br><br>
+                                        </div>
+                                        <button id="closeModal" class="btn btn-secondary">Cerrar Ventana</button>
+                                        <button id="deleteCita" class="btn btn-danger">Cancelar Cita</button>
+                                        
+                                    `,
+                                showConfirmButton: false,
+                                width: 600, // Ancho de la alerta
+                                padding: "3em", // Relleno
+                                color: "#716add", // Color del texto
+                                background: "#fff url(/images/trees.png)", // Fondo personalizado
+                                backdrop: `
+                                        rgba(0,0,123,0.4)
+                                        url("<?php echo $URL ?>/public/imagenes/nyan-cat-nyan.gif")
+                                        left top
+                                        no-repeat
+                                        `
+                                
                             });
+
+                            // Escuchar el evento del botón para cerrar la alerta
+                            document.getElementById('closeModal').addEventListener('click', function() {
+                                Swal.close(); // Cerrar la alerta
+                            });
+
+                            // Escuchar el evento del botón para eliminar la cita
+                            document.getElementById('deleteCita').addEventListener('click', function() {
+    
+                                // Confirmación para eliminar la cita
+                                Swal.fire({
+                                    title: '¿Estás seguro?',
+                                    text: "¡Esta acción no se puede deshacer!",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#198754',
+                                    cancelButtonColor: '#dc3545',
+                                    confirmButtonText: 'Sí, eliminarla',
+                                    cancelButtonText: 'No, cancelar'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        // Si el usuario confirma, realizar la solicitud AJAX para eliminar la cita
+                                        $.ajax({
+                                            url: 'app/controllers/citas/eliminar_cita.php', // Cambia esta URL a la correcta
+                                            type: 'POST',
+                                            data: {
+                                                id: response.id // Enviar el ID de la cita a eliminar
+                                            },
+                                            success: function(response) {
+                                                var resultado = JSON.parse(response);
+
+                                                if (resultado.success) {
+                                                    // Eliminar el evento del calendario si se eliminó correctamente
+                                                    eventObj.remove();
+                                                    const swalWithBootstrapButtons = Swal.mixin({
+                                                        customClass: {
+                                                            confirmButton: "btn btn-success",
+                                                            cancelButton: "btn btn-danger"
+                                                        },
+                                                        buttonsStyling: false
+                                                    });
+                                                    swalWithBootstrapButtons.fire('Eliminada', 'La cita ha sido eliminada.', 'success');
+                                                } else {
+                                                    Swal.fire('Error', resultado.message, 'error');
+                                                }
+                                            },
+                                            error: function(jqXHR, textStatus, errorThrown) {
+                                                console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
+                                                Swal.fire('Error', 'Hubo un problema al eliminar la cita.', 'error');
+                                            }
+                                        });
+                                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                                        const swalWithBootstrapButtons = Swal.mixin({
+                                            customClass: {
+                                                confirmButton: "btn btn-success",
+                                                cancelButton: "btn btn-danger"
+                                            },
+                                            buttonsStyling: false
+                                        });
+                                        // Si el usuario cancela la eliminación
+                                        swalWithBootstrapButtons.fire({
+                                            title: "Cancelado",
+                                            text: "Tu cita está a salvo :)",
+                                            icon: "error"
+                                        });
+                                    }
+                                });
+                            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
