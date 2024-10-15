@@ -7,6 +7,7 @@ include('../../app/controllers/categorias/controller_categorias.php');
 include('../../app/controllers/productos/controller_productos.php');
 include('../../app/controllers/servicios/controller_servicios.php');
 include('../../app/controllers/empleados/controller_empleados.php');
+include('../../app/controllers/ventas/controller_ventas.php');
 
 ?>
 <div class="container-fluid">
@@ -88,6 +89,18 @@ include('../../app/controllers/empleados/controller_empleados.php');
                     <i class="fa fa-cut"></i>
                 </div>
                 <a href="../servicios/" class="small-box-footer">Más info   <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="small-box bg-ligth">
+                <div class="inner">
+                    <h3><?php echo $contadorVentas ?></h3>
+                    <p><b>Registros de Ventas</b></p>
+                </div>
+                <div class="icon">
+                    <i class="bi bi-cart4"></i>
+                </div>
+                <a href="../ventas/" class="small-box-footer bg-secondary">Más info   <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
