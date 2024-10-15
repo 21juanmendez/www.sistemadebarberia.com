@@ -49,7 +49,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
         <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
+        <div id="ocultar_preloader" class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__wobble" src="<?php echo $URL ?>/public/templates/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
         </div>
         <!-- Navbar -->
@@ -291,7 +291,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                             </ul>
                         </li>
-                        <!--EMPLEADOS 
+
                         <li class="nav-item menu-closed">
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-user-tie"></i>
@@ -309,7 +309,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                             </ul>
                         </li>
-                        FIN EMPLEADOS -->
+
+                        <li class="nav-item menu-closed">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon bi bi-cart4" style="margin-left: 5px; margin-right: 7px;"></i>
+                                <p>
+                                    Ventas
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo $VIEWS ?>/ventas" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Historial de ventas</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
 
                         <li class="nav-item">
                             <a href="<?php echo $URL ?>/app/controllers/login/controller_cerrar.php?type=admin" class="nav-link active" style="background-color: crimson;">

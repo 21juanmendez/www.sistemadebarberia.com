@@ -6,7 +6,8 @@ include('../../app/controllers/usuarios/controller_usuarios.php');
 include('../../app/controllers/categorias/controller_categorias.php');
 include('../../app/controllers/productos/controller_productos.php');
 include('../../app/controllers/servicios/controller_servicios.php');
-//include('../../app/controllers/empleados/controller_empleados.php');
+include('../../app/controllers/empleados/controller_empleados.php');
+include('../../app/controllers/ventas/controller_ventas.php');
 
 ?>
 <div class="container-fluid">
@@ -38,7 +39,7 @@ include('../../app/controllers/servicios/controller_servicios.php');
                 <a href="usuarios.php" class="small-box-footer">Más info    <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <!--Empledos
+        
         <div class="col-3">
             <div class="small-box bg-danger">
                 <div class="inner">
@@ -51,7 +52,7 @@ include('../../app/controllers/servicios/controller_servicios.php');
                 <a href="../empleados" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        -->
+        
         <div class="col-3">
             <div class="small-box bg-primary">
                 <div class="inner">
@@ -88,6 +89,18 @@ include('../../app/controllers/servicios/controller_servicios.php');
                     <i class="fa fa-cut"></i>
                 </div>
                 <a href="../servicios/" class="small-box-footer">Más info   <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="small-box bg-ligth">
+                <div class="inner">
+                    <h3><?php echo $contadorVentas ?></h3>
+                    <p><b>Registros de Ventas</b></p>
+                </div>
+                <div class="icon">
+                    <i class="bi bi-cart4"></i>
+                </div>
+                <a href="../ventas/" class="small-box-footer bg-secondary">Más info   <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
