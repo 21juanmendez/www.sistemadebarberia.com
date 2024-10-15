@@ -2,7 +2,9 @@
 include('../usuarios/layout/parte1.php');
 include('../../app/controllers/ventas_producto/controller_ventas_p.php');
 include('../../app/controllers/ventas_servicio/controller_ventas_s.php');
+include('../../app/controllers/ventas/validar.php');
 include('mensaje.php');
+
 if (isset($_GET['id_venta']) && !empty($_GET['id_venta'])) {
     $id_venta = $_GET['id_venta'];
 } else {
@@ -534,6 +536,17 @@ if (isset($_GET['id_venta']) && !empty($_GET['id_venta'])) {
                                     </div>
 
                                 </div>
+                                <!-- Imprimir Factura -->
+                                <div class="row">
+                                    <div class="col-md-10" style="text-align: right;">
+                                        <label for="imprimir_factura">Imprimir Factura</label>
+                                    </div>
+                                    <div class="col-md-2" style="text-align: center;">
+                                        <div class="form-group">
+                                            <input type="checkbox" id="imprimir_factura" name="imprimir_factura" value="1">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -589,6 +602,12 @@ if (isset($_GET['id_venta']) && !empty($_GET['id_venta'])) {
                     form.addEventListener('submit', function(event) {
                         const total_pagado = input.value;
                         const total_a_pagar = <?php echo $subtotal_productos + $subtotal_servicios; ?>;
+                        const imprimir_factura = document.getElementById('imprimir_factura').checked;
+
+                        if (imprimir_factura == true){
+                            //rediriir a la pagina de impresion en nueva pestaña
+                            window.open('<?php echo $VIEWS ?>/ventas/factura.php?id_venta=<?php echo $id_venta ?>', '_blank');
+                        }
 
                         if (total_pagado < total_a_pagar) {
                             event.preventDefault(); // Evita que el formulario se envíe

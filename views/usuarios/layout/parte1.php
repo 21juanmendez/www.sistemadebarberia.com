@@ -33,6 +33,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="<?php echo $URL ?>/public/js/jquery-3.7.1.min.js"></script>
     <!-- SWEET ALERT2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- ChartJS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
 
@@ -49,9 +51,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
         <!-- Preloader -->
-        <div id="ocultar_preloader" class="preloader flex-column justify-content-center align-items-center">
+        <!-- <div id="ocultar_preloader" class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__wobble" src="<?php echo $URL ?>/public/templates/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-        </div>
+        </div> -->
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-dark">
             <!-- Left navbar links -->
@@ -323,6 +325,38 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <a href="<?php echo $VIEWS ?>/ventas" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Historial de ventas</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo $VIEWS ?>/ventas_eliminadas" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ventas eliminadas</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item menu-closed">
+                            <a href="#" class="nav-link active">
+                            <i class="bi bi-pie-chart-fill" style="margin-left: 5px; margin-right: 7px;"></i>
+                                <p>
+                                    Reportes
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo $VIEWS ?>/reportes" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Reporte de ventas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo $VIEWS ?>/reportes/productos.php" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Reporte de inventario</p>
                                     </a>
                                 </li>
                             </ul>
