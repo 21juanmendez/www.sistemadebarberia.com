@@ -328,6 +328,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </a>
                                 </li>
                             </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo $VIEWS ?>/ventas_eliminadas" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ventas eliminadas</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li class="nav-item menu-closed">

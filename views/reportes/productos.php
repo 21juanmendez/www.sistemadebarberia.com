@@ -66,7 +66,7 @@ include('../../app/controllers/reportes/reporte_productos.php');
                                     </div><!-- /.card-header -->
                                     <div class="col-md-12 mt-2" style="overflow-y: auto; max-height: calc(100% - 56px);">
                                         <table class="table table-bordered">
-                                            <thead>
+                                            <thead class="table-primary">
                                                 <tr>
                                                     <th>Producto</th>
                                                     <th>Stock</th>
