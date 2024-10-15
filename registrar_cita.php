@@ -2,7 +2,6 @@
 include('layout/parte1.php');
 include('app/controllers/servicios/controller_servicios.php');
 include('app/controllers/usuarios/controller_usuarios.php');
-
 //Con esto guardamos en la variable $usuario el nombre del usuario que se encuentra en la sesion
 if (isset($_SESSION['cliente'])) {
     $usuario = $_SESSION['cliente'];
@@ -14,17 +13,144 @@ if (isset($_SESSION['cliente'])) {
 ?>
 
 <style>
+    /* Estilo general para el contenedor del calendario */
+#calendar-container {
+    background-color: #fdfdfd;
+    /* Fondo más claro */
+    border-radius: 20px;
+    /* Bordes más suaves */
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+    /* Sombra suave */
+    padding: 40px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 40px;
+}
+
+/* Efecto de elevación al pasar el ratón */
+#calendar-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* Estilo del calendario */
+#calendar {
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #f9fafb;
+    /* Fondo más claro */
+}
+
+/* Estilos para los días de la semana (encabezados) */
+.fc-day-header {
+    background: linear-gradient(135deg, #ffcc80 0%, #ffa726 100%);
+    /* Gradiente dorado */
+    color: #2c2c2c;
+    /* Texto oscuro */
+    font-weight: bold;
+    padding: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+    border-bottom: 2px solid #e0e0e0;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos para los días del calendario */
+.fc-day {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* Efecto de cambio de color y elevación al pasar el ratón */
+.fc-day:hover {
+    background-color: #fff3e0;
+    /* Suave tono crema */
+    transform: scale(1.02);
+    z-index: 10;
+}
+
+/* Estilos para eventos */
+.fc-event {
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Animación sutil para eventos */
+.fc-event:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+}
+
+/* Colores degradados para eventos */
+.fc-event-success {
+    background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+    /* Degradado verde */
+}
+
+.fc-event-warning {
+    background: linear-gradient(135deg, #ffca28 0%, #f57f17 100%);
+    /* Degradado dorado */
+}
+
+.fc-event-danger {
+    background: linear-gradient(135deg, #ef5350 0%, #d32f2f 100%);
+    /* Degradado rojo */
+}
+
+/* Estilos para el día de hoy */
+.fc-today {
+    background-color: #ffecb3;
+    /* Fondo dorado suave para el día actual */
+    border: 2px solid #ffb74d;
+    /* Borde dorado */
+    font-weight: bold;
+}
+
+/* Animación para los días actuales */
+.fc-today-highlight {
+    animation: pulse 1.5s infinite;
+}
+
+/* Animación de pulso para el día actual */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 183, 77, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 183, 77, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 183, 77, 0);
+    }
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
     #calendar-container {
-        background-color: #f5f5f5;
-        border-radius: 10px;
-        box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
-        padding: 40px;
+        padding: 20px;
     }
 
-    #calendar {
-        max-width: 100%;
-        margin: 0 auto;
+    .fc-day-header {
+        padding: 10px;
+        font-size: 12px;
     }
+
+    .fc-event {
+        padding: 8px;
+        font-size: 12px;
+    }
+}
+
 </style>
 
 <!--CALENDARIO-->
@@ -48,25 +174,6 @@ if (isset($_SESSION['cliente'])) {
     <br><br>
 </section>
 <!--FIN CALENDARIO-->
-
-<!-- Modal para mostrar detalles del evento -->
-<div class="modal fade" id="modal-evento" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div style="background-color:#0dcaf0 ;" class="modal-header">
-                <h1 style="color: white;" class="modal-title fs-5" id="staticBackdropLabel"><b>Detalles de la Cita</b></h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p id="detalle-cita"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Vertically centered modal HORARIOS-->
 <div class="modal fade" id="modal-reservas" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -229,7 +336,6 @@ if (isset($_SESSION['cliente'])) {
             validRange: {
                 start: dateElSalvador // Usamos la fecha correcta de El Salvador
             },
-
             // Cargamos las citas agendadas para mostrarlas en el calendario
             events: 'app/controllers/citas/cargar_reservas.php',
 
@@ -239,6 +345,20 @@ if (isset($_SESSION['cliente'])) {
                 var selectedDate = new Date(a);
                 var selectedDateFormatted = selectedDate.toISOString().split('T')[0]; // Formato YYYY-MM-DD
                 var dayOfWeek = selectedDate.getUTCDay(); // Día de la semana (0-6)
+
+                // Obtener el día, mes y año para mostrarlo en el modal
+                var dia = selectedDate.getDate() + 1; // Obtener el día del mes
+                var mes = selectedDate.toLocaleString('es-SV', {
+                    month: 'long'
+                }); // Obtener el nombre del mes en español
+                var anio = selectedDate.getFullYear(); // Obtener el año
+
+                // Concatenar el día de la semana y la fecha formateada
+                var diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+                var finalDate = `${diasSemana[dayOfWeek]} ${dia} de ${mes} del ${anio}`; // Ejemplo: "Lunes 23 de octubre del 2024"
+
+                // Mostrar el día y la fecha seleccionada en el modal
+                $('#dia_de_la_semana').text(finalDate); // Mostrar en el formato deseado
 
                 // Verificamos si el usuario está logueado
                 if (usuario == '') {
@@ -257,7 +377,6 @@ if (isset($_SESSION['cliente'])) {
                         });
                         return;
                     }
-
                     // Hacemos una petición AJAX para obtener las horas ocupadas de la fecha seleccionada
                     $.ajax({
                         url: 'app/controllers/citas/cargar_reservas.php',
@@ -321,48 +440,50 @@ if (isset($_SESSION['cliente'])) {
 
                             // Mostramos el modal para elegir las horas
                             $('#modal-reservas').modal('show');
-                            $('#dia_de_la_semana').html(a);
+
                         }
                     });
                 }
             },
+
             //Cuando le damos click a un evento en este caso a una cita
-
             eventClick: function(info) {
-                var eventObj = info.event; // Obtenemos el objeto del evento
 
-                // Hacer una solicitud AJAX para obtener los detalles de la cita
-                $.ajax({
-                    url: 'app/controllers/citas/cargar_detalle_citas.php', // Controlador para cargar detalles de la cita
-                    type: 'GET',
-                    data: {
-                        id: eventObj.id // Pasamos el ID del evento
-                    },
-                    success: function(response) {
-                        console.log('Respuesta del servidor:', response); // Para ver qué se está recibiendo
+                if (usuario == '') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Debes iniciar sesión para ver los detalles de la cita',
+                        footer: '<a href="<?php echo $VIEWS ?>/login">¿Ya tienes una cuenta?</a>'
+                    });
+                } else {
+                    var eventObj = info.event; // Obtenemos el objeto del evento
 
-                        // Determinamos si la respuesta es un error o si tiene los detalles
-                        if (response.error) {
+                    // Hacer una solicitud AJAX para obtener los detalles de la cita
+                    $.ajax({
+                        url: 'app/controllers/citas/cargar_detalle_citas.php', // Controlador para cargar detalles de la cita
+                        type: 'GET',
+                        data: {
+                            id: eventObj.id // Pasamos el ID del evento
+                        },
+                        success: function(response) {
+                            console.log('Respuesta del servidor:', response); // Para ver qué se está recibiendo
 
-                            // Mostrar un mensaje de error en caso de que no se encuentre la cita
-                            Swal.fire({
-                                icon: 'warning',
-                                title: 'Oops...',
-                                text: response.error
-                            });
+                            // Determinamos si la respuesta es un error o si tiene los detalles
+                            if (response.error) {
 
-                        } else {
+                                // Mostrar un mensaje de error en caso de que no se encuentre la cita
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Oops...',
+                                    text: response.error
+                                });
 
-
-
-
-
-
-
-                            // Mostrar los detalles de la cita en SweetAlert (Swal)
-                            Swal.fire({
-                                title: 'Detalles de la Cita',
-                                html: `
+                            } else {
+                                // Mostrar los detalles de la cita en SweetAlert (Swal)
+                                Swal.fire({
+                                    title: 'Detalles de la Cita',
+                                    html: `
                                         <div style="text-align: left;">
                                             <b>Servicio:</b> ${response.servicio}<br>
                                             <b>Fecha:</b> ${response.fecha}<br>
@@ -373,122 +494,112 @@ if (isset($_SESSION['cliente'])) {
                                         <button id="deleteCita" class="btn btn-danger">Cancelar Cita</button>
                                         
                                     `,
-                                showConfirmButton: false,
-                                width: 600, // Ancho de la alerta
-                                padding: "3em", // Relleno
-                                color: "#716add", // Color del texto
-                                background: "#fff url(/images/trees.png)", // Fondo personalizado
-                                backdrop: `
+                                    showConfirmButton: false,
+                                    width: 600, // Ancho de la alerta
+                                    padding: "3em", // Relleno
+                                    color: "#716add", // Color del texto
+                                    background: "#fff url(/images/trees.png)", // Fondo personalizado
+                                    backdrop: `
                                         rgba(0,0,123,0.4)
                                         url("<?php echo $URL ?>/public/imagenes/nyan-cat-nyan.gif")
                                         left top
                                         no-repeat
                                         `
-                                
-                            });
+                                });
 
-                            // Escuchar el evento del botón para cerrar la alerta
-                            document.getElementById('closeModal').addEventListener('click', function() {
-                                Swal.close(); // Cerrar la alerta
-                            });
+                                // Escuchar el evento del botón para cerrar la alerta
+                                document.getElementById('closeModal').addEventListener('click', function() {
+                                    Swal.close(); // Cerrar la alerta
+                                });
+                                // Escuchar el evento del botón para cancelar la cita
+                                document.getElementById('deleteCita').addEventListener('click', function() {
+                                    var currentDateTime = new Date();
+                                    var citaDateTime = new Date(response.fecha + ' ' + response.hora.split(' - ')[0]);
 
-                            // Escuchar el evento del botón para eliminar la cita
-                            document.getElementById('deleteCita').addEventListener('click', function() {
-    
-                                // Confirmación para eliminar la cita
-                                Swal.fire({
-                                    title: '¿Estás seguro?',
-                                    text: "¡Esta acción no se puede deshacer!",
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonColor: '#198754',
-                                    cancelButtonColor: '#dc3545',
-                                    confirmButtonText: 'Sí, eliminarla',
-                                    cancelButtonText: 'No, cancelar'
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        // Si el usuario confirma, realizar la solicitud AJAX para eliminar la cita
-                                        $.ajax({
-                                            url: 'app/controllers/citas/eliminar_cita.php', // Cambia esta URL a la correcta
-                                            type: 'POST',
-                                            data: {
-                                                id: response.id // Enviar el ID de la cita a eliminar
-                                            },
-                                            success: function(response) {
-                                                var resultado = JSON.parse(response);
+                                    // Calcular la diferencia en horas entre la fecha y hora actual y la fecha y hora de la cita
+                                    var diffInHours = (citaDateTime - currentDateTime) / (1000 * 60 * 60);
 
-                                                if (resultado.success) {
-                                                    // Eliminar el evento del calendario si se eliminó correctamente
-                                                    eventObj.remove();
-                                                    const swalWithBootstrapButtons = Swal.mixin({
-                                                        customClass: {
-                                                            confirmButton: "btn btn-success",
-                                                            cancelButton: "btn btn-danger"
-                                                        },
-                                                        buttonsStyling: false
-                                                    });
-                                                    swalWithBootstrapButtons.fire('Eliminada', 'La cita ha sido eliminada.', 'success');
-                                                } else {
-                                                    Swal.fire('Error', resultado.message, 'error');
-                                                }
-                                            },
-                                            error: function(jqXHR, textStatus, errorThrown) {
-                                                console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
-                                                Swal.fire('Error', 'Hubo un problema al eliminar la cita.', 'error');
+                                    if (diffInHours <= 4) {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'No se puede cancelar',
+                                            text: 'No puedes cancelar la cita con menos de 4 horas de anticipación.'
+                                        });
+                                    } else {
+                                        // Confirmación para eliminar la cita
+                                        Swal.fire({
+                                            title: '¿Estás seguro?',
+                                            text: "¡Esta acción no se puede deshacer!",
+                                            icon: 'warning',
+                                            showCancelButton: true,
+                                            confirmButtonColor: '#198754',
+                                            cancelButtonColor: '#dc3545',
+                                            confirmButtonText: 'Sí, eliminarla',
+                                            cancelButtonText: 'No, cancelar'
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                // Si el usuario confirma, realizar la solicitud AJAX para eliminar la cita
+                                                $.ajax({
+                                                    url: 'app/controllers/citas/eliminar_cita.php', // Cambia esta URL a la correcta
+                                                    type: 'POST',
+                                                    data: {
+                                                        id: response.id // Enviar el ID de la cita a eliminar
+                                                    },
+                                                    success: function(response) {
+                                                        var resultado = JSON.parse(response);
+
+                                                        if (resultado.success) {
+                                                            // Eliminar el evento del calendario si se eliminó correctamente
+                                                            eventObj.remove();
+                                                            const swalWithBootstrapButtons = Swal.mixin({
+                                                                customClass: {
+                                                                    confirmButton: "btn btn-success",
+                                                                    cancelButton: "btn btn-danger"
+                                                                },
+                                                                buttonsStyling: false
+                                                            });
+                                                            swalWithBootstrapButtons.fire('Eliminada', 'La cita ha sido eliminada.', 'success');
+                                                        } else {
+                                                            Swal.fire('Error', resultado.message, 'error');
+                                                        }
+                                                    },
+                                                    error: function(jqXHR, textStatus, errorThrown) {
+                                                        console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
+                                                        Swal.fire('Error', 'Hubo un problema al eliminar la cita.', 'error');
+                                                    }
+                                                });
+                                            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                                                const swalWithBootstrapButtons = Swal.mixin({
+                                                    customClass: {
+                                                        confirmButton: "btn btn-success",
+                                                        cancelButton: "btn btn-danger"
+                                                    },
+                                                    buttonsStyling: false
+                                                });
+                                                // Si el usuario cancela la eliminación
+                                                swalWithBootstrapButtons.fire({
+                                                    title: "Cancelado",
+                                                    text: "Tu cita está a salvo :)",
+                                                    icon: "error"
+                                                });
                                             }
-                                        });
-                                    } else if (result.dismiss === Swal.DismissReason.cancel) {
-                                        const swalWithBootstrapButtons = Swal.mixin({
-                                            customClass: {
-                                                confirmButton: "btn btn-success",
-                                                cancelButton: "btn btn-danger"
-                                            },
-                                            buttonsStyling: false
-                                        });
-                                        // Si el usuario cancela la eliminación
-                                        swalWithBootstrapButtons.fire({
-                                            title: "Cancelado",
-                                            text: "Tu cita está a salvo :)",
-                                            icon: "error"
                                         });
                                     }
                                 });
-                            });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
+                            alert('Error al cargar los detalles de la cita.'); // Mensaje de error para el usuario
                         }
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
-                        alert('Error al cargar los detalles de la cita.'); // Mensaje de error para el usuario
-                    }
-                });
+                    });
+                }
             }
         });
-
         // Finalmente, renderizamos el calendario
         calendar.render();
     });
 </script>
-
-
 <!--FIN SCRIPT PARA CALENDARIO-->
 
 <script>
