@@ -51,9 +51,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
         <!-- Preloader -->
-        <!-- <div id="ocultar_preloader" class="preloader flex-column justify-content-center align-items-center">
+        <div id="ocultar_preloader" class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__wobble" src="<?php echo $URL ?>/public/templates/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-        </div> -->
+        </div>
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-dark">
             <!-- Left navbar links -->
