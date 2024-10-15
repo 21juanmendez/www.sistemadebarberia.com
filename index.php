@@ -15,19 +15,19 @@ include('layout/mensaje_permiso.php'); //para ver si tiene permisos de administr
             <div class="carousel-item active text-center">
                 <img src="public/imagenes/barberia-carrusel-4.png" class="d-block mx-auto img-fluid" alt="Descripción de la imagen">
                 <div class="carousel-caption d-md-block">
-                    <a href="#"" class="btn btn-primary">Reservar cita</a><br></br>
+                    <a href="<?php echo $URL?>/registrar_cita.php" class="btn btn-primary">Reservar cita</a><br></br>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="public/imagenes/barberia-carrusel-1.png" class="d-block mx-auto img-fluid" alt="Descripción de la imagen">
                 <div class="carousel-caption d-md-block">
-                    <a href="#" class="btn btn-primary">Reservar cita</a> <br></br>
+                    <a href="<?php echo $URL?>/registrar_cita.php" class="btn btn-primary">Reservar cita</a> <br></br>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="public/imagenes/barberia-carrusel-2.jpg" class="d-block mx-auto img-fluid" alt="Descripción de la imagen">
                 <div class="carousel-caption d-md-block">
-                    <a href="#" class="btn btn-primary">Reservar cita</a> <br></br>
+                    <a href="<?php echo $URL?>/registrar_cita.php" class="btn btn-primary">Reservar cita</a> <br></br>
                 </div>
             </div>
         </div>
@@ -179,7 +179,7 @@ include('layout/mensaje_permiso.php'); //para ver si tiene permisos de administr
     </div>
 </section>
 <!--FIN GALLERY-->
-<!--TESTIMONIOS-->
+<!--TESTIMONIOS
 <section class="customers" style="background-color: #f5f5f5;;">
     <br>
     <div class="container">
@@ -321,7 +321,7 @@ include('layout/mensaje_permiso.php'); //para ver si tiene permisos de administr
         </div>
     </div>
 </section>
-<!--FIN TESTIMONIOS-->
+FIN TESTIMONIOS-->
 <!--MAP-->
 <section class="map" style="background-color: #f5f5f5;">
     <br></br>
@@ -335,53 +335,8 @@ include('layout/mensaje_permiso.php'); //para ver si tiene permisos de administr
         </div>
     </div>
 </section>
+<br></br>
 <!--FIN MAP-->
-<!--FORMULARIO-->
-<section class="contactos" style="background-color: #f5f5f5;">
-    <br></br>
-    <h1 class="text-center">Contáctanos</h1>
-    <p class="text-center">Si tienes alguna duda o consulta, puedes contactarnos a través del siguiente formulario</p>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div style="text-align: center;" class="card-header"><b>Area 51</b></div>
-                    <div class="card-body">
-                        <form class="row g-3" action="" method="post">
-                            <div class="form-group">
-                                <label class="form-label">Nombre</label>
-                                <input type="text" class="form-control" placeholder="" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Telefono</label>
-                                <input type="number" class="form-control" placeholder="" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Correo Electronico</label>
-                                <input type="email" class="form-control" placeholder="" required>
-                            </div>
-                            <div class="col-md-12">
-                                <label class="form-label">Mensaje</label>
-                                <textarea class="form-control" rows="4" placeholder="" required></textarea>
-                            </div>
-                            <div class="col-12">
-                                <div class="d-grid gap-2">
-                                    <button class="btn btn-primary" type="submit">Enviar</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4"></div>
-        </div>
-    </div>
-    </div>
-    <br>
-</section>
-<!--FIN FORMULARIO-->
-
 <?php
 
 include('layout/parte2.php');

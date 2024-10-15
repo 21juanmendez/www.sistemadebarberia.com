@@ -52,6 +52,7 @@
     <script src="<?php echo $URL?>/public/js/datatable_productos.js" ></script>
     <script src="<?php echo $URL?>/public/js/datatable_servicios.js" ></script>
     <script src="<?php echo $URL?>/public/js/datatable_empleados.js" ></script>
+    <script src="<?php echo $URL?>/public/js/datatable_citas.js" ></script>
     <script src="<?php echo $URL?>/public/js/datatable_ventas.js" ></script>
     <script src="<?php echo $URL?>/public/js/datatable_productos_servicios.js" ></script>
     <script src="<?php echo $URL?>/public/js/datatable_ventas_eliminadas.js" ></script>
