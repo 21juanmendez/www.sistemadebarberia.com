@@ -179,7 +179,7 @@ include('layout/mensaje_permiso.php'); //para ver si tiene permisos de administr
     </div>
 </section>
 <!--FIN GALLERY-->
-<!--TESTIMONIOS-->
+<!--TESTIMONIOS
 <section class="customers" style="background-color: #f5f5f5;;">
     <br>
     <div class="container">
@@ -321,7 +321,7 @@ include('layout/mensaje_permiso.php'); //para ver si tiene permisos de administr
         </div>
     </div>
 </section>
-<!--FIN TESTIMONIOS-->
+FIN TESTIMONIOS-->
 <!--MAP-->
 <section class="map" style="background-color: #f5f5f5;">
     <br></br>

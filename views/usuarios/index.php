@@ -10,7 +10,7 @@ include('../../app/controllers/empleados/controller_empleados.php');
 
 ?>
 <div class="container-fluid">
-    <h1>Panel Administrativo</h1>
+    <h1><b>Panel Administrativo</b></h1>
     <br>
     <div class="row">
         <div class="col-3">
