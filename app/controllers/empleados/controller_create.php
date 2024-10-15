@@ -12,6 +12,15 @@ $nit = $_POST['nit'];
 // Eliminar los guiones del NIT si están presentes
 $nit = str_replace('-', '', $nit);
 
+// Verificar si el checkbox de homologación está marcado
+if (isset($_POST['homologar']) && $_POST['homologar'] == 1) {
+    $nit = $dui; // Si están homologados, NIT es igual al DUI
+} else {
+    $nit = $_POST['nit'];
+    // Eliminar los guiones del NIT si están presentes
+    $nit = str_replace('-', '', $nit);
+}
+
 // Verificar si ya existe un empleado con el mismo DUI o NIT
 $verify_dui = $pdo->prepare("SELECT * FROM tb_empleados WHERE dui = :dui OR nit = :nit");
 $verify_dui->execute(array(':dui' => $dui, ':nit' => $nit));
