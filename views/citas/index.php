@@ -11,11 +11,11 @@ include('../../app/controllers/citas/controller_citas.php');
                     <h3 class="card-title"><b>LISTADO DE CITAS</b></h3>
                 </div>
                 <div class="card-body">
-                    <a href="<?php echo $VIEWS; ?>/citas/create.php" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Registrar nueva cita</a>
+                    <a href="<?php echo $URL; ?>/registrar_cita.php" class="btn btn-primary"><i class="bi bi-calendar-date-fill"></i> Ir al Calendario</a>
                     <br><br>
                     <div class="row">
                         <div class="col-md-12">
-                            <table id="example2" class="table table-striped table-hover table-borderless">
+                            <table id="example9" class="table table-striped table-hover table-borderless">
                                 <thead class="table-dark">
                                     <tr>
                                         <th scope="col">
@@ -73,7 +73,7 @@ include('../../app/controllers/citas/controller_citas.php');
                                             </td>
                                             <td>
                                                 <center>
-                                                    <a href="<?php echo $VIEWS ?>/citas/update.php?id_cita=<?php echo $cita['id_cita']; ?>" class="btn btn-info btn-sm"><i class="bi bi-eye-fill"></i></a>
+                                                    <a href="<?php echo $VIEWS ?>/citas/read.php?id_cita=<?php echo $cita['id_cita']; ?>" class="btn btn-info btn-sm"><i class="bi bi-eye-fill"></i></a>
                                                     <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $cita['id_cita']; ?>)"><i class="bi bi-trash-fill"></i></button>
 
                                                     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -108,7 +108,7 @@ include('../../app/controllers/citas/controller_citas.php');
                                                                                     title: 'Eliminada!',
                                                                                     text: 'La cita ha sido eliminada correctamente.',
                                                                                     icon: 'success',
-                                                                                    showConfirmButton: true 
+                                                                                    showConfirmButton: true
                                                                                 }).then(() => {
                                                                                     // Refresca la página después de un pequeño retraso
                                                                                     window.location.reload();
@@ -167,7 +167,7 @@ include('../../app/controllers/citas/controller_citas.php');
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div style="background-color:#0dcaf0;" class="modal-header">
-                <h5 style="color: white;" class="modal-title" id="exampleModalLabel"><b>Detalles del Usuario</b></h5>
+                <h5 class="modal-title" id="exampleModalLabel"><b>Detalles del Usuario</b></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -175,13 +175,13 @@ include('../../app/controllers/citas/controller_citas.php');
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="rol" class="form-label">Rol</label>
-                            <input type="text" class="form-control" id="rol" readonly>
+                            <p id="rol"></p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="nombre_completo" class="form-label">Nombre completo</label>
-                            <input type="text" class="form-control" id="nombre_completo" disabled>
+                            <p id="nombre_completo"></p>
                         </div>
                     </div>
                 </div>
@@ -189,13 +189,13 @@ include('../../app/controllers/citas/controller_citas.php');
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="email" class="form-label">Correo Electrónico</label>
-                            <input type="text" class="form-control" id="email" readonly>
+                            <p id="email"></p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="telefono" class="form-label">Teléfono</label>
-                            <input type="text" class="form-control" id="telefono" readonly>
+                            <p id="telefono"></p>
                         </div>
                     </div>
                 </div>
@@ -224,10 +224,10 @@ include('../../app/controllers/citas/controller_citas.php');
         var modalRol = document.getElementById('rol');
 
         // Asignamos los valores correspondientes a cada campo
-        modalNombre.value = nombre;
-        modalTelefono.value = telefono;
-        modalEmail.value = email;
-        modalRol.value = rol;
+        modalNombre.textContent = nombre;
+        modalTelefono.textContent = telefono;
+        modalEmail.textContent = email;
+        modalRol.textContent = rol;
     });
 </script>
 
