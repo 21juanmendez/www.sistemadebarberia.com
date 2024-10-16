@@ -1,9 +1,9 @@
 <?php
 define('APP_NAME', 'Sistema de Barberia');
-define('SERVIDOR', 'localhost');
-define('USUARIO', 'root');
-define('PASSWORD', '');
-define('BD', 'sistemabarberia');
+define('SERVIDOR', 'sql203.infinityfree.com');
+define('USUARIO', 'if0_37522554');
+define('PASSWORD', '49Pf1I85kpe4og');
+define('BD', 'if0_37522554_sistemabarberia');
 
 $servidor = "mysql:dbname=" . BD . ";host=" . SERVIDOR;
 
