@@ -1,9 +1,9 @@
 <?php
 define('APP_NAME', 'Sistema de Barberia');
-define('SERVIDOR', 'sql200.infinityfree.com');
-define('USUARIO', 'if0_37186553');
-define('PASSWORD', 'Trp1DcNrwWL9Ddx');
-define('BD', 'if0_37186553_sistemabarberia');
+define('SERVIDOR', 'ep-flat-recipe-a48y3zqz.us-east-1.pg.koyeb.app');
+define('USUARIO', 'koyeb-adm');
+define('PASSWORD', 'dFe5GXDMVfy4');
+define('BD', 'koyebdb');
 
 $servidor = "mysql:dbname=" . BD . ";host=" . SERVIDOR . ";port=3306";
 
