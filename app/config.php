@@ -19,6 +19,6 @@ date_default_timezone_set('America/El_Salvador');
 $fyh_creacion = date('Y-m-d H:i:s');
 $fyh_actualizacion = date('Y-m-d H:i:s');
 
-$URL = "http://localhost/www.sistemadebarberia.com";
-$VIEWS = "http://localhost/www.sistemadebarberia.com/views";
+$URL = "https://electrical-riva-universidaddeelsalvador-481770dc.koyeb.app/";
+$VIEWS = "https://electrical-riva-universidaddeelsalvador-481770dc.koyeb.app/views";
 
