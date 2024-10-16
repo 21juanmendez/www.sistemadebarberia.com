@@ -5,7 +5,7 @@ define('USUARIO', 'if0_37522554');
 define('PASSWORD', '49Pf1I85kpe4og');
 define('BD', 'if0_37522554_sistemabarberia');
 
-$servidor = "mysql:dbname=" . BD . ";host=" . SERVIDOR;
+$servidor = "mysql:dbname=" . BD . ";host=" . SERVIDOR . ";port=3306";
 
 try {
     $pdo = new PDO($servidor, USUARIO, PASSWORD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
