@@ -38,7 +38,7 @@ include('../../app/controllers/servicios/controller_read.php');
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Fecha de creacion</label>
+                                    <label>Fecha de creación</label>
                                     <p><?php echo $fyh_creacion ?></p>
                                 </div>
                             </div>
