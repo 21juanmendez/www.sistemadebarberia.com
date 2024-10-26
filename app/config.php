@@ -1,24 +1,28 @@
 <?php
+// Nombre de la aplicación
 define('APP_NAME', 'Sistema de Barberia');
-define('SERVIDOR', 'bm28xcvjo5becpf6vplq-mysql.services.clever-cloud.com');
-define('USUARIO', 'u1xilopyspprsn9k');
-define('PASSWORD', 'EDGnoB0LQEfdcbLth9W7');
-define('BD', 'bm28xcvjo5becpf6vplq');
 
-$servidor = "mysql:dbname=" . BD . ";host=" . SERVIDOR;
+// Obtiene las credenciales de conexión desde las variables de entorno
+$servidor = "mysql:dbname=" . getenv('DB_DATABASE') . ";host=" . getenv('DB_HOST');
+$usuario = getenv('DB_USERNAME');
+$password = getenv('DB_PASSWORD');
 
+// Intenta conectar con la base de datos usando PDO
 try {
-    $pdo = new PDO($servidor, USUARIO, PASSWORD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-    //echo "Conexion Exitosa";
+    $pdo = new PDO($servidor, $usuario, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+    // echo "Conexion Exitosa"; // Puedes descomentar para probar la conexión
 } catch (PDOException $e) {
-    print_r($e->getMessage());
-    echo "Conexion Fallida";
+    // En caso de error de conexión, imprime el mensaje de error
+    echo "Error de conexión a la base de datos: " . $e->getMessage();
+    exit(); // Detiene la ejecución si falla la conexión
 }
-//CREAMOS UNA VARIABLE PARA LA FECHA Y HORA, esta la usamos en controller_create.php
+
+// Configura la zona horaria para fechas y horas
 date_default_timezone_set('America/El_Salvador');
 $fyh_creacion = date('Y-m-d H:i:s');
 $fyh_actualizacion = date('Y-m-d H:i:s');
 
+// URLs base para el proyecto
 $URL = "http://localhost/www.sistemadebarberia.com";
 $VIEWS = "http://localhost/www.sistemadebarberia.com/views";
 
