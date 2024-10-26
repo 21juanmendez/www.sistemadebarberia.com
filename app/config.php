@@ -1,9 +1,9 @@
 <?php
 define('APP_NAME', 'Sistema de Barberia');
-define('SERVIDOR', 'localhost');
-define('USUARIO', 'root');
-define('PASSWORD', '');
-define('BD', 'sistemabarberia');
+define('SERVIDOR', 'bm28xcvjo5becpf6vplq-mysql.services.clever-cloud.com');
+define('USUARIO', 'u1xilopyspprsn9k');
+define('PASSWORD', 'EDGnoB0LQEfdcbLth9W7');
+define('BD', 'bm28xcvjo5becpf6vplq');
 
 $servidor = "mysql:dbname=" . BD . ";host=" . SERVIDOR;
 
