@@ -1,5 +1,6 @@
 <?php
 include('../../app/config.php');
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -27,7 +28,6 @@ include('../../app/config.php');
 
 <body class="register-page" style="min-height: 539.977px;">
     <?php
-    session_start();
     include('mensaje.php');
     ?>
     <div class="register-box">

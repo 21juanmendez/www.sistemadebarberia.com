@@ -1,5 +1,6 @@
 <?php
 include('../../app/config.php');
+session_start();
 ?>
 <!--codigo html-->
 <!DOCTYPE html>
@@ -36,7 +37,6 @@ include('../../app/config.php');
                 <h2><b>Inicio de Sesión</b></h2>
             </div>
             <?php
-            session_start();
             include('mensaje.php'); //para ver si se equivoca de contra o correo
             ?>
             <div class="card-body">
