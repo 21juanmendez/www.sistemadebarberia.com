@@ -2,12 +2,19 @@
 // Nombre de la aplicación
 define('APP_NAME', 'Sistema de Barberia');
 
-// Obtiene el URI de conexión directamente desde la variable de entorno
-$connectionUri = getenv('MYSQL_ADDON_URI');
+// Obtiene las credenciales de conexión desde las variables de entorno de Clever Cloud
+$dbname = getenv('MYSQL_ADDON_DB');
+$host = getenv('MYSQL_ADDON_HOST');
+$port = getenv('MYSQL_ADDON_PORT');
+$user = getenv('MYSQL_ADDON_USER');
+$password = getenv('MYSQL_ADDON_PASSWORD');
 
-// Intenta conectar con la base de datos usando PDO
+// Construye el DSN para PDO
+$dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8";
+
 try {
-    $pdo = new PDO($connectionUri, null, null, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+    // Conecta a la base de datos usando PDO
+    $pdo = new PDO($dsn, $user, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
     // echo "Conexion Exitosa"; // Puedes descomentar esta línea para probar la conexión
 } catch (PDOException $e) {
     // En caso de error de conexión, imprime el mensaje de error
@@ -24,4 +31,3 @@ $fyh_actualizacion = date('Y-m-d H:i:s');
 $URL = "http://localhost/www.sistemadebarberia.com";
 $VIEWS = "http://localhost/www.sistemadebarberia.com/views";
 ?>
-
