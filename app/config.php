@@ -4,7 +4,7 @@ define('APP_NAME', 'Sistema de Barberia');
 
 // Obtiene las credenciales de conexión desde las variables de entorno
 $servidor = "mysql:dbname=" . getenv('DB_DATABASE') . ";host=" . getenv('DB_HOST');
-$usuario = getenv('DB_USERNAME');
+$usuario = getenv('DB_USER');
 $password = getenv('DB_PASSWORD');
 
 // Intenta conectar con la base de datos usando PDO
