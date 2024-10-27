@@ -28,6 +28,6 @@ $fyh_creacion = date('Y-m-d H:i:s');
 $fyh_actualizacion = date('Y-m-d H:i:s');
 
 // URLs base para el proyecto
-$URL = "http://localhost/www.sistemadebarberia.com";
-$VIEWS = "http://localhost/www.sistemadebarberia.com/views";
+$URL = "https://www-sistemadebarberia-com-qeph.onrender.com";
+$VIEWS = "https://www-sistemadebarberia-com-qeph.onrender.com/views";
 ?>
