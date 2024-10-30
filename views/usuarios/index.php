@@ -45,7 +45,7 @@ include('../../app/controllers/citas/controller_citas.php');
             <div class="small-box bg-danger">
                 <div class="inner">
                     <h3><?php echo $contadorEmpleados ?></h3>
-                    <p>Registro de Empleados</p>
+                    <p><b>Registro de Empleados</b></p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-user-tie"></i>
