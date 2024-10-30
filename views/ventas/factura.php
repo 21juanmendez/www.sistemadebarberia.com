@@ -3,6 +3,13 @@
 include('../../app/TCPDF/tcpdf.php');
 include('../../app/config.php');
 include('../../app/controllers/ventas/controller_factura.php');
+
+require '../../vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
 // Crear nueva instancia de TCPDF
 $pdf = new TCPDF('P', 'mm', 'LETTER', true, 'UTF-8', false);
 
@@ -21,7 +28,7 @@ $pdf->setPrintFooter(false);
 $pdf->AddPage();
 
 // Agregar imagen
-$imagePath = $URL."/public/imagenes/logo_area51.jpg";
+$imagePath = $URL . "/public/imagenes/logo_area51.jpg";
 
 $fecha = explode(' ', $fecha_venta);
 $fecha_formateada = $fecha[0];
@@ -40,7 +47,7 @@ $html = '
         <tr>
             <td><strong>Nombre del vendedor:</strong><br>' . $nombre_vendedor . '</td>
             <td style="text-align:right;"><strong>NO. FACTURA:</strong> #00' . $id_venta . '<br><strong>FECHA DE EMISIÓN:</strong>
-                ' . $fecha_formateada . '<br><strong>HORA:</strong>'.$hora_formateada.'</td>
+                ' . $fecha_formateada . '<br><strong>HORA:</strong>' . $hora_formateada . '</td>
         </tr>
     </table>
     <br>
@@ -145,7 +152,7 @@ $barcodeStyle = array(
     'cellfitalign' => '',
     'border' => false,
     'hpadding' => 'auto',
-    'vpadding' => 'auto', 
+    'vpadding' => 'auto',
     'fgcolor' => array(0, 0, 0),
     'bgcolor' => false, //array(255,255,255)
     'text' => true,
@@ -164,4 +171,42 @@ $html = '
 // Escribir el contenido HTML en el PDF
 $pdf->writeHTML($html, true, false, true, false, '');
 
-$pdf->Output('Factura_'.$id_venta.'.pdf', 'I'); 
+if (isset($_GET['email'])) {
+    $email = $_GET['email'];
+    $mail = new PHPMailer(true);
+    try {
+        // Configuración del servidor SMTP
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'baberiarea51@gmail.com';
+        $mail->Password = 'swaaoxwhibetwykh';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+
+        // Configuración del correo
+        $mail->setFrom('baberiarea51@gmail.com', 'Barberia Area 51');
+        $mail->addAddress($email);
+
+        // Definir la ruta local para guardar la factura
+        $localFilePath = __DIR__ . '/Factura_' . $id_venta . '.pdf';
+
+        // Guardar la factura en la ruta local
+        $pdf->Output($localFilePath, 'F');
+
+        // Adjuntar la factura
+        $mail->addAttachment($localFilePath);
+
+        // Contenido del correo
+        $mail->isHTML(true);
+        $mail->Subject = 'Barberia Area 51 - Facturacion';
+        $mail->Body    = 'Gracias por tu compra. Adjunto encontrarás tu factura.';
+        $mail->send();
+        // Eliminar el archivo local después de enviar el correo
+        unlink($localFilePath);
+    } catch (Exception $e) {
+
+    }
+} else {
+    $pdf->Output('Factura_' . $id_venta . '.pdf', 'I');
+}

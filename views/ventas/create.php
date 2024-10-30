@@ -464,7 +464,7 @@ if (isset($_GET['id_venta']) && !empty($_GET['id_venta'])) {
                             </div>
                             <div class="modal-body">
                                 <!-- Subtotal de Productos (Solo Texto) -->
-                                <div class="card">
+                                <div class="card" style="padding: 10px;">
                                     <div class="row">
                                         <div class="col-md-8" style="text-align: right;">
                                             <label for="subtotal_productos">Subtotal de Productos</label>
@@ -506,7 +506,7 @@ if (isset($_GET['id_venta']) && !empty($_GET['id_venta'])) {
                                     </div>
 
                                 </div>
-                                <div class="card">
+                                <div class="card" style="padding: 10px;">
                                     <br>
                                     <!-- Total Pagado (Editable) -->
                                     <div class="row">
@@ -537,15 +537,46 @@ if (isset($_GET['id_venta']) && !empty($_GET['id_venta'])) {
 
                                 </div>
                                 <!-- Imprimir Factura -->
-                                <div class="row">
-                                    <div class="col-md-10" style="text-align: right;">
+                                <div class="row align-items-center">
+                                    <div class="col-10 col-md-10 text-right d-flex align-items-center justify-content-end">
                                         <label for="imprimir_factura">Imprimir Factura</label>
                                     </div>
-                                    <div class="col-md-2" style="text-align: center;">
-                                        <div class="form-group">
+                                    <div class="col-2 col-md-2 text-center d-flex align-items-center justify-content-center">
+                                        <div class="form-group mb-0">
                                             <input type="checkbox" id="imprimir_factura" name="imprimir_factura" value="1">
                                         </div>
                                     </div>
+                                </div>
+                                <!-- Enviar factura a correo electronico -->
+                                <div class="row align-items-center">
+                                    <div class="col-10 col-md-10 text-right d-flex align-items-center justify-content-end">
+                                        <label for="enviar_factura">Enviar factura a correo</label>
+                                    </div>
+                                    <div class="col-2 col-md-2 text-center d-flex align-items-center justify-content-center">
+                                        <div class="form-group mb-0">
+                                            <input type="checkbox" id="enviar_factura" name="enviar_factura" value="1" onchange="toggleEmailInput()">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" id="email_input_container" style="display: none;">
+                                        <label for="email_factura">Correo Electrónico</label>
+                                        <input type="email" id="email_factura" name="email_factura" class="form-control">
+                                        <div id="error_email" style="display: none;">
+                                            <i class="bi bi-info-circle text-danger"></i>
+                                            <span id="mensaje_texto_email" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <script>
+                                        function toggleEmailInput() {
+                                            const emailInputContainer = document.getElementById('email_input_container');
+                                            const enviarFacturaCheckbox = document.getElementById('enviar_factura');
+                                            if (enviarFacturaCheckbox.checked) {
+                                                emailInputContainer.style.display = 'block';
+                                            } else {
+                                                emailInputContainer.style.display = 'none';
+                                            }
+                                        }
+                                    </script>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -568,6 +599,8 @@ if (isset($_GET['id_venta']) && !empty($_GET['id_venta'])) {
                     const mensajeTexto = document.getElementById('mensaje_texto');
                     const cambio = document.getElementById('cambio');
                     const cambio_hidden = document.getElementById('cambio_hidden');
+                    const erroremail = document.getElementById('error_email');
+                    const email_mensajeTexto = document.getElementById('mensaje_texto_email');
 
                     input.addEventListener('input', function() {
                         const total_pagado = input.value;
@@ -603,11 +636,8 @@ if (isset($_GET['id_venta']) && !empty($_GET['id_venta'])) {
                         const total_pagado = input.value;
                         const total_a_pagar = <?php echo $subtotal_productos + $subtotal_servicios; ?>;
                         const imprimir_factura = document.getElementById('imprimir_factura').checked;
-
-                        if (imprimir_factura == true){
-                            //rediriir a la pagina de impresion en nueva pestaña
-                            window.open('<?php echo $VIEWS ?>/ventas/factura.php?id_venta=<?php echo $id_venta ?>', '_blank');
-                        }
+                        const enviar_factura = document.getElementById('enviar_factura').checked;
+                        const email_factura = document.getElementById('email_factura').value;
 
                         if (total_pagado < total_a_pagar) {
                             event.preventDefault(); // Evita que el formulario se envíe
@@ -618,6 +648,24 @@ if (isset($_GET['id_venta']) && !empty($_GET['id_venta'])) {
                                 mensajeError.style.display = 'block';
                             } else {
                                 mensajeError.style.display = 'none';
+
+                                if (enviar_factura == true && email_factura == '') {
+                                    event.preventDefault(); // Evita que el formulario se envíe
+                                    erroremail.style.display = 'block';
+                                    email_mensajeTexto.textContent = 'Ingrese un correo electronico valido';
+                                } else {
+                                    erroremail.style.display = 'none';
+                                    //enviar factura a correo
+                                    if (enviar_factura == true) {
+                                        fetch(`<?php echo $VIEWS ?>/ventas/factura.php?id_venta=<?php echo $id_venta ?>&email=${email_factura}`, {
+                                            method: 'GET'
+                                        });
+                                    }
+                                    if (imprimir_factura == true) {
+                                        //rediriir a la pagina de impresion en nueva pestaña
+                                        window.open('<?php echo $VIEWS ?>/ventas/factura.php?id_venta=<?php echo $id_venta ?>', '_blank');
+                                    }
+                                }
                             }
                         }
                     });
