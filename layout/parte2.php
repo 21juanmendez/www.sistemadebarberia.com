@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <center>
-                        <img src="public/imagenes/logo.jpg" width="200x" height="200px">
+                        <img src="public/imagenes/LOGO-AREA51.png" width="200x" height="200px">
                     </center>
 
                 </div>
@@ -12,12 +12,12 @@
                     <h3>Información de Contacto</h3><br>
                     <p><i class="bi bi-geo-alt-fill"></i> San Salvador, El Salvador</p>
                     <p><i class="bi bi-telephone-fill"></i> +(503) 6970-4062</p>
-                    <p><i class="bi bi-envelope-fill"></i> info@example.com</p>
+                    <p><i class="bi bi-envelope-fill"></i> informacion@example.com</p>
                 </div>
                 <div class="col-md-4">
                     <h3>Horario de Atención</h3><br>
-                    <p>Lunes a Viernes: 8:00am - 5:00pm</p>
-                    <p>Sábados: 8:00am - 12:00pm</p>
+                    <p>Lunes a Viernes: 08:00am - 05:00pm</p>
+                    <p>Sábados: 08:00am - 05:00pm</p>
                     <p>Domingos: Cerrado</p>
                 </div>
             </div>

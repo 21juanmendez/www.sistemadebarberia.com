@@ -12,7 +12,7 @@ session_start();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Icono y Titulo de la Página-->
-    <link rel="icon" type="image/png" href="public/imagenes/logo.jpg">
+    <link rel="icon" type="image/png" href="public/imagenes/LOGO-AREA51.png">
     <title> Area51</title>
     <!--<ESTILOS CSS>-->
     <link href="public/css/style.css" rel="stylesheet">
@@ -33,7 +33,7 @@ session_start();
     <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">
-                <img src="public/imagenes/logo.jpg" alt="Logo" width="40" height="40" class="d-inline-block align-text-center">
+                <img src="public/imagenes/LOGO-AREA51.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-center">
                 <b>Area51</b>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,10 +52,17 @@ session_start();
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="registrar_cita.php" class="nav-link">
-                            Reservar cita
-                        </a>
-                    </li>
+                            <a href="registrar_cita.php" class="nav-link">
+                                Reservar cita
+                            </a>
+                        </li>
+                    <?php if (isset($_SESSION['cliente']) || isset($_SESSION['admin'])) { ?>
+                        <li class="nav-item">
+                            <a href="seguimiento.php" class="nav-link">
+                                Mis citas
+                            </a>
+                        </li>
+                    <?php } ?>
                 </ul>
 
                 <ul class="navbar-nav">

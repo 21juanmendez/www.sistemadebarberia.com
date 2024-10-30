@@ -14,143 +14,118 @@ if (isset($_SESSION['cliente'])) {
 
 <style>
     /* Estilo general para el contenedor del calendario */
-#calendar-container {
-    background-color: #fdfdfd;
-    /* Fondo más claro */
-    border-radius: 20px;
-    /* Bordes más suaves */
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
-    /* Sombra suave */
-    padding: 40px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 40px;
-}
-
-/* Efecto de elevación al pasar el ratón */
-#calendar-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
-}
-
-/* Estilo del calendario */
-#calendar {
-    max-width: 100%;
-    margin: 0 auto;
-    border-radius: 20px;
-    overflow: hidden;
-    background-color: #f9fafb;
-    /* Fondo más claro */
-}
-
-/* Estilos para los días de la semana (encabezados) */
-.fc-day-header {
-    background: linear-gradient(135deg, #ffcc80 0%, #ffa726 100%);
-    /* Gradiente dorado */
-    color: #2c2c2c;
-    /* Texto oscuro */
-    font-weight: bold;
-    padding: 15px;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 14px;
-    border-bottom: 2px solid #e0e0e0;
-    transition: background-color 0.3s ease;
-}
-
-/* Estilos para los días del calendario */
-.fc-day {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    cursor: pointer;
-}
-
-/* Efecto de cambio de color y elevación al pasar el ratón */
-.fc-day:hover {
-    background-color: #fff3e0;
-    /* Suave tono crema */
-    transform: scale(1.02);
-    z-index: 10;
-}
-
-/* Estilos para eventos */
-.fc-event {
-    border-radius: 10px;
-    padding: 10px;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Animación sutil para eventos */
-.fc-event:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    transform: translateY(-3px);
-}
-
-/* Colores degradados para eventos */
-.fc-event-success {
-    background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
-    /* Degradado verde */
-}
-
-.fc-event-warning {
-    background: linear-gradient(135deg, #ffca28 0%, #f57f17 100%);
-    /* Degradado dorado */
-}
-
-.fc-event-danger {
-    background: linear-gradient(135deg, #ef5350 0%, #d32f2f 100%);
-    /* Degradado rojo */
-}
-
-/* Estilos para el día de hoy */
-.fc-today {
-    background-color: #ffecb3;
-    /* Fondo dorado suave para el día actual */
-    border: 2px solid #ffb74d;
-    /* Borde dorado */
-    font-weight: bold;
-}
-
-/* Animación para los días actuales */
-.fc-today-highlight {
-    animation: pulse 1.5s infinite;
-}
-
-/* Animación de pulso para el día actual */
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(255, 183, 77, 0.4);
-    }
-    70% {
-        box-shadow: 0 0 0 15px rgba(255, 183, 77, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(255, 183, 77, 0);
-    }
-}
-
-/* Ajustes responsivos */
-@media (max-width: 768px) {
     #calendar-container {
-        padding: 20px;
+        background-color: #ffffff;
+        /* Fondo blanco para un aspecto limpio */
+        border-radius: 15px;
+        /* Bordes ligeramente redondeados */
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        /* Sombra suave */
+        padding: 30px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        margin-bottom: 40px;
     }
 
+    /* Efecto de elevación al pasar el ratón */
+    #calendar-container:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Estilo del calendario */
+    #calendar {
+        max-width: 100%;
+        margin: 0 auto;
+        border-radius: 15px;
+        overflow: hidden;
+        background-color: #f9fafb;
+        /* Fondo gris claro */
+    }
+
+    /* Estilos para los encabezados de los días de la semana */
     .fc-day-header {
-        padding: 10px;
-        font-size: 12px;
+        background-color: #4a90e2;
+        /* Color azul profesional */
+        color: #ffffff;
+        font-weight: bold;
+        padding: 12px;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 13px;
+        border-bottom: 1px solid #e0e0e0;
     }
 
+    /* Estilos para los días del calendario */
+    .fc-day {
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        transition: background-color 0.2s ease;
+        cursor: pointer;
+    }
+
+    /* Efecto al pasar el ratón por los días */
+    .fc-day:hover {
+        background-color: #f1f5f8;
+        /* Gris muy claro */
+    }
+
+    /* Estilos para los eventos */
     .fc-event {
+        border-radius: 8px;
         padding: 8px;
-        font-size: 12px;
+        font-weight: 500;
+        color: white;
+        text-align: center;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
-}
 
+    /* Efecto de elevación para los eventos */
+    .fc-event:hover {
+        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+    }
+
+    /* Colores degradados para eventos */
+    .fc-event-success {
+        background: linear-gradient(135deg, #81c784, #4caf50);
+        /* Verde sutil */
+    }
+
+    .fc-event-warning {
+        background: linear-gradient(135deg, #ffd54f, #ffb300);
+        /* Amarillo dorado */
+    }
+
+    .fc-event-danger {
+        background: linear-gradient(135deg, #e57373, #d32f2f);
+        /* Rojo sutil */
+    }
+
+    /* Estilos para el día de hoy */
+    .fc-today {
+        background-color: #fff9c4;
+        /* Amarillo suave */
+        border: 2px solid #ffeb3b;
+        font-weight: bold;
+    }
+
+    /* Ajustes responsivos */
+    @media (max-width: 768px) {
+        #calendar-container {
+            padding: 20px;
+        }
+
+        .fc-day-header {
+            padding: 8px;
+            font-size: 12px;
+        }
+
+        .fc-event {
+            padding: 6px;
+            font-size: 11px;
+        }
+    }
 </style>
 
 <!--CALENDARIO-->
@@ -160,6 +135,7 @@ if (isset($_SESSION['cliente'])) {
             <div class="col-md-12">
                 <br>
                 <h1 class="text-center">Reserva una Cita</h1>
+                <p class="text-center">Selecciona una fecha para reservar una cita</p>
                 <br>
             </div>
         </div>
@@ -482,35 +458,40 @@ if (isset($_SESSION['cliente'])) {
                             } else {
                                 // Mostrar los detalles de la cita en SweetAlert (Swal)
                                 Swal.fire({
+                                    icon: 'info',
                                     title: 'Detalles de la Cita',
                                     html: `
-                                        <div style="text-align: left;">
-                                            <b>Servicio:</b> ${response.servicio}<br>
-                                            <b>Fecha:</b> ${response.fecha}<br>
-                                            <b>Hora:</b> ${response.hora}<br>
-                                            <b>Usuario:</b> ${response.usuario}<br><br>
+                                        <div style="text-align: center; font-size: 1.1em; line-height: 1.6;">
+                                            <p><b>Usuario:</b> ${response.usuario}</p>
+                                            <p><b>Servicio:</b> ${response.servicio}</p>
+                                            <p><b>Fecha:</b> ${response.fecha}</p>
+                                            <p><b>Hora:</b> ${response.hora}</p>
+                                            <br>
+                                            <button id="deleteCita" class="btn btn-danger" style="
+                                                padding: 10px 20px;
+                                                font-size: 1em;
+                                                border-radius: 5px;
+                                                border: none;
+                                                color: #fff;
+                                                background-color: #dc3545;
+                                                cursor: pointer;
+                                            ">Cancelar</button>
                                         </div>
-                                        <button id="closeModal" class="btn btn-secondary">Cerrar Ventana</button>
-                                        <button id="deleteCita" class="btn btn-danger">Cancelar Cita</button>
-                                        
                                     `,
                                     showConfirmButton: false,
-                                    width: 600, // Ancho de la alerta
-                                    padding: "3em", // Relleno
-                                    color: "#716add", // Color del texto
-                                    background: "#fff url(/images/trees.png)", // Fondo personalizado
+                                    width: 475, // Ancho ajustado para que se vea más compacto
+                                    padding: "2em",
+                                    color: "#333", // Color de texto profesional
+                                    background: "#fff url(/images/trees.png) center / cover", // Fondo personalizado centrado
                                     backdrop: `
                                         rgba(0,0,123,0.4)
                                         url("<?php echo $URL ?>/public/imagenes/nyan-cat-nyan.gif")
                                         left top
                                         no-repeat
-                                        `
+                                    `
                                 });
 
-                                // Escuchar el evento del botón para cerrar la alerta
-                                document.getElementById('closeModal').addEventListener('click', function() {
-                                    Swal.close(); // Cerrar la alerta
-                                });
+
                                 // Escuchar el evento del botón para cancelar la cita
                                 document.getElementById('deleteCita').addEventListener('click', function() {
                                     var currentDateTime = new Date();

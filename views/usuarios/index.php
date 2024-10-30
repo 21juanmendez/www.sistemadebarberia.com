@@ -8,6 +8,7 @@ include('../../app/controllers/productos/controller_productos.php');
 include('../../app/controllers/servicios/controller_servicios.php');
 include('../../app/controllers/empleados/controller_empleados.php');
 include('../../app/controllers/ventas/controller_ventas.php');
+include('../../app/controllers/citas/controller_citas.php');
 
 ?>
 <div class="container-fluid">
@@ -23,7 +24,7 @@ include('../../app/controllers/ventas/controller_ventas.php');
                 <div class="icon">
                     <i class="fa fa-address-card"></i>
                 </div>
-                <a href="../roles/" class="small-box-footer">Más info   <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="../roles/" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -36,10 +37,10 @@ include('../../app/controllers/ventas/controller_ventas.php');
                 <div class="icon">
                     <i class="ion ion-person-add"></i>
                 </div>
-                <a href="usuarios.php" class="small-box-footer">Más info    <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="usuarios.php" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        
+
         <div class="col-3">
             <div class="small-box bg-danger">
                 <div class="inner">
@@ -52,7 +53,7 @@ include('../../app/controllers/ventas/controller_ventas.php');
                 <a href="../empleados" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        
+
         <div class="col-3">
             <div class="small-box bg-primary">
                 <div class="inner">
@@ -62,7 +63,7 @@ include('../../app/controllers/ventas/controller_ventas.php');
                 <div class="icon">
                     <i class="fa fa-list-alt"></i>
                 </div>
-                <a href="../categorias/" class="small-box-footer">Más info  <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="../categorias/" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -75,7 +76,7 @@ include('../../app/controllers/ventas/controller_ventas.php');
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="../productos/" class="small-box-footer">Más info   <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="../productos/" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -88,9 +89,23 @@ include('../../app/controllers/ventas/controller_ventas.php');
                 <div class="icon">
                     <i class="fa fa-cut"></i>
                 </div>
-                <a href="../servicios/" class="small-box-footer">Más info   <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="../servicios/" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
+
+        <div class="col-3">
+            <div class="small-box bg-pink">
+                <div class="inner">
+                    <h3><?php echo $contadorCitas ?></h3>
+                    <p><b>Gestion de Citas</b></p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                <a href="../citas/" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
         <div class="col-3">
             <div class="small-box bg-ligth">
                 <div class="inner">
@@ -98,9 +113,9 @@ include('../../app/controllers/ventas/controller_ventas.php');
                     <p><b>Registros de Ventas</b></p>
                 </div>
                 <div class="icon">
-                    <i class="bi bi-cart4"></i>
+                    <i class="fa fa-shopping-cart"></i>
                 </div>
-                <a href="../ventas/" class="small-box-footer bg-secondary">Más info   <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="../ventas/" class="small-box-footer bg-secondary">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 

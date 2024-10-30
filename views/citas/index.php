@@ -1,168 +1,19 @@
 <?php
 include('../usuarios/layout/parte1.php');
 include('../../app/controllers/citas/controller_citas.php');
+
+// Separar citas en próximas y pasadas
+$citasProximas = [];
+$citasPasadas = [];
+foreach ($citas as $cita) {
+    if ($cita['fecha_cita'] >= date('Y-m-d')) {
+        $citasProximas[] = $cita;
+    } else {
+        $citasPasadas[] = $cita;
+    }
+}
 ?>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title"><b>LISTADO DE CITAS</b></h3>
-                </div>
-                <div class="card-body">
-                    <a href="<?php echo $URL; ?>/registrar_cita.php" class="btn btn-primary"><i class="bi bi-calendar-date-fill"></i> Ir al Calendario</a>
-                    <br><br>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table id="example9" class="table table-striped table-hover table-borderless">
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th scope="col">
-                                            <center>#</center>
-                                        </th>
-                                        <th scope="col">
-                                            <center>Usuario</center>
-                                        </th>
-                                        <th scope="col">
-                                            <center>Servicio</center>
-                                        </th>
-                                        <th scope="col">
-                                            <center>Fecha</center>
-                                        </th>
-                                        <th scope="col">
-                                            <center>Hora</center>
-                                        </th>
-                                        <th scope="col">
-                                            <center>Acciones</center>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $contador = 0;
-                                    foreach ($citas as $cita) {
-                                        $contador += 1;
-                                    ?>
-                                        <tr>
-                                            <td>
-                                                <center><?php echo $contador; ?></center>
-                                            </td>
-                                            <td>
-                                                <center>
-                                                    <button type="button"
-                                                        class="btn btn-info"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal"
-                                                        data-rol="<?php echo $cita['nombre'] ?>"
-                                                        data-nombre="<?php echo $cita['nombre_completo'] ?>"
-                                                        data-telefono="<?php echo $cita['telefono'] ?>"
-                                                        data-email="<?php echo $cita['email'] ?>">
-                                                        <i class="bi bi-person-square"></i>
-                                                    </button>
-                                                </center>
-                                            </td>
-                                            <td>
-                                                <center><?php echo $cita['nombre_servicio']; ?></center>
-                                            </td>
-                                            <td>
-                                                <center><?php echo $cita['fecha_cita']; ?></center>
-                                            </td>
-                                            <td>
-                                                <center><?php echo $cita['hora_cita']; ?></center>
-                                            </td>
-                                            <td>
-                                                <center>
-                                                    <a href="<?php echo $VIEWS ?>/citas/read.php?id_cita=<?php echo $cita['id_cita']; ?>" class="btn btn-info btn-sm"><i class="bi bi-eye-fill"></i></a>
-                                                    <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $cita['id_cita']; ?>)"><i class="bi bi-trash-fill"></i></button>
-
-                                                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                                                    <script>
-                                                        function confirmDelete(id) {
-                                                            Swal.fire({
-                                                                title: '¿Estás seguro?',
-                                                                text: "¡No podrás revertir esto!",
-                                                                icon: 'warning',
-                                                                showCancelButton: true,
-                                                                confirmButtonColor: '#198754',
-                                                                cancelButtonColor: '#dc3545',
-                                                                confirmButtonText: 'Sí, eliminarla!',
-                                                                cancelButtonText: 'Cancelar'
-                                                            }).then((result) => {
-                                                                if (result.isConfirmed) {
-                                                                    // Enviamos la petición de eliminación por AJAX
-                                                                    fetch('<?php echo $URL ?>/app/controllers/citas/eliminar_cita.php?id_cita=' + id, {
-                                                                            method: 'GET'
-                                                                        })
-                                                                        .then(response => response.json())
-                                                                        .then(data => {
-                                                                            if (data.success) {
-                                                                                const swalWithBootstrapButtons = Swal.mixin({
-                                                                                    customClass: {
-                                                                                        confirmButton: "btn btn-success",
-                                                                                        cancelButton: "btn btn-danger"
-                                                                                    },
-                                                                                    buttonsStyling: false
-                                                                                });
-                                                                                swalWithBootstrapButtons.fire({
-                                                                                    title: 'Eliminada!',
-                                                                                    text: 'La cita ha sido eliminada correctamente.',
-                                                                                    icon: 'success',
-                                                                                    showConfirmButton: true
-                                                                                }).then(() => {
-                                                                                    // Refresca la página después de un pequeño retraso
-                                                                                    window.location.reload();
-                                                                                });
-                                                                            } else {
-                                                                                Swal.fire(
-                                                                                    'Error',
-                                                                                    'Hubo un problema al eliminar la cita. Inténtalo de nuevo.',
-                                                                                    'error'
-                                                                                );
-                                                                            }
-                                                                        })
-                                                                        .catch(error => {
-                                                                            Swal.fire(
-                                                                                'Error',
-                                                                                'Hubo un error en la conexión. Inténtalo más tarde.',
-                                                                                'error'
-                                                                            );
-                                                                        });
-                                                                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                                                                    const swalWithBootstrapButtons = Swal.mixin({
-                                                                        customClass: {
-                                                                            confirmButton: "btn btn-success",
-                                                                            cancelButton: "btn btn-danger"
-                                                                        },
-                                                                        buttonsStyling: false
-                                                                    });
-                                                                    // Si el usuario cancela la eliminación
-                                                                    swalWithBootstrapButtons.fire({
-                                                                        title: "Cancelado",
-                                                                        text: "Tu cita está a salvo :)",
-                                                                        icon: "error"
-                                                                    });
-                                                                }
-                                                            });
-                                                        }
-                                                    </script>
-                                                </center>
-                                            </td>
-                                        </tr>
-                                    <?php
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal completo -->
+<!-- Modal para Detalles del Usuario -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -204,7 +55,175 @@ include('../../app/controllers/citas/controller_citas.php');
     </div>
 </div>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title"><b>LISTADO DE CITAS</b></h3>
+                </div>
+                <div class="card-body">
+                    <a href="<?php echo $URL; ?>/registrar_cita.php" class="btn btn-primary"><i class="bi bi-calendar-date-fill"></i> Ir al Calendario</a>
+                    <br><br>
+
+                    <!-- Tabla de Citas Próximas -->
+                    <h4><b>Citas Próximas</b></h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table id="example9" class="table table-striped table-hover table-borderless">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col" class="text-center">#</th>
+                                        <th scope="col" class="text-center">Usuario</th>
+                                        <th scope="col" class="text-center">Servicio</th>
+                                        <th scope="col" class="text-center">Fecha</th>
+                                        <th scope="col" class="text-center">Hora</th>
+                                        <th scope="col" class="text-center">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $contador = 0;
+                                    foreach ($citasProximas as $cita) {
+                                        $contador++;
+                                    ?>
+                                        <tr>
+                                            <td class="text-center"><?php echo $contador; ?></td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                    data-rol="<?php echo $cita['nombre']; ?>"
+                                                    data-nombre="<?php echo $cita['nombre_completo']; ?>"
+                                                    data-telefono="<?php echo $cita['telefono']; ?>"
+                                                    data-email="<?php echo $cita['email']; ?>">
+                                                    <?php echo $cita['nombre_completo']; ?>
+                                                </button>
+                                            </td>
+                                            <td class="text-center"><?php echo $cita['nombre_servicio']; ?></td>
+                                            <td class="text-center"><?php echo $cita['fecha_cita']; ?></td>
+                                            <td class="text-center"><?php echo $cita['hora_cita']; ?></td>
+                                            <td class="text-center">
+                                                <a href="<?php echo $VIEWS ?>/citas/read.php?id_cita=<?php echo $cita['id_cita']; ?>" class="btn btn-info btn-sm"><i class="bi bi-eye-fill"></i></a>
+                                                <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $cita['id_cita']; ?>)"><i class="bi bi-trash-fill"></i></button>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Tabla de Citas Pasadas -->
+                    <br>
+                    <h4><b>Citas Pasadas</b></h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table id="example10" class="table table-striped table-hover table-borderless">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col" class="text-center">#</th>
+                                        <th scope="col" class="text-center">Usuario</th>
+                                        <th scope="col" class="text-center">Servicio</th>
+                                        <th scope="col" class="text-center">Fecha</th>
+                                        <th scope="col" class="text-center">Hora</th>
+                                        <th scope="col" class="text-center">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $contador = 0;
+                                    foreach ($citasPasadas as $cita) {
+                                        $contador++;
+                                    ?>
+                                        <tr>
+                                            <td class="text-center"><?php echo $contador; ?></td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                    data-rol="<?php echo $cita['nombre']; ?>"
+                                                    data-nombre="<?php echo $cita['nombre_completo']; ?>"
+                                                    data-telefono="<?php echo $cita['telefono']; ?>"
+                                                    data-email="<?php echo $cita['email']; ?>">
+                                                    <?php echo $cita['nombre_completo']; ?>
+                                                </button>
+                                            </td>
+                                            <td class="text-center"><?php echo $cita['nombre_servicio']; ?></td>
+                                            <td class="text-center"><?php echo $cita['fecha_cita']; ?></td>
+                                            <td class="text-center"><?php echo $cita['hora_cita']; ?></td>
+                                            <td class="text-center">
+                                                <a href="<?php echo $VIEWS ?>/citas/read.php?id_cita=<?php echo $cita['id_cita']; ?>" class="btn btn-info btn-sm"><i class="bi bi-eye-fill"></i></a>
+                                                <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $cita['id_cita']; ?>)"><i class="bi bi-trash-fill"></i></button>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    // Función para confirmar eliminación con SweetAlert2
+    function confirmDelete(id) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success me-2", // Agrega margen derecho al botón de confirmación
+                cancelButton: "btn btn-danger "
+            },
+            buttonsStyling: false
+        });
+
+        swalWithBootstrapButtons.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminarla!',
+            cancelButtonText: 'No, cancelar',
+            reverseButtons: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Petición de eliminación por AJAX
+                fetch('<?php echo $URL ?>/app/controllers/citas/eliminar_cita.php?id_cita=' + id, {
+                        method: 'GET'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            swalWithBootstrapButtons.fire(
+                                'Eliminada!',
+                                'La cita ha sido eliminada correctamente.',
+                                'success'
+                            ).then(() => window.location.reload());
+                        } else {
+                            swalWithBootstrapButtons.fire(
+                                'Error',
+                                'Hubo un problema al eliminar la cita. Inténtalo de nuevo.',
+                                'error'
+                            );
+                        }
+                    })
+                    .catch(error => {
+                        swalWithBootstrapButtons.fire(
+                            'Error',
+                            'Hubo un error en la conexión. Inténtalo más tarde.',
+                            'error'
+                        );
+                    });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    'La cita está a salvo :)',
+                    'error'
+                );
+            }
+        });
+
+    }
+
     // Escuchamos el evento cuando el modal se está por abrir
     var exampleModal = document.getElementById('exampleModal');
     exampleModal.addEventListener('show.bs.modal', function(event) {
@@ -218,16 +237,10 @@ include('../../app/controllers/citas/controller_citas.php');
         var rol = button.getAttribute('data-rol');
 
         // Seleccionamos los elementos dentro del modal y les asignamos los valores
-        var modalNombre = document.getElementById('nombre_completo');
-        var modalTelefono = document.getElementById('telefono');
-        var modalEmail = document.getElementById('email');
-        var modalRol = document.getElementById('rol');
-
-        // Asignamos los valores correspondientes a cada campo
-        modalNombre.textContent = nombre;
-        modalTelefono.textContent = telefono;
-        modalEmail.textContent = email;
-        modalRol.textContent = rol;
+        document.getElementById('nombre_completo').textContent = nombre;
+        document.getElementById('telefono').textContent = telefono;
+        document.getElementById('email').textContent = email;
+        document.getElementById('rol').textContent = rol;
     });
 </script>
 
