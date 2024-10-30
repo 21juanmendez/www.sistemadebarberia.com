@@ -17,6 +17,20 @@ if ($result_check['empleado_count'] > 0) {
     exit();
 }
 
+//verificamos si el servicio esta asociado a una venta
+$consulta = "SELECT COUNT(*) AS cantidadserv FROM tb_ventas_servicio WHERE id_servicio = $id_servicio";
+$query1 = $pdo->prepare($consulta);
+$query1->execute();
+$resultado = $query1->fetch(PDO::FETCH_ASSOC);
+
+if ($resultado['cantidadserv'] > 0) {
+    session_start();
+    $_SESSION['mensaje'] = 'No se puede eliminar el servicio porque está siendo utilizado en ventas';
+    $_SESSION['icono'] = 'warning';
+    header('Location:' . $URL . '/views/servicios/index.php');
+    exit();
+}
+
 // Si no hay empleados utilizando el servicio, se puede eliminar
 $sql_delete = "DELETE FROM tb_servicios WHERE id_servicio = '$id_servicio'";
 $query_delete = $pdo->prepare($sql_delete);

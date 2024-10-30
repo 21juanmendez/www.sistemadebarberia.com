@@ -21,8 +21,11 @@ $pdf->setPrintFooter(false);
 $pdf->AddPage();
 
 // Agregar imagen
-$imagePath = "http://localhost/www.sistemadebarberia.com/public/imagenes/logo_area51.jpg";
+$imagePath = $URL."/public/imagenes/logo_area51.jpg";
 
+$fecha = explode(' ', $fecha_venta);
+$fecha_formateada = $fecha[0];
+$hora_formateada = $fecha[1];
 // Definir contenido HTML para la factura
 $html = '
 <h1 style="text-align:center;">FACTURA 00' . $id_venta . '</h1>
@@ -36,8 +39,8 @@ $html = '
     <table>
         <tr>
             <td><strong>Nombre del vendedor:</strong><br>' . $nombre_vendedor . '</td>
-            <td style="text-align:right;"><strong>NO. FACTURA</strong> #00' . $id_venta . '<br><strong>FECHA DE EMISIÓN</strong>
-                ' . $fecha_venta . '</td>
+            <td style="text-align:right;"><strong>NO. FACTURA:</strong> #00' . $id_venta . '<br><strong>FECHA DE EMISIÓN:</strong>
+                ' . $fecha_formateada . '<br><strong>HORA:</strong>'.$hora_formateada.'</td>
         </tr>
     </table>
     <br>
@@ -124,7 +127,7 @@ $html .= '
         <td style="text-align:right; font-size: 14px;"><strong>Total pagado:        </strong>$' . $total_pago . '</td>
     </tr>
     <tr>
-        <td style="text-align:right; font-size: 14px;"><strong>Total pagado:        </strong>$' . $cambio . '</td>
+        <td style="text-align:right; font-size: 14px;"><strong>Cambio:        </strong>$' . $cambio . '</td>
     </tr>
 </table>
 
