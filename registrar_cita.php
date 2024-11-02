@@ -286,10 +286,10 @@ if (isset($_SESSION['cliente'])) {
             events: 'app/controllers/citas/cargar_reservas.php',
             dateClick: function(info) {
                 a = info.dateStr;
-                var selectedDate = new Date(a);
+                var selectedDate = new Date(a + "T00:00:00-06:00"); // Ajuste a zona horaria de El Salvador (-06:00)
                 var selectedDateFormatted = selectedDate.toISOString().split('T')[0];
                 var dayOfWeek = selectedDate.getUTCDay();
-                var dia = selectedDate.getDate() + 1;
+                var dia = selectedDate.getDate();
                 var mes = selectedDate.toLocaleString('es-SV', {
                     month: 'long'
                 });
