@@ -161,11 +161,8 @@ if (isset($_SESSION['cliente'])) {
             </div>
             <div class="modal-body">
                 <div class="row">
-
                     <div class="col-md 6">
-                        <center>
-                            Turnos de la mañana
-                        </center>
+                        <center>Turnos de la mañana</center>
                         <br>
                         <div class="d-grid gap-1">
                             <button type="button" id="btn_h1" class="btn btn-success">08:00 - 09:00</button>
@@ -175,18 +172,14 @@ if (isset($_SESSION['cliente'])) {
                             <br>
                         </div>
                     </div>
-
                     <div class="col-md 6">
-                        <center>
-                            Turnos de la tarde
-                        </center>
+                        <center>Turnos de la tarde</center>
                         <br>
                         <div class="d-grid gap-1">
                             <button type="button" id="btn_h5" class="btn btn-success">13:00 - 14:00</button>
                             <button type="button" id="btn_h6" class="btn btn-success">14:00 - 15:00</button>
                             <button type="button" id="btn_h7" class="btn btn-success">15:00 - 16:00</button>
                             <button type="button" id="btn_h8" class="btn btn-success">16:00 - 17:00</button>
-
                         </div>
                     </div>
                 </div>
@@ -210,18 +203,15 @@ if (isset($_SESSION['cliente'])) {
                             <div class="col-md 6">
                                 <div class="mb-3">
                                     <label><b>Usuario</b></label>
-                                    <!--<p><?php echo isset($_SESSION['nombre_usuario']) ? $_SESSION['nombre_usuario'] : ''; ?></p>-->
                                     <input type="text" class="form-control" value="<?php echo $usuario; ?>" readonly>
                                     <input hidden name="id_usuario" value="<?php echo $_SESSION['id']; ?>">
                                 </div>
                             </div>
-
                             <div class="col-md 6">
                                 <div class="mb-3">
                                     <label for=""><b>Tipo de Servicio</b></label>
                                     <select name="id_servicio" class="form-select" required>
                                         <option value="" selected>Selecciona un servicio</option>
-                                        <!-- Recorremos el array $servicios para generar las opciones -->
                                         <?php foreach ($servicios as $servicio) : ?>
                                             <option value="<?php echo $servicio['id_servicio']; ?>"><?php echo $servicio['nombre_servicio']; ?></option>
                                         <?php endforeach; ?>
@@ -229,7 +219,6 @@ if (isset($_SESSION['cliente'])) {
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md 6">
                                 <div class="mb-3">
@@ -237,7 +226,6 @@ if (isset($_SESSION['cliente'])) {
                                     <input type="text" id="fecha_cita" name="fecha_cita" class="form-control" readonly>
                                 </div>
                             </div>
-
                             <div class="col-md 6">
                                 <div class="mb-3">
                                     <label for=""><b>Hora de reserva</b></label>
@@ -256,16 +244,12 @@ if (isset($_SESSION['cliente'])) {
     </div>
 </div>
 
-<!--SCRIPT PARA CALENDARIO-->
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
-
-<!-- Importamos la librería FullCalendar -->
 <script>
     var a; // Variable para almacenar la fecha seleccionada
     var usuario = '<?php echo $usuario ?>'; // Usuario logueado
 
     document.addEventListener('DOMContentLoaded', function() {
-        // Obtener la fecha y hora en la zona horaria de El Salvador
         var options = {
             timeZone: 'America/El_Salvador',
             hour: '2-digit',
@@ -276,29 +260,18 @@ if (isset($_SESSION['cliente'])) {
             day: '2-digit'
         };
         var today = new Date();
-
-        //today.setDate(today.getDate() + 1); // Esto hace que sea "mañana para pruebas"
         var todayInElSalvador = new Intl.DateTimeFormat('es-SV', options).format(today);
-
-        // Mostrar la fecha y hora en la consola (zona horaria correcta)
-        console.log("Fecha y hora ajustada (El Salvador): " + todayInElSalvador);
-
-        // Obtener solo la fecha actual (YYYY-MM-DD) usando la zona horaria correcta de El Salvador
         var dateElSalvador = new Intl.DateTimeFormat('en-CA', {
             year: 'numeric',
             month: '2-digit',
             day: '2-digit',
             timeZone: 'America/El_Salvador'
         }).format(today);
-        console.log("Fecha actual (YYYY-MM-DD): " + dateElSalvador);
-
-        // Obtener la hora actual en formato 24 horas de El Salvador
         var currentHourElSalvador = parseInt(new Intl.DateTimeFormat('es-SV', {
             hour: '2-digit',
             timeZone: 'America/El_Salvador',
             hour12: false
         }).format(today));
-        console.log("Hora actual (hora en formato 24h): " + currentHourElSalvador);
 
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -307,36 +280,25 @@ if (isset($_SESSION['cliente'])) {
             editable: true,
             selectable: true,
             allDaySlot: false,
-
-            // Restricción para que no se pueda seleccionar fechas anteriores al día actual
             validRange: {
-                start: dateElSalvador // Usamos la fecha correcta de El Salvador
+                start: dateElSalvador
             },
-            // Cargamos las citas agendadas para mostrarlas en el calendario
             events: 'app/controllers/citas/cargar_reservas.php',
-
-            // Acción al hacer clic en una fecha
             dateClick: function(info) {
-                a = info.dateStr; // Guardamos la fecha seleccionada
+                a = info.dateStr;
                 var selectedDate = new Date(a);
-                var selectedDateFormatted = selectedDate.toISOString().split('T')[0]; // Formato YYYY-MM-DD
-                var dayOfWeek = selectedDate.getUTCDay(); // Día de la semana (0-6)
-
-                // Obtener el día, mes y año para mostrarlo en el modal
-                var dia = selectedDate.getDate() + 1; // Obtener el día del mes
+                var selectedDateFormatted = selectedDate.toISOString().split('T')[0];
+                var dayOfWeek = selectedDate.getUTCDay();
+                var dia = selectedDate.getDate() + 1;
                 var mes = selectedDate.toLocaleString('es-SV', {
                     month: 'long'
-                }); // Obtener el nombre del mes en español
-                var anio = selectedDate.getFullYear(); // Obtener el año
-
-                // Concatenar el día de la semana y la fecha formateada
+                });
+                var anio = selectedDate.getFullYear();
                 var diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-                var finalDate = `${diasSemana[dayOfWeek]} ${dia} de ${mes} del ${anio}`; // Ejemplo: "Lunes 23 de octubre del 2024"
+                var finalDate = `${diasSemana[dayOfWeek]} ${dia} de ${mes} del ${anio}`;
 
-                // Mostrar el día y la fecha seleccionada en el modal
-                $('#dia_de_la_semana').text(finalDate); // Mostrar en el formato deseado
+                $('#dia_de_la_semana').text(finalDate);
 
-                // Verificamos si el usuario está logueado
                 if (usuario == '') {
                     Swal.fire({
                         icon: 'error',
@@ -353,7 +315,6 @@ if (isset($_SESSION['cliente'])) {
                         });
                         return;
                     }
-                    // Hacemos una petición AJAX para obtener las horas ocupadas de la fecha seleccionada
                     $.ajax({
                         url: 'app/controllers/citas/cargar_reservas.php',
                         type: 'GET',
@@ -361,18 +322,13 @@ if (isset($_SESSION['cliente'])) {
                             fecha: a
                         },
                         success: function(response) {
-                            var horasOcupadas = JSON.parse(response); // Parseamos el JSON recibido
-
-                            // Limpiamos el estilo de los botones de las horas (por si se seleccionó una fecha anterior)
+                            var horasOcupadas = JSON.parse(response);
                             $('button[id^="btn_h"]').removeClass('btn-danger').addClass('btn-success').prop('disabled', false);
 
-                            // Si la fecha seleccionada es hoy (El Salvador)
                             if (selectedDateFormatted === dateElSalvador) {
-                                // Deshabilitamos solo las horas pasadas del día actual
                                 $('button[id^="btn_h"]').each(function() {
                                     var horaBoton = $(this).text().trim();
                                     var horaNumero = parseInt(horaBoton.split(':')[0]);
-
                                     if (horaNumero < currentHourElSalvador) {
                                         $(this).removeClass('btn-success').addClass('btn-secondary').prop('disabled', true);
                                     } else {
@@ -380,11 +336,9 @@ if (isset($_SESSION['cliente'])) {
                                     }
                                 });
                             } else {
-                                // Si es un día futuro, todas las horas deben estar habilitadas
                                 $('button[id^="btn_h"]').removeClass('btn-secondary').addClass('btn-success').prop('disabled', false);
                             }
 
-                            // Iteramos sobre las horas ocupadas y deshabilitamos los botones correspondientes
                             horasOcupadas.forEach(function(hora) {
                                 switch (hora) {
                                     case '08:00 - 09:00':
@@ -414,17 +368,12 @@ if (isset($_SESSION['cliente'])) {
                                 }
                             });
 
-                            // Mostramos el modal para elegir las horas
                             $('#modal-reservas').modal('show');
-
                         }
                     });
                 }
             },
-
-            //Cuando le damos click a un evento en este caso a una cita
             eventClick: function(info) {
-
                 if (usuario == '') {
                     Swal.fire({
                         icon: 'error',
@@ -433,73 +382,41 @@ if (isset($_SESSION['cliente'])) {
                         footer: '<a href="<?php echo $VIEWS ?>/login">¿Ya tienes una cuenta?</a>'
                     });
                 } else {
-                    var eventObj = info.event; // Obtenemos el objeto del evento
-
-                    // Hacer una solicitud AJAX para obtener los detalles de la cita
+                    var eventObj = info.event;
                     $.ajax({
-                        url: 'app/controllers/citas/cargar_detalle_citas.php', // Controlador para cargar detalles de la cita
+                        url: 'app/controllers/citas/cargar_detalle_citas.php',
                         type: 'GET',
                         data: {
-                            id: eventObj.id // Pasamos el ID del evento
+                            id: eventObj.id
                         },
                         success: function(response) {
-                            console.log('Respuesta del servidor:', response); // Para ver qué se está recibiendo
-
-                            // Determinamos si la respuesta es un error o si tiene los detalles
                             if (response.error) {
-
-                                // Mostrar un mensaje de error en caso de que no se encuentre la cita
                                 Swal.fire({
                                     icon: 'warning',
                                     title: 'Oops...',
                                     text: response.error
                                 });
-
                             } else {
-                                // Mostrar los detalles de la cita en SweetAlert (Swal)
                                 Swal.fire({
                                     icon: 'info',
                                     title: 'Detalles de la Cita',
-                                    html: `
-                                        <div style="text-align: center; font-size: 1.1em; line-height: 1.6;">
+                                    html: `<div style="text-align: center; font-size: 1.1em; line-height: 1.6;">
                                             <p><b>Usuario:</b> ${response.usuario}</p>
                                             <p><b>Servicio:</b> ${response.servicio}</p>
                                             <p><b>Fecha:</b> ${response.fecha}</p>
                                             <p><b>Hora:</b> ${response.hora}</p>
-                                            <br>
-                                            <button id="deleteCita" class="btn btn-danger" style="
-                                                padding: 10px 20px;
-                                                font-size: 1em;
-                                                border-radius: 5px;
-                                                border: none;
-                                                color: #fff;
-                                                background-color: #dc3545;
-                                                cursor: pointer;
-                                            ">Cancelar</button>
-                                        </div>
-                                    `,
+                                            <br><button id="deleteCita" class="btn btn-danger" style="padding: 10px 20px; font-size: 1em; border-radius: 5px; border: none; color: #fff; background-color: #dc3545; cursor: pointer;">Cancelar</button></div>`,
                                     showConfirmButton: false,
-                                    width: 475, // Ancho ajustado para que se vea más compacto
+                                    width: 475,
                                     padding: "2em",
-                                    color: "#333", // Color de texto profesional
-                                    background: "#fff url(/images/trees.png) center / cover", // Fondo personalizado centrado
-                                    backdrop: `
-                                        rgba(0,0,123,0.4)
-                                        url("<?php echo $URL ?>/public/imagenes/nyan-cat-nyan.gif")
-                                        left top
-                                        no-repeat
-                                    `
+                                    color: "#333",
+                                    background: "#fff url(/images/trees.png) center / cover",
+                                    backdrop: `rgba(0,0,123,0.4) url("<?php echo $URL ?>/public/imagenes/nyan-cat-nyan.gif") left top no-repeat`
                                 });
-
-
-                                // Escuchar el evento del botón para cancelar la cita
                                 document.getElementById('deleteCita').addEventListener('click', function() {
                                     var currentDateTime = new Date();
                                     var citaDateTime = new Date(response.fecha + ' ' + response.hora.split(' - ')[0]);
-
-                                    // Calcular la diferencia en horas entre la fecha y hora actual y la fecha y hora de la cita
                                     var diffInHours = (citaDateTime - currentDateTime) / (1000 * 60 * 60);
-
                                     if (diffInHours <= 4) {
                                         Swal.fire({
                                             icon: 'error',
@@ -507,7 +424,6 @@ if (isset($_SESSION['cliente'])) {
                                             text: 'No puedes cancelar la cita con menos de 4 horas de anticipación.'
                                         });
                                     } else {
-                                        // Confirmación para eliminar la cita
                                         Swal.fire({
                                             title: '¿Estás seguro?',
                                             text: "¡Esta acción no se puede deshacer!",
@@ -519,49 +435,25 @@ if (isset($_SESSION['cliente'])) {
                                             cancelButtonText: 'No, cancelar'
                                         }).then((result) => {
                                             if (result.isConfirmed) {
-                                                // Si el usuario confirma, realizar la solicitud AJAX para eliminar la cita
                                                 $.ajax({
-                                                    url: 'app/controllers/citas/eliminar_cita.php', // Cambia esta URL a la correcta
+                                                    url: 'app/controllers/citas/eliminar_cita.php',
                                                     type: 'POST',
                                                     data: {
-                                                        id: response.id // Enviar el ID de la cita a eliminar
+                                                        id: response.id
                                                     },
                                                     success: function(response) {
                                                         var resultado = JSON.parse(response);
-
                                                         if (resultado.success) {
-                                                            // Eliminar el evento del calendario si se eliminó correctamente
                                                             eventObj.remove();
-                                                            const swalWithBootstrapButtons = Swal.mixin({
-                                                                customClass: {
-                                                                    confirmButton: "btn btn-success",
-                                                                    cancelButton: "btn btn-danger"
-                                                                },
-                                                                buttonsStyling: false
-                                                            });
-                                                            swalWithBootstrapButtons.fire('Eliminada', 'La cita ha sido eliminada.', 'success');
+                                                            Swal.fire('Eliminada', 'La cita ha sido eliminada.', 'success');
+
                                                         } else {
                                                             Swal.fire('Error', resultado.message, 'error');
                                                         }
                                                     },
                                                     error: function(jqXHR, textStatus, errorThrown) {
-                                                        console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
                                                         Swal.fire('Error', 'Hubo un problema al eliminar la cita.', 'error');
                                                     }
-                                                });
-                                            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                                                const swalWithBootstrapButtons = Swal.mixin({
-                                                    customClass: {
-                                                        confirmButton: "btn btn-success",
-                                                        cancelButton: "btn btn-danger"
-                                                    },
-                                                    buttonsStyling: false
-                                                });
-                                                // Si el usuario cancela la eliminación
-                                                swalWithBootstrapButtons.fire({
-                                                    title: "Cancelado",
-                                                    text: "Tu cita está a salvo :)",
-                                                    icon: "error"
                                                 });
                                             }
                                         });
@@ -570,69 +462,59 @@ if (isset($_SESSION['cliente'])) {
                             }
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
-                            console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
-                            alert('Error al cargar los detalles de la cita.'); // Mensaje de error para el usuario
+                            alert('Error al cargar los detalles de la cita.');
                         }
                     });
                 }
             }
         });
-        // Finalmente, renderizamos el calendario
         calendar.render();
     });
-</script>
-<!--FIN SCRIPT PARA CALENDARIO-->
 
-<script>
+    function seleccionarHora(horaInicio, horaFin) {
+        var currentDateTime = new Date().toLocaleString("en-US", {
+            timeZone: "America/El_Salvador"
+        });
+        currentDateTime = new Date(currentDateTime);
+        var selectedDateTime = new Date(a + ' ' + horaInicio);
+        var diffInHours = (selectedDateTime - currentDateTime) / (1000 * 60 * 60);
+        if (diffInHours < 4) {
+            Swal.fire({
+                icon: 'error',
+                title: 'No se puede reservar',
+                text: 'Debes reservar con al menos 4 horas de anticipación.'
+            });
+        } else {
+            $('#modal-reservas').modal('hide');
+            $('#modal-formulario').modal('show');
+            $('#fecha_cita').val(a);
+            $('#hora_cita').val(horaInicio + ' - ' + horaFin);
+        }
+    }
+
     $('#btn_h1').click(function() {
-        $('#modal-reservas').modal('hide');
-        $('#modal-formulario').modal('show');
-        $('#fecha_cita').val(a); //para input
-        $('#hora_cita').val('08:00 - 09:00'); //para input
-        //$('#fecha_cita').text(a);//para p
-        //$('#hora_cita').text('08:00 - 09:00');//para p
+        seleccionarHora('08:00', '09:00');
     });
     $('#btn_h2').click(function() {
-        $('#modal-reservas').modal('hide');
-        $('#modal-formulario').modal('show');
-        $('#fecha_cita').val(a); //para input
-        $('#hora_cita').val('09:00 - 10:00'); //para input
+        seleccionarHora('09:00', '10:00');
     });
     $('#btn_h3').click(function() {
-        $('#modal-reservas').modal('hide');
-        $('#modal-formulario').modal('show');
-        $('#fecha_cita').val(a); //para input
-        $('#hora_cita').val('10:00 - 11:00'); //para input
+        seleccionarHora('10:00', '11:00');
     });
     $('#btn_h4').click(function() {
-        $('#modal-reservas').modal('hide');
-        $('#modal-formulario').modal('show');
-        $('#fecha_cita').val(a); //para input
-        $('#hora_cita').val('11:00 - 12:00'); //para input
+        seleccionarHora('11:00', '12:00');
     });
     $('#btn_h5').click(function() {
-        $('#modal-reservas').modal('hide');
-        $('#modal-formulario').modal('show');
-        $('#fecha_cita').val(a); //para input
-        $('#hora_cita').val('13:00 - 14:00'); //para input
+        seleccionarHora('13:00', '14:00');
     });
     $('#btn_h6').click(function() {
-        $('#modal-reservas').modal('hide');
-        $('#modal-formulario').modal('show');
-        $('#fecha_cita').val(a); //para input
-        $('#hora_cita').val('14:00 - 15:00'); //para input
+        seleccionarHora('14:00', '15:00');
     });
     $('#btn_h7').click(function() {
-        $('#modal-reservas').modal('hide');
-        $('#modal-formulario').modal('show');
-        $('#fecha_cita').val(a); //para input
-        $('#hora_cita').val('15:00 - 16:00'); //para input
+        seleccionarHora('15:00', '16:00');
     });
     $('#btn_h8').click(function() {
-        $('#modal-reservas').modal('hide');
-        $('#modal-formulario').modal('show');
-        $('#fecha_cita').val(a); //para input
-        $('#hora_cita').val('16:00 - 17:00'); //para input
+        seleccionarHora('16:00', '17:00');
     });
     $('#regresar').click(function() {
         $('#modal-reservas').modal('show');
@@ -640,6 +522,4 @@ if (isset($_SESSION['cliente'])) {
     });
 </script>
 
-<?php
-include('layout/parte2.php');
-?>
+<?php include('layout/parte2.php'); ?>
