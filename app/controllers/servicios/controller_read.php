@@ -9,6 +9,7 @@ $servicios = $query->fetchAll(PDO::FETCH_ASSOC);
 foreach($servicios as $servicio){
     $nombre_servicio = $servicio['nombre_servicio'];
     $precio = $servicio['precio'];
+    $puntos = $servicio['puntos_para_gratis'];
     $descripcion = $servicio['descripcion'];
     $imagen = $servicio['imagen'];
     $fyh_creacion = $servicio['fyh_creacion'];

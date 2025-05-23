@@ -18,10 +18,16 @@ include('../usuarios/layout/parte1.php');
                                     <input type="text" name="nombre_servicio" class="form-control" required>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Precio</label>
                                     <input type="number" id="precio" name="precio" class="form-control" step="0.01" required>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Puntos para gratis</label>
+                                    <input type="number" id="puntos" name="puntos" class="form-control" step="1" required>
                                 </div>
                             </div>
                         </div>

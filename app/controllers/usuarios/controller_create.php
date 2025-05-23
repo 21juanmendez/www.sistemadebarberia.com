@@ -42,6 +42,20 @@ if ($result && isset($_SESSION['admin'])) { // Si el correo ya existe y es admin
             VALUES ('$id_rol', '$name','$telefono', '$email', '$encriptada', '$fyh_creacion')";
     $query = $pdo->prepare($sql);
     $query->execute();
+
+    //Obetener el id del usuario creado
+    $sql = "SELECT * FROM tb_usuarios WHERE email = '$email'";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    $id_usuario = $result['id_usuario'];
+
+    //Crear cliente
+    $sql = "INSERT INTO tb_clientes (id_usuario)
+            VALUES ('$id_usuario')";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+
     $_SESSION['mensaje'] = 'Usuario creado correctamente';
     $_SESSION['icono'] = 'success';
     header('Location:' . $VIEWS . '/login');

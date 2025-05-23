@@ -20,12 +20,19 @@ include('../../app/controllers/servicios/controller_read.php');
                                     <input value="<?php echo $nombre_servicio ?>" type="text" name="nombre_servicio" class="form-control" required>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Precio</label>
                                     <input value="<?php echo $precio ?>" type="number" id="precio" name="precio" class="form-control" step="0.01" required>
                                 </div>
                             </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Puntos para gratis</label>
+                                    <input value="<?php echo $puntos ?>" type="number" id="puntos" name="puntos" class="form-control" required>
+                                </div>
+                            </div>
+                            
                         </div>
                         <div class="row">
                             <div class="col-md-12">
