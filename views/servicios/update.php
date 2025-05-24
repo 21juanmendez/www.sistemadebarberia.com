@@ -13,7 +13,7 @@ include('../../app/controllers/servicios/controller_read.php');
                 <div class="row">
                     <div class="col-md-8">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <input type="text" name="id_servicio" value="<?php echo $id_servicio?>" hidden >
                                     <label>Nombre del Servicio</label>
@@ -24,6 +24,12 @@ include('../../app/controllers/servicios/controller_read.php');
                                 <div class="form-group">
                                     <label>Precio</label>
                                     <input value="<?php echo $precio ?>" type="number" id="precio" name="precio" class="form-control" step="0.01" required>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Puntos por servicio</label>
+                                    <input value="<?php echo $acumula_puntos ?>" type="text" id="acumula_puntos" name="acumula_puntos" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-md-2">

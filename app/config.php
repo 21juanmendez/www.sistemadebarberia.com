@@ -2,7 +2,7 @@
 define('APP_NAME', 'Sistema de Barberia');
 define('SERVIDOR', 'localhost');
 define('USUARIO', 'root');
-define('PASSWORD', '');
+define('PASSWORD', 'admin');
 define('BD', 'sistemabarberia');
 
 $servidor = "mysql:dbname=" . BD . ";host=" . SERVIDOR;

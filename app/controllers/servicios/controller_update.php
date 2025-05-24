@@ -5,6 +5,7 @@ include('../../config.php');
 $id_servicio = $_POST['id_servicio'];
 $nombre_servicio = $_POST['nombre_servicio'];
 $precio = $_POST['precio'];
+$acumula_puntos = $_POST['acumula_puntos'];
 $puntos = $_POST['puntos'];
 $descripcion = $_POST['descripcion'];
 $imagen = $_POST['imagen'];
@@ -19,7 +20,7 @@ if ($_FILES['file']['name'] != null) {
 }
 
 $sql = "UPDATE tb_servicios 
-SET nombre_servicio='$nombre_servicio', precio='$precio', puntos_para_gratis = '$puntos',
+SET nombre_servicio='$nombre_servicio', precio='$precio', acumula_puntos='$acumula_puntos', puntos_para_gratis='$puntos',
  descripcion='$descripcion', imagen='$imagen', fyh_actualizacion='$fyh_actualizacion' 
 WHERE id_servicio='$id_servicio'";
 

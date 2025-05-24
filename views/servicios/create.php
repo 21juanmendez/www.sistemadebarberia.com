@@ -12,7 +12,7 @@ include('../usuarios/layout/parte1.php');
                 <div class="row">
                     <div class="col-md-8">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nombre del Servicio</label>
                                     <input type="text" name="nombre_servicio" class="form-control" required>
@@ -22,6 +22,12 @@ include('../usuarios/layout/parte1.php');
                                 <div class="form-group">
                                     <label>Precio</label>
                                     <input type="number" id="precio" name="precio" class="form-control" step="0.01" required>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Puntos por servicio</label>
+                                    <input type="text" id="acumula_puntos" name="acumula_puntos" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-md-2">
