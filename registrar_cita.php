@@ -134,7 +134,7 @@ if (isset($_SESSION['cliente'])) {
         <div class="row">
             <div class="col-md-12">
                 <br>
-                <h1 class="text-center">Reserva una Cita</h1>
+                <h1 class="fw-bold" style="text-align: center;">Reserva una Cita</h1>
                 <p class="text-center">Selecciona una fecha para reservar una cita</p>
                 <br>
             </div>
