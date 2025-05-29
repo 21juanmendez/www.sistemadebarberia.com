@@ -20,7 +20,7 @@
 
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2024 <a href="<?php echo $URL ?>">Area51</a>.</strong> Todos los derechos reservados.
+            <strong>Copyright &copy; 2025 <a href="<?php echo $URL ?>">Area51</a>.</strong> Todos los derechos reservados.
         </footer>
     </div>
     <!-- ./wrapper -->
