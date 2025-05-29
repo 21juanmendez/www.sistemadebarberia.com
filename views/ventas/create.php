@@ -50,7 +50,6 @@ if (isset($_GET['id_venta']) && !empty($_GET['id_venta'])) {
         </div>
         <div class="card-body">
 
-
             <div class="row">
                 <div class="col-md-6">
                     <div class="card" style="border-radius: 10px; border: 1px solid #ddd;">
@@ -70,7 +69,6 @@ if (isset($_GET['id_venta']) && !empty($_GET['id_venta'])) {
                                                 <span id="prod_id_novalidate" class="text-danger"></span>
                                             </div>
                                             <input type="hidden" id="id_producto" name="id_producto" value="0">
-
                                             <div id="suggestions" class="suggestions"></div>
                                         </div>
                                     </div>
@@ -360,10 +358,12 @@ if (isset($_GET['id_venta']) && !empty($_GET['id_venta'])) {
                                         <tbody id="servicios_tbody">
                                             <?php
                                             $subtotal_servicios = 0;
+                                            $puntos_acumulados = 0;
                                             foreach ($servicios_vendidos as $servicios) {
 
                                                 if ($servicios['id_venta'] == $id_venta) {
                                                     $subtotal_servicios += $servicios['precio'];
+                                                    $puntos_acumulados += $servicios['puntos_servicio'];
 
                                             ?>
                                                     <tr>
@@ -457,12 +457,107 @@ if (isset($_GET['id_venta']) && !empty($_GET['id_venta'])) {
                 <!-- Modal -->
                 <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content">
+                        <div class="modal-content" style="width: 110%;">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="paymentModalLabel">Detalles de Pago</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
+                                <div class="card" style="padding: 10px;">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nombre del cliente</label>
+                                                <input id="nombre_cliente" type="text" class="form-control" autocomplete="off" required disabled value="Público General">
+                                                <div id="suggestions_clientes" class="suggestions"></div>
+                                            </div>
+                                            <input type="hidden" name="id_cliente" id="id_cliente" value="0">
+                                        </div>
+
+                                        <!-- Script para buscar cliente -->
+                                        <script>
+                                            document.addEventListener('DOMContentLoaded', function() {
+                                                const input = document.getElementById('nombre_cliente');
+                                                const suggestions = document.querySelector('#suggestions_clientes');
+                                                const id_cliente_input = document.getElementById('id_cliente');
+
+                                                input.addEventListener('input', function() {
+                                                    const term = input.value;
+
+                                                    if (term.length >= 1) {
+                                                        fetch('<?php echo $URL ?>/app/controllers/clientes/buscar_cliente.php', {
+                                                                method: 'POST',
+                                                                headers: {
+                                                                    'Content-Type': 'application/x-www-form-urlencoded'
+                                                                },
+                                                                body: `term=${term}`
+                                                            })
+                                                            .then(response => response.json())
+                                                            .then(data => {
+                                                                console.log(data);
+                                                                suggestions.innerHTML = '';
+                                                                data.forEach(item => {
+                                                                    const div = document.createElement('div');
+                                                                    div.classList.add('suggestion-item');
+                                                                    div.textContent = `${item.id_cliente} - ${item.nombre_cliente}`;
+                                                                    div.addEventListener('click', function() {
+                                                                        input.value = item.nombre_cliente;
+                                                                        id_cliente_input.value = item.id_cliente;
+                                                                        suggestions.innerHTML = '';
+                                                                    });
+                                                                    suggestions.appendChild(div);
+                                                                });
+                                                            });
+                                                    } else {
+                                                        suggestions.innerHTML = '';
+                                                    }
+                                                });
+                                            });
+                                        </script>
+                                        <script>
+                                            document.addEventListener('DOMContentLoaded', function() {
+                                                const publicoGeneralRadio = document.getElementById('facturar_publico');
+                                                const clienteRegistradoRadio = document.getElementById('facturar_cliente');
+                                                const nombreClienteInput = document.getElementById('nombre_cliente');
+                                                const idClienteInput = document.getElementById('id_cliente');
+                                                const ocultarPuntosLbl = document.getElementById('ocultar_puntos_lbl');
+                                                const ocultarPuntoTxt = document.getElementById('ocultar_puntos_txt');
+
+                                                publicoGeneralRadio.addEventListener('change', function() {
+                                                    if (publicoGeneralRadio.checked) {
+                                                        nombreClienteInput.disabled = true;
+                                                        nombreClienteInput.value = 'Público General';
+                                                        idClienteInput.value = 0; // Resetear el ID del cliente
+                                                        ocultarPuntosLbl.style.display = 'none'; // Ocultar etiqueta de puntos
+                                                        ocultarPuntoTxt.style.display = 'none'; // Ocultar texto de puntos
+                                                    }
+                                                });
+
+                                                clienteRegistradoRadio.addEventListener('change', function() {
+                                                    if (clienteRegistradoRadio.checked) {
+                                                        nombreClienteInput.disabled = false;
+                                                        nombreClienteInput.value = '';
+                                                        ocultarPuntoTxt.style.display = 'block'; // Mostrar texto de puntos
+                                                        ocultarPuntosLbl.style.display = 'block'; // Mostrar etiqueta de puntos
+                                                    }
+                                                });
+                                            });
+                                        </script>
+                                        <div class="col-md-4 ml-2">
+                                            <div class="form-group">
+                                                <label for="radio_facturacion">Facturar a:</label>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" id="facturar_publico" name="radio_facturacion" value="publico_general" required checked>
+                                                        <label class="form-check-label" for="facturar_publico">Público General</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" id="facturar_cliente" name="radio_facturacion" value="cliente_registrado" required>
+                                                        <label class="form-check-label" for="facturar_cliente">Cliente Registrado</label>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <!-- Subtotal de Productos (Solo Texto) -->
                                 <div class="card" style="padding: 10px;">
                                     <div class="row">
@@ -496,6 +591,18 @@ if (isset($_GET['id_venta']) && !empty($_GET['id_venta'])) {
                                             <input type="hidden" id="total_a_pagar_hidden" name="total_a_pagar" value="<?php echo number_format($subtotal_productos + $subtotal_servicios, 2) ?>">
                                         </div>
                                     </div>
+
+                                    <!-- Puntos acumulados (Solo Texto) -->
+                                    <div class="row">
+                                        <div class="col-md-8" style="text-align: right; display: none;" id="ocultar_puntos_lbl">
+                                            <label for="puntos_acumulados">Puntos acumulados</label>
+                                        </div>
+                                        <div class="col-md-3" style="text-align: right; display: none;" id="ocultar_puntos_txt">
+                                            <p class="form-control-plaintext text-success"><?php echo $puntos_acumulados ?></p>
+                                        </div>
+                                        <input type="hidden" id="puntos_acumulados_hidden" name="puntos_acumulados" value="<?php echo $puntos_acumulados ?>">
+                                    </div>
+
                                     <div>
                                         <div class="col-md-11" style="text-align: right;">
                                             <div id="mensaje_error" style="display: none;">
@@ -534,7 +641,6 @@ if (isset($_GET['id_venta']) && !empty($_GET['id_venta'])) {
                                             <input type="hidden" id="cambio_hidden" name="cambio">
                                         </div>
                                     </div>
-
                                 </div>
                                 <!-- Imprimir Factura -->
                                 <div class="row align-items-center">
