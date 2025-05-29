@@ -26,6 +26,8 @@ session_start();
     <script src="<?php echo $URL ?>/public/templates/plugins/jquery/jquery.min.js"></script>
     <!-- SWEET ALERT2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>

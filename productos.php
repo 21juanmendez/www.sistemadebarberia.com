@@ -9,7 +9,7 @@ include('layout/parte1.php');
             <div class="col-md-12">
                 <center>
                     <br>
-                    <h1>Nuestros Productos</h1>
+                    <h1 class="fw-bold">Nuestros Productos</h1>
                     <p>Explora nuestra selección de productos premium para hombres en nuestra barbería.</p>
                 </center>
             </div>

@@ -35,8 +35,10 @@ include('mensaje.php');
                                     $contador = 0;
                                     foreach ($productos as $producto) {
                                         $contador++;
+                                        $es_stock_bajo = $producto['stock'] <= $producto['stock_minimo'];
+                                        $fila_clase = $es_stock_bajo ? 'table-danger' : '';
                                     ?>
-                                        <tr>
+                                        <tr class="<?php echo $fila_clase ?>">
                                             <td>
                                                 <center><?php echo $contador ?></center>
                                             </td>
@@ -73,7 +75,13 @@ include('mensaje.php');
                                                 </center>
                                             </td>
                                             <td>
-                                                <center><?php echo $producto['stock'] ?></center>
+                                                <center>
+                                                    <?php if ($es_stock_bajo): ?>
+                                                        <span class="badge bg-danger text-white"><?php echo $producto['stock'] ?> ⚠</span>
+                                                    <?php else: ?>
+                                                        <?php echo $producto['stock'] ?>
+                                                    <?php endif; ?>
+                                                </center>
                                             </td>
                                             <td>
                                                 <center><?php echo $producto['precio_compra'] ?></center>

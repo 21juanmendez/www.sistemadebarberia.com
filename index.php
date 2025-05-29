@@ -54,7 +54,7 @@ include('layout/mensaje_permiso.php'); //para ver si tiene permisos de administr
             </div>
             <div class="col-md-7">
                 <center>
-                    <h1>Sobre Nosotros</h1>
+                    <h1 class="fw-bold">Sobre Nosotros</h1>
                 </center>
                 <p style="text-align: justify;">
                     En<b> Area51</b>, nos enorgullece ser el destino de confianza para el cuidado
@@ -80,7 +80,7 @@ include('layout/mensaje_permiso.php'); //para ver si tiene permisos de administr
         <div class="row">
             <div class="col-md-12">
                 <center>
-                    <h1>Nuestros Servicios</h1>
+                    <h1 class="fw-bold">Nuestros Servicios</h1>
                     <p>Ofrecemos una amplia gama de servicios para caballeros</p>
                 </center>
             </div>
@@ -148,7 +148,7 @@ include('layout/mensaje_permiso.php'); //para ver si tiene permisos de administr
         <div class="row">
             <div class="col-md-12">
                 <center>
-                    <h1>Galería</h1>
+                    <h1 class="fw-bold">Galería</h1>
                     <p>Algunas fotos de nuestras instalaciones</p>
                 </center>
             </div>
@@ -179,153 +179,219 @@ include('layout/mensaje_permiso.php'); //para ver si tiene permisos de administr
     </div>
 </section>
 <!--FIN GALLERY-->
-<!--TESTIMONIOS
-<section class="customers" style="background-color: #f5f5f5;;">
-    <br>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <center>
-                    <h1>Testimonios</h1>
-                    <p>Algunos testimonios de nuestros cientes</p>
-                </center>
-            </div>
-        </div>
 
-        <div id="carouselExample" class="carousel slide">
-            <div class="carousel-inner">
-                <center>
-                    <div class="carousel-item active">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="card border-info mb-3" style="max-width:540px;">
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img width="100%" src="https://www.blogdelfotografo.com/wp-content/uploads/2022/01/retrato-anillo-luz.webp" class="img-fluid rounded-start" alt="...">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body text-info">
-                                                <h5 class="card-title">Card title</h5>
-                                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card border-info mb-3" style="max-width:540px;">
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img width="100%" src="https://www.blogdelfotografo.com/wp-content/uploads/2022/01/retrato-anillo-luz.webp" class="img-fluid rounded-start" alt="...">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body text-info">
-                                                <h5 class="card-title">Card title</h5>
-                                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </center>
 
-                <div class="carousel-item">
-                    <center>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="card border-info mb-3" style="max-width:540px;">
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img width="100%" src="https://www.blogdelfotografo.com/wp-content/uploads/2022/01/retrato-anillo-luz.webp" class="img-fluid rounded-start" alt="...">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body text-info">
-                                                <h5 class="card-title">Card title</h5>
-                                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card border-info mb-3" style="max-width:540px;">
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img width="100%" src="https://www.blogdelfotografo.com/wp-content/uploads/2022/01/retrato-anillo-luz.webp" class="img-fluid rounded-start" alt="...">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body text-info">
-                                                <h5 class="card-title">Card title</h5>
-                                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </center>
-                </div>
-                <div class="carousel-item">
-                    <center>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="card border-info mb-3" style="max-width:540px;">
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img width="100%" src="https://www.blogdelfotografo.com/wp-content/uploads/2022/01/retrato-anillo-luz.webp" class="img-fluid rounded-start" alt="...">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body text-info">
-                                                <h5 class="card-title">Card title</h5>
-                                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card border-info mb-3" style="max-width:540px;">
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img width="100%" src="https://www.blogdelfotografo.com/wp-content/uploads/2022/01/retrato-anillo-luz.webp" class="img-fluid rounded-start" alt="...">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body text-info">
-                                                <h5 class="card-title">Card title</h5>
-                                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </center>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+ <!-- MENSAJE DE COMENTARIO CON SWEETALERT -->
+<?php if (isset($_SESSION['mensajeComentario'])): ?>
+  <script>
+    Swal.fire({
+      position: "top-center",
+      icon: "<?php echo $_SESSION['icono'] ?>",
+      title: "<?php echo $_SESSION['titulo'] ?>",
+      text: "<?php echo $_SESSION['mensajeComentario'] ?>",
+      showConfirmButton: false,
+      timer: 3000
+    });
+  </script>
+  <?php
+    unset($_SESSION['titulo']);
+    unset($_SESSION['mensajeComentario']);
+    unset($_SESSION['icono']);
+  ?>
+<?php endif; ?>
+
+<!-- ESTILOS DE SECCIÓN -->
+<style>
+.star-rating {
+  direction: rtl;
+  font-size: 2rem;
+  display: inline-flex;
+  gap: 8px;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.star-rating input[type="radio"] {
+  display: none;
+}
+
+.star-rating label {
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s;
+}
+
+.star-rating label:hover,
+.star-rating input[type="radio"]:checked ~ label,
+.star-rating label:hover ~ label {
+  color: gold;
+  transform: scale(1.1);
+}
+
+.calificacion-texto {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #0d6efd;
+  margin-top: 10px;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.testimonial-card {
+  transition: transform 0.3s ease-in-out;
+  border-radius: 15px;
+  background-color: #ffffff;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 1.25rem;
+}
+
+.card-text {
+  font-style: italic;
+  line-height: 1.5;
+}
+</style>
+
+<!-- SECCIÓN COMPLETA DE OPINIONES -->
+<section class="py-5" style="background-color: #f5f5f5;">
+  <div class="container">
+    <!-- Título de sección -->
+    <div class="row mb-5">
+      <div class="col-md-12 text-center">
+        <h1 class="fw-bold">Opiniones de Nuestros Clientes</h1>
+        <p class="text-muted">Cuéntanos cómo fue tu experiencia y mira lo que otros opinan.</p>
+      </div>
     </div>
+
+    <!-- FORMULARIO -->
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8">
+        <form action="app/controllers/comentarios/crear_comentario.php" method="POST" class="bg-white p-4 rounded shadow-sm border border-light-subtle">
+          <div class="mb-3">
+            <label for="titulo" class="form-label fw-semibold">Título del Comentario</label>
+            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Ej: Excelente servicio" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="comentario" class="form-label fw-semibold">Tu Experiencia</label>
+            <textarea class="form-control" id="comentario" name="comentario" rows="4" placeholder="Cuéntanos cómo fue tu visita..." required></textarea>
+          </div>
+
+          <div class="mb-4 text-center">
+            <label class="form-label fw-semibold mb-2">Calificación</label>
+            <div class="star-rating" id="estrellas">
+              <input type="radio" id="estrella5" name="calificacion" value="5"><label for="estrella5">★</label>
+              <input type="radio" id="estrella4" name="calificacion" value="4"><label for="estrella4">★</label>
+              <input type="radio" id="estrella3" name="calificacion" value="3"><label for="estrella3">★</label>
+              <input type="radio" id="estrella2" name="calificacion" value="2"><label for="estrella2">★</label>
+              <input type="radio" id="estrella1" name="calificacion" value="1"><label for="estrella1">★</label>
+            </div>
+            <div class="calificacion-texto" id="textoCalificacion">Selecciona una calificación</div>
+          </div>
+
+          <div class="text-end">
+            <button type="submit" class="btn btn-primary px-4" id="btnComentario" disabled>Publicar Comentario</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- CARRUSEL DE TESTIMONIOS -->
+    <?php
+    $stmt = $pdo->prepare("
+        SELECT c.titulo, c.comentario, c.calificacion, c.fecha, u.nombre_completo 
+        FROM tb_comentarios c 
+        INNER JOIN tb_usuarios u ON c.id_usuario = u.id_usuario
+        ORDER BY c.fecha DESC
+        LIMIT 12
+    ");
+    $stmt->execute();
+    $comentarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    ?>
+
+    <div id="carouselTestimonios" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <?php
+        $total = count($comentarios);
+        $porSlide = 2;
+        $numSlides = ceil($total / $porSlide);
+
+        for ($i = 0; $i < $numSlides; $i++) {
+          echo '<div class="carousel-item' . ($i === 0 ? ' active' : '') . '">';
+          echo '<div class="row justify-content-center gx-4 gy-4">';
+          for ($j = $i * $porSlide; $j < min(($i + 1) * $porSlide, $total); $j++) {
+            $c = $comentarios[$j];
+            echo '
+              <div class="col-md-6" data-aos="fade-up">
+                <div class="card testimonial-card border-0 shadow-sm h-100 p-3">
+                  <div class="card-body">
+                    <h5 class="card-title fw-bold text-primary mb-1">' . htmlspecialchars($c["titulo"]) . '</h5>
+                    <p class="card-text fs-6 text-secondary mb-2">' . htmlspecialchars($c["comentario"]) . '</p>
+                    <p class="text-warning fs-5 mb-1">';
+            for ($s = 1; $s <= 5; $s++) {
+              echo $s <= $c['calificacion'] ? '★' : '☆';
+            }
+            echo '</p>
+                    <small class="text-muted">' . htmlspecialchars($c["nombre_completo"]) . ' — ' . date("d M Y", strtotime($c["fecha"])) . '</small>
+                  </div>
+                </div>
+              </div>';
+          }
+          echo '</div></div>';
+        }
+        ?>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+  </div>
 </section>
-FIN TESTIMONIOS-->
+
+<!-- AOS y JS de interacción -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    once: true
+  });
+
+  const estrellas = document.querySelectorAll('input[name="calificacion"]');
+  const texto = document.getElementById('textoCalificacion');
+  const btnComentario = document.getElementById('btnComentario');
+
+  const labels = {
+    1: 'Muy malo 😞',
+    2: 'Malo 😕',
+    3: 'Regular 😐',
+    4: 'Bueno 🙂',
+    5: 'Excelente 😄'
+  };
+
+  estrellas.forEach(estrella => {
+    estrella.addEventListener('change', () => {
+      const valor = estrella.value;
+      texto.textContent = `${valor} estrella${valor > 1 ? 's' : ''} - ${labels[valor]}`;
+      btnComentario.disabled = false;
+    });
+  });
+</script>
+
 <!--MAP-->
 <section class="map" style="background-color: #f5f5f5;">
     <br></br>
-    <h1 class="text-center">Ubicación</h1>
+    <h1 class="fw-bold" style="text-align: center;">Ubicación</h1>
     <p class="text-center">Estamos ubicados en la siguiente dirección</p>
     <div class="container">
         <div class="row">

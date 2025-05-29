@@ -4,7 +4,7 @@ include('app/controllers/citas/controller_seguimiento.php');
 ?>
 
 <div style='margin: 20px; padding: 20px; border-radius: 8px; background-color: #f8f9fa;'>
-    <h2 style='text-align: center; color: #004085;'>Mis Citas</h2>
+    <h1 style='text-align: center; color: #004085;'class="fw-bold">Mis Citas</h1>
     <p style='text-align: center; color: #004085;'>Aquí podrás ver todas las citas que has registrado en nuestro sistema. Puedes revisar los detalles de cada cita y su estado.</p>
 
     <?php if (count($citas) > 0): ?>
