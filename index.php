@@ -200,6 +200,25 @@ include('layout/mensaje_permiso.php'); //para ver si tiene permisos de administr
   ?>
 <?php endif; ?>
 
+<!-- MENSAJE DE CIERRE DE SESIÓN CON SWEETALERT -->
+<?php if (isset($_SESSION['mensajeCerrar'])): ?>
+  <script>
+    Swal.fire({
+      position: "top-center",
+      icon: "<?php echo $_SESSION['icono'] ?>",
+      title: "<?php echo $_SESSION['titulo'] ?>",
+      text: "<?php echo $_SESSION['mensajeCerrar'] ?>",
+      showConfirmButton: false,
+      timer: 3000
+    });
+  </script>
+  <?php
+    unset($_SESSION['titulo']);
+    unset($_SESSION['mensajeCerrar']);
+    unset($_SESSION['icono']);
+  ?>
+<?php endif; ?>
+
 <!-- ESTILOS DE SECCIÓN -->
 <style>
 .star-rating {

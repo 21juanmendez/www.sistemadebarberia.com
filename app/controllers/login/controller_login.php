@@ -30,6 +30,8 @@ if (empty($usuarios)) {
         $_SESSION['email'] = $usuario['email'];
         $_SESSION['mensaje'] = '<h1>Bienvenido \n</h1>'. $usuario['nombre_completo'];
         $_SESSION['icono'] = 'success';
+        // TOAST PARA STOCK
+        $_SESSION['mostrar_toast_stock'] = true;
         header('Location: ' . $VIEWS . "/usuarios");
     } elseif (password_verify($password, $usuario['password']) && ($usuario['nombre'] == "CLIENTE" || $usuario['nombre'] == "Cliente")) {
         $_SESSION['cliente'] = $usuario['nombre_completo'];
