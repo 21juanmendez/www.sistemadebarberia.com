@@ -28,6 +28,32 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        .points-display {
+            background: rgba(97, 218, 251, 0.1);
+            /* Un tono suave del azul principal */
+            border: 1px solid rgba(97, 218, 251, 0.3);
+            /* Bordes en el mismo azul */
+            border-radius: 8px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .points-number {
+            color: #48a7c7;
+            /* Un azul más oscuro, pero acorde al tema */
+            font-weight: 600;
+        }
+
+        .points-text {
+            color: #b0dff5;
+            /* Un azul claro para buena visibilidad */
+            font-size: 0.875rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -54,10 +80,10 @@ session_start();
                         </a>
                     </li>
                     <li class="nav-item">
-                            <a href="registrar_cita.php" class="nav-link">
-                                Reservar cita
-                            </a>
-                        </li>
+                        <a href="registrar_cita.php" class="nav-link">
+                            Reservar cita
+                        </a>
+                    </li>
                     <?php if (isset($_SESSION['cliente']) || isset($_SESSION['admin'])) { ?>
                         <li class="nav-item">
                             <a href="seguimiento.php" class="nav-link">
@@ -68,6 +94,13 @@ session_start();
                 </ul>
 
                 <ul class="navbar-nav">
+                <?php if (isset($_SESSION['cliente'])) { ?>
+                    <div class="points-display">
+                        <i class="bi bi-award text-white"></i>
+                        <span class="points-number" id="userPoints"><?php echo $_SESSION['puntos'] ?></span>
+                        <span class="points-text">puntos</span>
+                    </div>
+                    <?php } ?>
                     <li class="nav-item dropdown">
                         <?php include('views/login/mensaje.php'); ?>
                         <?php if (isset($_SESSION['cliente'])) { ?>
