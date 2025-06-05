@@ -48,6 +48,8 @@ if ($usuario_completo['nombre_rol'] == "ADMINISTRADOR" || $usuario_completo['nom
     $_SESSION['email'] = $usuario_completo['email'];
     $_SESSION['mensaje'] = '<h1>Bienvenido</h1>' . $usuario_completo['nombre_completo'];
     $_SESSION['icono'] = 'success';
+    // TOAST PARA STOCK
+    $_SESSION['mostrar_toast_stock'] = true;
     header('Location: ' . $VIEWS . "/usuarios");
 } elseif ($usuario_completo['nombre_rol'] == "CLIENTE" || $usuario_completo['nombre_rol'] == "Cliente") {
     $_SESSION['cliente'] = $usuario_completo['nombre_completo'];

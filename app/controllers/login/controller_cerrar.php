@@ -9,7 +9,8 @@ if (isset($_GET['type'])) {
         session_unset(); // Elimina todas las variables de sesión
         session_destroy(); // Destruye la sesión
         session_start(); // Reinicia la sesión para mostrar el mensaje de sesión cerrada
-        $_SESSION['mensaje'] = 'Sesión cerrada correctamente';
+        $_SESSION['titulo'] = 'Sesión cerrada';
+        $_SESSION['mensajeCerrar'] = 'Has cerrado sesión correctamente';
         $_SESSION['icono'] = 'success';
         header('Location: ' . $URL . '/index.php');
         exit();

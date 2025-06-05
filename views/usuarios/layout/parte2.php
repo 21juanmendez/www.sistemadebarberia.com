@@ -59,6 +59,7 @@
     <script src="<?php echo $URL?>/public/js/datatable_ventas_eliminadas.js" ></script>
     <script src="<?php echo $URL?>/public/js/datatable_reporte_clientes.js" ></script>
     <script src="<?php echo $URL?>/public/js/datatable_citas copy.js" ></script>
+    <script src="<?php echo $URL?>/public/js/datatable_comentarios.js" ></script>
     <!--Cargar imagen al elegir-->
     <script src="<?php echo $URL?>/public/js/crear_producto_imagen.js" ></script>
     <!--bootstrap 5-->

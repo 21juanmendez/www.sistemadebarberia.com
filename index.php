@@ -5,183 +5,183 @@ include('layout/mensaje_permiso.php'); //para ver si tiene permisos de administr
 ?>
 <!--CARRUSEL-->
 <section>
-    <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active text-center">
-                <img src="public/imagenes/barberia-carrusel-4.png" class="d-block mx-auto img-fluid" alt="Descripción de la imagen">
-                <div class="carousel-caption d-md-block">
-                    <a href="<?php echo $URL?>/registrar_cita.php" class="btn btn-primary">Reservar cita</a><br></br>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="public/imagenes/barberia-carrusel-1.png" class="d-block mx-auto img-fluid" alt="Descripción de la imagen">
-                <div class="carousel-caption d-md-block">
-                    <a href="<?php echo $URL?>/registrar_cita.php" class="btn btn-primary">Reservar cita</a> <br></br>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="public/imagenes/barberia-carrusel-2.jpg" class="d-block mx-auto img-fluid" alt="Descripción de la imagen">
-                <div class="carousel-caption d-md-block">
-                    <a href="<?php echo $URL?>/registrar_cita.php" class="btn btn-primary">Reservar cita</a> <br></br>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+  <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active text-center">
+        <img src="public/imagenes/barberia-carrusel-4.png" class="d-block mx-auto img-fluid" alt="Descripción de la imagen">
+        <div class="carousel-caption d-md-block">
+          <a href="<?php echo $URL ?>/registrar_cita.php" class="btn btn-primary">Reservar cita</a><br></br>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="public/imagenes/barberia-carrusel-1.png" class="d-block mx-auto img-fluid" alt="Descripción de la imagen">
+        <div class="carousel-caption d-md-block">
+          <a href="<?php echo $URL ?>/registrar_cita.php" class="btn btn-primary">Reservar cita</a> <br></br>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="public/imagenes/barberia-carrusel-2.jpg" class="d-block mx-auto img-fluid" alt="Descripción de la imagen">
+        <div class="carousel-caption d-md-block">
+          <a href="<?php echo $URL ?>/registrar_cita.php" class="btn btn-primary">Reservar cita</a> <br></br>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 </section>
 <!--FIN CARRUSEL-->
 <!--CONTENIDO-->
 <section class="info" style="background-color: #f5f5f5;">
-    <br>
-    <div class="container text-center">
-        <div class="row">
-            <div class="col-md-5 zoomP">
-                <center>
-                    <img src="public/imagenes/Picsart_24-02-19_18-08-19-200.png" width="60%">
-                </center>
-            </div>
-            <div class="col-md-7">
-                <center>
-                    <h1 class="fw-bold">Sobre Nosotros</h1>
-                </center>
-                <p style="text-align: justify;">
-                    En<b> Area51</b>, nos enorgullece ser el destino de confianza para el cuidado
-                    y el estilo de tu cabello. Contamos con un equipo de estilistas altamente capacitados y
-                    dedicados, quienes se esfuerzan incansablemente para que cada visita a nuestra peluquería
-                    sea una experiencia que trascienda más allá de un simple corte de pelo. Con instalaciones
-                    modernas y equipamiento de vanguardia, estamos preparados para ofrecerte los mejores servicios
-                    y tratamientos disponibles en el mundo de la belleza capilar.
-                    Entendemos que visitar la peluquería puede ser una experiencia importante tanto para ti como
-                    para nuestros clientes. Es por eso que hemos diseñado cuidadosamente nuestras instalaciones para
-                    crear un ambiente tranquilo, acogedor y cómodo. Desde la recepción hasta las áreas de corte y estilismo,
-                    nos esforzamos por reducir el estrés y proporcionar un espacio donde puedas relajarte y disfrutar del proceso de embellecimiento.
-                </p>
-            </div>
-        </div>
-    </div><br>
+  <br>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-md-5 zoomP">
+        <center>
+          <img src="public/imagenes/Picsart_24-02-19_18-08-19-200.png" width="60%">
+        </center>
+      </div>
+      <div class="col-md-7">
+        <center>
+          <h1 class="fw-bold">Sobre Nosotros</h1>
+        </center>
+        <p style="text-align: justify;">
+          En<b> Area51</b>, nos enorgullece ser el destino de confianza para el cuidado
+          y el estilo de tu cabello. Contamos con un equipo de estilistas altamente capacitados y
+          dedicados, quienes se esfuerzan incansablemente para que cada visita a nuestra peluquería
+          sea una experiencia que trascienda más allá de un simple corte de pelo. Con instalaciones
+          modernas y equipamiento de vanguardia, estamos preparados para ofrecerte los mejores servicios
+          y tratamientos disponibles en el mundo de la belleza capilar.
+          Entendemos que visitar la peluquería puede ser una experiencia importante tanto para ti como
+          para nuestros clientes. Es por eso que hemos diseñado cuidadosamente nuestras instalaciones para
+          crear un ambiente tranquilo, acogedor y cómodo. Desde la recepción hasta las áreas de corte y estilismo,
+          nos esforzamos por reducir el estrés y proporcionar un espacio donde puedas relajarte y disfrutar del proceso de embellecimiento.
+        </p>
+      </div>
+    </div>
+  </div><br>
 </section>
 <!--FIN CONTENIDO-->
 
 <!--SERVICIOS-->
 <section class="our-services" id="our-services" style="background-color: #f5f5f5;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <center>
-                    <h1 class="fw-bold">Nuestros Servicios</h1>
-                    <p>Ofrecemos una amplia gama de servicios para caballeros</p>
-                </center>
-            </div>
-        </div>
-
-        <div id="carouselExampleAutoplaying1" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-            <?php
-                $totalServicios = count($servicios);
-                $serviciosPorItem = 4;
-                $totalItems = ceil($totalServicios / $serviciosPorItem);
-
-                for ($i = 0; $i < $totalItems; $i++) {
-                    echo '<div class="carousel-item' . ($i === 0 ? ' active' : '') . '">';
-                    echo '<div class="row">';
-                    for ($j = $i * $serviciosPorItem; $j < min($totalServicios, ($i + 1) * $serviciosPorItem); $j++) {
-                        $servicio = $servicios[$j];
-                        $nombre = $servicio['nombre_servicio'];
-                        $descripcion = $servicio['descripcion'];
-                        $imagen = $servicio['imagen'];
-                        $precio = $servicio['precio'];
-                ?>
-                        <div class="col-md-3 zoomP">
-                            <div class="card">
-                                <center>
-                                    <img src="<?php echo $URL ?>/public/imagenes/servicios/<?php echo $imagen ?>" height="220px" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?php echo $nombre ?></h5>
-                                        <p class="card-text"><?php echo $descripcion ?></p>
-                                        <p class="card-text"><b><?php echo "Precio: " . "$" . $precio?></b></p>
-                                    </div>
-                                </center>
-
-                            </div><br></br>
-                        </div>
-                <?php
-                    }
-                    echo '</div>';
-                    echo '</div>';
-                }
-                ?>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying1" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying1" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <center>
+          <h1 class="fw-bold">Nuestros Servicios</h1>
+          <p>Ofrecemos una amplia gama de servicios para caballeros</p>
+        </center>
+      </div>
     </div>
+
+    <div id="carouselExampleAutoplaying1" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <?php
+        $totalServicios = count($servicios);
+        $serviciosPorItem = 4;
+        $totalItems = ceil($totalServicios / $serviciosPorItem);
+
+        for ($i = 0; $i < $totalItems; $i++) {
+          echo '<div class="carousel-item' . ($i === 0 ? ' active' : '') . '">';
+          echo '<div class="row">';
+          for ($j = $i * $serviciosPorItem; $j < min($totalServicios, ($i + 1) * $serviciosPorItem); $j++) {
+            $servicio = $servicios[$j];
+            $nombre = $servicio['nombre_servicio'];
+            $descripcion = $servicio['descripcion'];
+            $imagen = $servicio['imagen'];
+            $precio = $servicio['precio'];
+        ?>
+            <div class="col-md-3 zoomP">
+              <div class="card">
+                <center>
+                  <img src="<?php echo $URL ?>/public/imagenes/servicios/<?php echo $imagen ?>" height="220px" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title"><?php echo $nombre ?></h5>
+                    <p class="card-text"><?php echo $descripcion ?></p>
+                    <p class="card-text"><b><?php echo "Precio: " . "$" . $precio ?></b></p>
+                  </div>
+                </center>
+
+              </div><br></br>
+            </div>
+        <?php
+          }
+          echo '</div>';
+          echo '</div>';
+        }
+        ?>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying1" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying1" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+  </div>
 </section>
 <!--FIN SERVICIOS-->
 
 <!--GALLERY-->
 <section class="galery" style="background-color: #f5f5f5;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <center>
-                    <h1 class="fw-bold">Galería</h1>
-                    <p>Algunas fotos de nuestras instalaciones</p>
-                </center>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 zoomP">
-                <img src="public/imagenes/galeria1-barber.jpeg" width="100%" height="300px">
-                <br></br>
-            </div>
-            <div class="col-md-8 zoomP">
-                <img src="public/imagenes/galeria2-barber.jpg" width="100%" height="300px">
-                <br></br>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 zoomP">
-                <img src="public/imagenes/galeria3-barber.jpg" width="100%" height="300px">
-                <br></br>
-            </div>
-            <div class="col-md-4 zoomP">
-                <img src="public/imagenes/galeria4-barber.jpg" width="100%" height="300px">
-                <br></br>
-            </div>
-            <div class="col-md-4 zoomP">
-                <img src="public/imagenes/galeria5-barber.jpg" width="100%" height="300px">
-            </div><br></br>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <center>
+          <h1 class="fw-bold">Galería</h1>
+          <p>Algunas fotos de nuestras instalaciones</p>
+        </center>
+      </div>
     </div>
+    <div class="row">
+      <div class="col-md-4 zoomP">
+        <img src="public/imagenes/galeria1-barber.jpeg" width="100%" height="300px">
+        <br></br>
+      </div>
+      <div class="col-md-8 zoomP">
+        <img src="public/imagenes/galeria2-barber.jpg" width="100%" height="300px">
+        <br></br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 zoomP">
+        <img src="public/imagenes/galeria3-barber.jpg" width="100%" height="300px">
+        <br></br>
+      </div>
+      <div class="col-md-4 zoomP">
+        <img src="public/imagenes/galeria4-barber.jpg" width="100%" height="300px">
+        <br></br>
+      </div>
+      <div class="col-md-4 zoomP">
+        <img src="public/imagenes/galeria5-barber.jpg" width="100%" height="300px">
+      </div><br></br>
+    </div>
+  </div>
 </section>
 <!--FIN GALLERY-->
 
 
- <!-- MENSAJE DE COMENTARIO CON SWEETALERT -->
+<!-- MENSAJE DE COMENTARIO CON SWEETALERT -->
 <?php if (isset($_SESSION['mensajeComentario'])): ?>
   <script>
     Swal.fire({
@@ -194,67 +194,86 @@ include('layout/mensaje_permiso.php'); //para ver si tiene permisos de administr
     });
   </script>
   <?php
-    unset($_SESSION['titulo']);
-    unset($_SESSION['mensajeComentario']);
-    unset($_SESSION['icono']);
+  unset($_SESSION['titulo']);
+  unset($_SESSION['mensajeComentario']);
+  unset($_SESSION['icono']);
+  ?>
+<?php endif; ?>
+
+<!-- MENSAJE DE CIERRE DE SESIÓN CON SWEETALERT -->
+<?php if (isset($_SESSION['mensajeCerrar'])): ?>
+  <script>
+    Swal.fire({
+      position: "top-center",
+      icon: "<?php echo $_SESSION['icono'] ?>",
+      title: "<?php echo $_SESSION['titulo'] ?>",
+      text: "<?php echo $_SESSION['mensajeCerrar'] ?>",
+      showConfirmButton: false,
+      timer: 3000
+    });
+  </script>
+  <?php
+  unset($_SESSION['titulo']);
+  unset($_SESSION['mensajeCerrar']);
+  unset($_SESSION['icono']);
   ?>
 <?php endif; ?>
 
 <!-- ESTILOS DE SECCIÓN -->
 <style>
-.star-rating {
-  direction: rtl;
-  font-size: 2rem;
-  display: inline-flex;
-  gap: 8px;
-  justify-content: center;
-  transition: transform 0.2s;
-}
+  .star-rating {
+    direction: rtl;
+    font-size: 2rem;
+    display: inline-flex;
+    gap: 8px;
+    justify-content: center;
+    transition: transform 0.2s;
+  }
 
-.star-rating input[type="radio"] {
-  display: none;
-}
+  .star-rating input[type="radio"] {
+    display: none;
+  }
 
-.star-rating label {
-  color: #ccc;
-  cursor: pointer;
-  transition: color 0.3s ease, transform 0.2s;
-}
+  .star-rating label {
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s;
+  }
 
-.star-rating label:hover,
-.star-rating input[type="radio"]:checked ~ label,
-.star-rating label:hover ~ label {
-  color: gold;
-  transform: scale(1.1);
-}
+  .star-rating label:hover,
+  .star-rating input[type="radio"]:checked~label,
+  .star-rating label:hover~label {
+    color: gold;
+    transform: scale(1.1);
+  }
 
-.calificacion-texto {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #0d6efd;
-  margin-top: 10px;
-  transition: opacity 0.2s ease-in-out;
-}
+  .calificacion-texto {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #0d6efd;
+    margin-top: 10px;
+    transition: opacity 0.2s ease-in-out;
+  }
 
-.testimonial-card {
-  transition: transform 0.3s ease-in-out;
-  border-radius: 15px;
-  background-color: #ffffff;
-}
+  .testimonial-card {
+    transition: transform 0.3s ease-in-out;
+    border-radius: 15px;
+    background-color: #ffffff;
+  }
 
-.testimonial-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-}
+  .testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  }
 
-.card-title {
-  font-size: 1.25rem;
-}
+  .card-title {
+    font-size: 1.25rem;
+  }
 
-.card-text {
-  font-style: italic;
-  line-height: 1.5;
-}
+  .card-text {
+    font-style: italic;
+    line-height: 1.5;
+  }
 </style>
 
 <!-- SECCIÓN COMPLETA DE OPINIONES -->
@@ -281,6 +300,20 @@ include('layout/mensaje_permiso.php'); //para ver si tiene permisos de administr
             <label for="comentario" class="form-label fw-semibold">Tu Experiencia</label>
             <textarea class="form-control" id="comentario" name="comentario" rows="4" placeholder="Cuéntanos cómo fue tu visita..." required></textarea>
           </div>
+          <?php
+          $servicios = $pdo->query("SELECT id_servicio, nombre_servicio FROM tb_servicios")->fetchAll(PDO::FETCH_ASSOC);
+          ?>
+          <div class="mb-3">
+            <label for="id_servicio" class="form-label fw-semibold">Servicio relacionado</label>
+            <select name="id_servicio" id="id_servicio" class="form-select" required>
+              <option value="">Selecciona un servicio</option>
+              <?php foreach ($servicios as $servicio): ?>
+                <option value="<?php echo $servicio['id_servicio']; ?>">
+                  <?php echo htmlspecialchars($servicio['nombre_servicio']); ?>
+                </option>
+              <?php endforeach; ?>
+            </select>
+          </div>
 
           <div class="mb-4 text-center">
             <label class="form-label fw-semibold mb-2">Calificación</label>
@@ -304,15 +337,17 @@ include('layout/mensaje_permiso.php'); //para ver si tiene permisos de administr
     <!-- CARRUSEL DE TESTIMONIOS -->
     <?php
     $stmt = $pdo->prepare("
-        SELECT c.titulo, c.comentario, c.calificacion, c.fecha, u.nombre_completo 
-        FROM tb_comentarios c 
-        INNER JOIN tb_usuarios u ON c.id_usuario = u.id_usuario
-        ORDER BY c.fecha DESC
-        LIMIT 12
-    ");
+    SELECT c.titulo, c.comentario, c.calificacion, c.fecha, u.nombre_completo, s.nombre_servicio
+    FROM tb_comentarios c 
+    INNER JOIN tb_usuarios u ON c.id_usuario = u.id_usuario
+    INNER JOIN tb_servicios s ON c.id_servicio = s.id_servicio
+    ORDER BY c.fecha DESC
+    LIMIT 12
+");
     $stmt->execute();
     $comentarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
+
 
     <div id="carouselTestimonios" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
@@ -332,6 +367,7 @@ include('layout/mensaje_permiso.php'); //para ver si tiene permisos de administr
                   <div class="card-body">
                     <h5 class="card-title fw-bold text-primary mb-1">' . htmlspecialchars($c["titulo"]) . '</h5>
                     <p class="card-text fs-6 text-secondary mb-2">' . htmlspecialchars($c["comentario"]) . '</p>
+                    <p class="badge bg-info text-dark mb-2">Servicio: ' . htmlspecialchars($c["nombre_servicio"]) . '</p>
                     <p class="text-warning fs-5 mb-1">';
             for ($s = 1; $s <= 5; $s++) {
               echo $s <= $c['calificacion'] ? '★' : '☆';
@@ -390,16 +426,16 @@ include('layout/mensaje_permiso.php'); //para ver si tiene permisos de administr
 
 <!--MAP-->
 <section class="map" style="background-color: #f5f5f5;">
-    <br></br>
-    <h1 class="fw-bold" style="text-align: center;">Ubicación</h1>
-    <p class="text-center">Estamos ubicados en la siguiente dirección</p>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.708867483203!2d-89.25471762604498!3d13.675458599058715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f632fc0d17a087b%3A0x62c853dcf744fceb!2sChivo%20Pets%20%7C%20Hospital%20Veterinario!5e0!3m2!1ses-419!2ssv!4v1706569458653!5m2!1ses-419!2ssv" width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
+  <br></br>
+  <h1 class="fw-bold" style="text-align: center;">Ubicación</h1>
+  <p class="text-center">Estamos ubicados en la siguiente dirección</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.708867483203!2d-89.25471762604498!3d13.675458599058715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f632fc0d17a087b%3A0x62c853dcf744fceb!2sChivo%20Pets%20%7C%20Hospital%20Veterinario!5e0!3m2!1ses-419!2ssv!4v1706569458653!5m2!1ses-419!2ssv" width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
     </div>
+  </div>
 </section>
 <br></br>
 <!--FIN MAP-->

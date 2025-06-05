@@ -39,9 +39,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- ChartJS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
-
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
@@ -74,7 +71,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-                <!-- Notifications Dropdown Menu -->
+                <?php 
+                // Mostrar el toast de bienvenida y stock bajo si la sesión lo indica
+                if (isset($_SESSION['mostrar_toast_stock']) && $_SESSION['mostrar_toast_stock']) : ?>
+                    <script>
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Bienvenido <?php echo $_SESSION["admin"]; ?>',
+                            showConfirmButton: false,
+                            timer: 1000,
+                            timerProgressBar: true
+                        });
+
+                        setTimeout(() => {
+                            Swal.fire({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'warning',
+                                title: '<?php echo $productos_bajos ?> producto<?php echo $productos_bajos > 1 ? "s" : "" ?> con stock bajo',
+                                showConfirmButton: false,
+                                timer: 5000,
+                                timerProgressBar: true
+                            });
+                        }, 1000);
+                    </script>
+                    <?php unset($_SESSION['mostrar_toast_stock']); ?>
+                <?php endif; ?>
+
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link position-relative" data-toggle="dropdown" href="#" title="Notificaciones de inventario">
@@ -388,6 +413,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <a href="<?php echo $VIEWS ?>/reportes/clientes.php" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Reporte de clientes</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                <a href="<?php echo $VIEWS ?>/reportes/comentarios.php" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Reporte de comentarios</p>
                                     </a>
                                 </li>
                             </ul>
