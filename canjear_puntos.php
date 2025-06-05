@@ -143,10 +143,10 @@ include('layout/parte1.php');
     <!-- Grid de promociones -->
     <div class="row g-4">
         <?php foreach ($promociones as $promo): ?>
-            <?php 
-                $puntosUsuario = $_SESSION['puntos'];
-                $puntosRequeridos = $promo['puntos_requeridos'];
-                $suficientesPuntos = $puntosUsuario >= $puntosRequeridos;
+            <?php
+            $puntosUsuario = $_SESSION['puntos'];
+            $puntosRequeridos = $promo['puntos_requeridos'];
+            $suficientesPuntos = $puntosUsuario >= $puntosRequeridos;
             ?>
             <div class="col-lg-4 col-md-6">
                 <div class="card promo-card h-100 <?php echo !$suficientesPuntos ? 'insufficient-points' : ''; ?>">
@@ -168,7 +168,6 @@ include('layout/parte1.php');
                                 <?php endforeach; ?>
                             </ul>
                         <?php endif; ?>
-                        
                         <?php if ($suficientesPuntos): ?>
                             <button class="btn btn-canjear w-100 mt-3" onclick="canjearPromocion('<?= addslashes($promo['nombre']) ?>', <?= $promo['puntos_requeridos'] ?>)">
                                 <i class="fas fa-exchange-alt me-2"></i>Canjear Ahora
@@ -233,7 +232,7 @@ include('layout/parte1.php');
 </div>
 
 <!-- Modal de éxito -->
-<div class="modal fade" id="successModal" tabindex="-1">
+<div class="modal fade" id="successModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-success text-white">
@@ -244,11 +243,17 @@ include('layout/parte1.php');
                 <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
                 <h4>¡Felicidades!</h4>
                 <p>Has canjeado exitosamente: <strong id="successPromoName"></strong></p>
-                <p>Código de canje: <strong class="text-primary" id="canjeCode"></strong></p>
-                <p class="text-muted">Presenta este código en tu próxima visita</p>
+                <p>Código de canje:</p>
+                <div class="input-group justify-content-center mb-2" style="max-width: 250px; margin: 0 auto;">
+                    <input type="text" class="form-control text-center fw-bold" id="canjeCode" readonly>
+                    <button class="btn btn-outline-secondary" type="button" onclick="copiarCodigo()">
+                        <i class="bi-clipboard me-2"></i>
+                    </button>
+                </div>
+                <p class="text-muted">Preséntalo en tu próxima visita a nuestra barbería</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success w-100" data-bs-dismiss="modal">
+                <button type="button" class="btn btn-success w-100" onclick="location.reload()">
                     <i class="fas fa-thumbs-up me-2"></i>¡Genial!
                 </button>
             </div>
@@ -282,39 +287,57 @@ include('layout/parte1.php');
         confirmModal.hide();
 
         fetch('<?php echo $URL ?>/app/controllers/promociones/canjear_promocion.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                nombre_promocion: currentPromo.nombre,
-                puntos_requeridos: currentPromo.puntos
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    nombre_promocion: currentPromo.nombre,
+                    puntos_requeridos: currentPromo.puntos
+                })
             })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Actualiza puntos
-                userPoints -= currentPromo.puntos;
-                document.getElementById('userPoints').textContent = userPoints;
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Actualiza puntos
+                    userPoints -= currentPromo.puntos;
+                    document.getElementById('userPoints').textContent = userPoints;
 
-                // Muestra los datos del canje
-                document.getElementById('successPromoName').textContent = currentPromo.nombre;
-                document.getElementById('canjeCode').textContent = data.codigo;
+                    // Muestra los datos del canje
+                    document.getElementById('successPromoName').textContent = currentPromo.nombre;
+                    document.getElementById('canjeCode').value = data.codigo;
 
-                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
-                successModal.show();
-                setTimeout(() => location.reload(), 1000);
-            } else {
-                alert('Error: ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error en la solicitud AJAX:', error);
-            alert('Error al procesar el canje.');
-        });
+                    // Muestra el modal de éxito
+                    const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                    successModal.show();
+
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error en la solicitud AJAX:', error);
+                alert('Error al procesar el canje.');
+            });
     }
 
+    function copiarCodigo() {
+        const input = document.getElementById("canjeCode");
+        input.select();
+        input.setSelectionRange(0, 99999); // Para dispositivos móviles
+
+        navigator.clipboard.writeText(input.value).then(() => {
+            Swal.fire({
+                icon: 'success',
+                title: 'Código copiado',
+                text: 'El código ha sido copiado al portapapeles',
+                timer: 1500,
+                showConfirmButton: false
+            });
+        }).catch(err => {
+            alert("Error al copiar: " + err);
+        });
+    }
 </script>
 
 <?php

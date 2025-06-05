@@ -1,10 +1,10 @@
 <?php
 include('app/config.php');
+session_start();
 include('app/controllers/productos/controller_productos.php');
 include('app/controllers/servicios/controller_servicios.php');
 include('app/controllers/promociones/obtener_promociones.php');
-
-session_start();
+include('app/controllers/notificaciones/canje_puntos.php');
 ?>
 
 <!doctype html>
@@ -55,6 +55,12 @@ session_start();
             /* Un azul claro para buena visibilidad */
             font-size: 0.875rem;
         }
+
+        .notificacion-badge {
+            top: 10%;
+            left: 60%;
+            transform: translate(-50%, -50%);
+        }
     </style>
 </head>
 
@@ -104,12 +110,38 @@ session_start();
                 </ul>
 
                 <ul class="navbar-nav">
-                <?php if (isset($_SESSION['cliente'])) { ?>
-                    <div class="points-display">
-                        <i class="bi bi-award text-white"></i>
-                        <span class="points-number" id="userPoints"><?php echo $_SESSION['puntos'] ?></span>
-                        <span class="points-text">puntos</span>
-                    </div>
+                    <?php if (!empty($notificaciones)) { ?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle position-relative" href="#" id="notifDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-bell-fill"></i>
+                                <span class="position-absolute badge rounded-pill bg-danger notificacion-badge">
+                                    <?= count($notificaciones) ?>
+                                </span>
+
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notifDropdown">
+                                <?php foreach ($notificaciones as $notif) { ?>
+                                    <li>
+                                        <a class="dropdown-item small">
+                                            <strong><?= htmlspecialchars($notif['promocion']) ?></strong><br>
+                                            Código: <span class="text-primary"><?= htmlspecialchars($notif['codigo']) ?></span><br>
+                                            <small class="text-muted">Válido hasta <?= date('d/m/Y H:i', strtotime($notif['fyh_expiracion'])) ?></small>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </li>
+                    <?php } ?>
+
+                    <?php if (isset($_SESSION['cliente'])) { ?>
+                        <div class="points-display">
+                            <i class="bi bi-award text-white"></i>
+                            <span class="points-number" id="userPoints"><?php echo $_SESSION['puntos'] ?></span>
+                            <span class="points-text">puntos</span>
+                        </div>
                     <?php } ?>
                     <li class="nav-item dropdown">
                         <?php include('views/login/mensaje.php'); ?>
