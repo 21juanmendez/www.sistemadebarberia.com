@@ -51,7 +51,7 @@ include('mensaje.php');
 
                     <div class="row">
                         <div class="col-md-12">
-                            <table id="example3" class="table table-striped table-borderless table-hover">
+                            <table id="puntos" class="table table-striped table-borderless table-hover">
                                 <thead class="table-dark">
                                     <tr>
                                         <th style="text-align: center;">#</th>
