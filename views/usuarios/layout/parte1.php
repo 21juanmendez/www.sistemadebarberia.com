@@ -276,6 +276,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </li>
 
+                        <!-- Promociones -->
+                        <li class="nav-item menu-closed">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-gift"></i>
+                                <p>
+                                    Promociones
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo $VIEWS ?>/promociones" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Listado de Promociones</p>
+                                    </a>
+                                </li>
+                            </ul>
+
                         <li class="nav-item menu-closed">
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-user-tie"></i>
