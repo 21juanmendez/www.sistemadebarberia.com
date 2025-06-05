@@ -11,13 +11,15 @@ $total_venta = $_POST['total_a_pagar'];
 $total_pagado = $_POST['total_pagado'];
 $cambio = $_POST['cambio'];
 $completa = 1;
+$fyh_visita = date('Y-m-d H:i:s');
 
 if ($id_cliente == 0) {
     $id_cliente = null; // Si no hay cliente, se establece como NULL
 } else {
-    $sql = "UPDATE tb_clientes SET acumulado_puntos = acumulado_puntos + :puntos_acumulados WHERE id_cliente = :id_cliente";
+    $sql = "UPDATE tb_clientes SET acumulado_puntos = acumulado_puntos + :puntos_acumulados, fecha_ultima_visita = :fecha_ultima_visita WHERE id_cliente = :id_cliente";
     $params = array(
         ':puntos_acumulados' => $puntos_acumulados,
+        ':fecha_ultima_visita' => $fyh_visita,
         ':id_cliente' => $id_cliente
     );
     $query = $pdo->prepare($sql);

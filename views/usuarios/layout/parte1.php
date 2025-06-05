@@ -360,6 +360,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <p>Reporte de inventario</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo $VIEWS ?>/reportes/clientes.php" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Reporte de clientes</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
