@@ -2,6 +2,8 @@
 include('app/config.php');
 include('app/controllers/productos/controller_productos.php');
 include('app/controllers/servicios/controller_servicios.php');
+include('app/controllers/promociones/obtener_promociones.php');
+
 session_start();
 ?>
 
@@ -84,6 +86,14 @@ session_start();
                             Reservar cita
                         </a>
                     </li>
+
+                    <?php if (isset($_SESSION['cliente'])) { ?>
+                        <li class="nav-item">
+                            <a href="canjear_puntos.php" class="nav-link">
+                                Canjear puntos
+                            </a>
+                        </li>
+                    <?php } ?>
                     <?php if (isset($_SESSION['cliente']) || isset($_SESSION['admin'])) { ?>
                         <li class="nav-item">
                             <a href="seguimiento.php" class="nav-link">

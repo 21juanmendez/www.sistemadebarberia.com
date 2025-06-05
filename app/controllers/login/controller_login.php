@@ -29,7 +29,7 @@ if (!password_verify($password, $usuario['password'])) {
 
 // Si llegamos aquí, la contraseña es correcta
 // Ahora obtenemos los datos completos con el rol
-$sql = "SELECT usuarios.*, rol.nombre as nombre_rol, cliente.acumulado_puntos 
+$sql = "SELECT usuarios.*, rol.nombre as nombre_rol, cliente.id_cliente, cliente.acumulado_puntos, cliente.fecha_ultima_visita 
         FROM tb_usuarios usuarios 
         INNER JOIN tb_roles rol ON usuarios.id_rol = rol.id_rol 
         LEFT JOIN tb_clientes cliente ON usuarios.id_usuario = cliente.id_usuario
@@ -51,8 +51,15 @@ if ($usuario_completo['nombre_rol'] == "ADMINISTRADOR" || $usuario_completo['nom
     header('Location: ' . $VIEWS . "/usuarios");
 } elseif ($usuario_completo['nombre_rol'] == "CLIENTE" || $usuario_completo['nombre_rol'] == "Cliente") {
     $_SESSION['cliente'] = $usuario_completo['nombre_completo'];
+    $_SESSION['id_cliente'] = $usuario_completo['id_cliente'];
     $_SESSION['puntos'] = $usuario_completo['acumulado_puntos'] ?? 0;
     $_SESSION['mensaje'] = $usuario_completo['nombre_completo'];
+    $_SESSION['email'] = $usuario_completo['email'];
+    //Mostrar fecha en que se registró el usuario en formato Mes anio (por ejemplo: Enero 2023)
+    $_SESSION['fecha_registro'] = date('F Y', strtotime($usuario_completo['fyh_creacion']));
+    //Mostrar fecha de la ultima visita del usuario en formato dia Mes anio (por ejemplo: 15 Enero 2023)
+    $_SESSION['ultima_visita'] = date('d F Y', strtotime($usuario_completo['fecha_ultima_visita']) ?: 'No disponible');
+
     $_SESSION['icono'] = 'success';
     header('Location: ' . $URL . "/index.php");
 } else {
