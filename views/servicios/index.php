@@ -23,7 +23,6 @@ include('mensaje.php');
                                         <th style="text-align: center;">Descripción</th>
                                         <th style="text-align: center;">Precio</th>
                                         <th style="text-align: center;">Puntos por servicio</th>
-                                        <th style="text-align: center;">Puntos para gratis</th>
                                         <th style="text-align: center;">Imagen</th>
                                         <th style="text-align: center;">Acciones</th>
                                     </tr>
@@ -50,11 +49,6 @@ include('mensaje.php');
                                             <td>
                                                 <center>
                                                     <?php echo $servicio['acumula_puntos'] ?>
-                                                </center>
-                                            </td>
-                                            <td>
-                                                <center>
-                                                    <?php echo $servicio['puntos_para_gratis'] ?>
                                                 </center>
                                             </td>
                                             <td>

@@ -20,22 +20,16 @@ include('../../app/controllers/servicios/controller_read.php');
                                     <p><?php echo $nombre_servicio ?></p>
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Precio</label>
                                     <p><?php echo $precio ?></p>
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Puntos por servicio</label>
                                     <p><?php echo $acumula_puntos ?></p>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group text-center">
-                                    <label>Puntos para gratis</label>
-                                    <p><?php echo $puntos ?></p>
                                 </div>
                             </div>
                             

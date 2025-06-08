@@ -49,6 +49,8 @@ foreach ($parametros as $param => $valor) {
 $query_compras->execute();
 $compras = $query_compras->fetchAll(PDO::FETCH_ASSOC);
 
+$cantidadCompras = count($compras);
+
 // Obtener estadísticas de compras por estado
 $sql_stats = "SELECT 
                 estado,

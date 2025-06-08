@@ -9,6 +9,12 @@ include('../../app/controllers/servicios/controller_servicios.php');
 include('../../app/controllers/empleados/controller_empleados.php');
 include('../../app/controllers/ventas/controller_ventas.php');
 include('../../app/controllers/citas/controller_citas.php');
+include('../../app/controllers/promociones/controller_promociones.php');
+include('../../app/controllers/gastos/controller_gastos.php');
+include('../../app/controllers/proveedores/controller_proveedores.php');
+include('../../app/controllers/categorias_gastos/controller_categorias.php');
+include('../../app/controllers/compras/controller_compras.php');
+
 
 ?>
 <div class="container-fluid">
@@ -55,15 +61,93 @@ include('../../app/controllers/citas/controller_citas.php');
         </div>
 
         <div class="col-3">
+            <div class="small-box bg-orange">
+                <div class="inner text-white">
+                    <h3><?php echo $cantidadClientes ?></h3>
+                    <p><b>Registros de Clientes</b></p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-users text-light opacity-75"></i>
+                </div>
+                <a href="../reportes/clientes.php" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="small-box bg-dark">
+                <div class="inner">
+                    <h3><?php echo $contadorProveedores ?></h3>
+                    <p><b>Registros de Proveedores</b></p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-truck text-light opacity-75"></i>
+                </div>
+                <a href="../proveedores/" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="small-box bg-teal">
+                <div class="inner">
+                    <h3><?php echo $cantidadCompras ?></h3>
+                    <p><b>Registros de Compras</b></p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-shopping-basket text-light opacity-75"></i>
+                </div>
+                <a href="../compras/" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="small-box bg-purple opacity-75">
+                <div class="inner">
+                    <h3><?php echo $contadorGastos ?></h3>
+                    <p><b>Registros de Gastos</b></p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-money-bill-wave text-white opacity-75"></i>
+                </div>
+                <a href="../gastos/" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-3">
             <div class="small-box bg-primary">
                 <div class="inner">
                     <h3><?php echo $contadorCategorias ?></h3>
                     <p><b>Registros de Categorias</b></p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-list-alt"></i>
+                    <i class="fa fa-list-alt text-white opacity-75"></i>
                 </div>
                 <a href="../categorias/" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3><?php echo $contadorCategoriasGastos ?></h3>
+                    <p><b>Categorías de Gastos</b></p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-tags text-dark opacity-75"></i>
+                </div>
+                <a href="../categorias_gastos" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="small-box bg-lightblue">
+                <div class="inner">
+                    <h3><?php echo $contadorPromociones ?></h3>
+                    <p><b>Registros de Promociones</b></p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-gift text-white opacity-75"></i>
+                </div>
+                <a href="../promociones/" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -74,7 +158,7 @@ include('../../app/controllers/citas/controller_citas.php');
                     <p><b>Registros de Productos</b></p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-bag"></i>
+                    <i class="ion ion-bag text-white opacity-75"></i>
                 </div>
                 <a href="../productos/" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -87,7 +171,7 @@ include('../../app/controllers/citas/controller_citas.php');
                     <p><b>Registros de Servicios</b></p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-cut"></i>
+                    <i class="fa fa-cut text-white opacity-75"></i>
                 </div>
                 <a href="../servicios/" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -100,7 +184,7 @@ include('../../app/controllers/citas/controller_citas.php');
                     <p><b>Gestion de Citas</b></p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-calendar"></i>
+                    <i class="fa fa-calendar text-white opacity-75"></i>
                 </div>
                 <a href="../citas/" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -113,7 +197,7 @@ include('../../app/controllers/citas/controller_citas.php');
                     <p><b>Registros de Ventas</b></p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-shopping-cart"></i>
+                    <i class="fa fa-shopping-cart text-dark opacity-75"></i>
                 </div>
                 <a href="../ventas/" class="small-box-footer bg-secondary">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
