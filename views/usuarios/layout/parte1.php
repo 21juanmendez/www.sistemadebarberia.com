@@ -262,6 +262,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <p>Listado de Categorias</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo $VIEWS ?>/categorias_gastos" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Categorias de Gastos</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         
@@ -297,6 +303,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <a href="<?php echo $VIEWS ?>/compras" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Listado de Compras</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item menu-closed">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-money-bill-wave"></i>
+                                <p>
+                                    Gastos
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo $VIEWS ?>/gastos" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Listado de Gastos</p>
                                     </a>
                                 </li>
                             </ul>
@@ -456,6 +480,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <a href="<?php echo $VIEWS ?>/reportes/comentarios.php" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Reporte de comentarios</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo $VIEWS ?>/reportes/financiero.php" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Reporte de financiero</p>
                                     </a>
                                 </li>
                             </ul>
