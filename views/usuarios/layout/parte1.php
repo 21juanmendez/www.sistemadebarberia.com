@@ -264,6 +264,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                             </ul>
                         </li>
+                        
+                        <li class="nav-item menu-closed">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-truck"></i>
+                                <p>
+                                    Proveedores
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo $VIEWS ?>/proveedores" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Listado de Proveedores</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Compras -->
+                        <li class="nav-item menu-closed">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-receipt"></i>
+                                <p>
+                                    Compras
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo $VIEWS ?>/compras" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Listado de Compras</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
                         <li class="nav-item menu-closed">
                             <a href="#" class="nav-link active">

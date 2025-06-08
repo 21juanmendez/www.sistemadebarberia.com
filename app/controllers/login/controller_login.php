@@ -60,7 +60,9 @@ if ($usuario_completo['nombre_rol'] == "ADMINISTRADOR" || $usuario_completo['nom
     //Mostrar fecha en que se registró el usuario en formato Mes anio (por ejemplo: Enero 2023)
     $_SESSION['fecha_registro'] = date('F Y', strtotime($usuario_completo['fyh_creacion']));
     //Mostrar fecha de la ultima visita del usuario en formato dia Mes anio (por ejemplo: 15 Enero 2023)
-    $_SESSION['ultima_visita'] = date('d F Y', strtotime($usuario_completo['fecha_ultima_visita']) ?: 'No disponible');
+    $_SESSION['ultima_visita'] = $usuario_completo['fecha_ultima_visita'] 
+        ? date('d F Y', strtotime($usuario_completo['fecha_ultima_visita'])) 
+        : 'Sin visitas';
 
     $_SESSION['icono'] = 'success';
     header('Location: ' . $URL . "/index.php");

@@ -49,6 +49,8 @@
     <script src="<?php echo $URL?>/public/js/datatable_roles.js"></script>
     <script src="<?php echo $URL?>/public/js/datatable_usuarios.js" ></script>
     <script src="<?php echo $URL?>/public/js/datatable_categorias.js" ></script>
+    <script src="<?php echo $URL?>/public/js/datatable_proveedores.js" ></script>
+    <script src="<?php echo $URL?>/public/js/datatable_compras.js" ></script>
     <script src="<?php echo $URL?>/public/js/datatable_productos.js" ></script>
     <script src="<?php echo $URL?>/public/js/datatable_servicios.js" ></script>
     <script src="<?php echo $URL?>/public/js/datatable_promociones.js"></script>

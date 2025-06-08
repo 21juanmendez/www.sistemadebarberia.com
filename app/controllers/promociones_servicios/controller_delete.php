@@ -1,7 +1,5 @@
 <?php
-// app/controllers/promociones_servicios/controller_delete.php
-
-include('../../../app/config/config.php');
+include('../../config.php');
 
 if ($_POST) {
     $id_promocion = $_POST['id_promocion'];
