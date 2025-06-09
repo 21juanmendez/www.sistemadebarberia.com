@@ -1,6 +1,6 @@
 <?php
 $sql = "SELECT * FROM tb_promociones WHERE promo_valida = true
- ORDER BY puntos_requeridos DESC";
+ ORDER BY puntos_requeridos ASC";
 $query = $pdo->prepare($sql);
 $query->execute();
 $promociones = $query->fetchAll(PDO::FETCH_ASSOC);
